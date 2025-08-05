@@ -1,0 +1,146 @@
+[
+  {
+    "label": "Todas las categorías",
+    "value": "category-all"
+  },
+  {
+    "label": "Antigüedades",
+    "value": "category-antiguedades"
+  },
+  {
+    "label": "Arte",
+    "value": "category-arte"
+  },
+  {
+    "label": "Artesanía",
+    "value": "category-artesania"
+  },
+  {
+    "label": "Artículos de colección",
+    "value": "category-coleccion"
+  },
+  {
+    "label": "Artículos deportivos",
+    "value": "category-deportivos"
+  },
+  {
+    "label": "Artículos electrónicos",
+    "value": "category-electronicos"
+  },
+  {
+    "label": "Artículos para mascotas",
+    "value": "category-mascotas"
+  },
+  {
+    "label": "Bebés",
+    "value": "category-bebes"
+  },
+  {
+    "label": "Belleza y salud",
+    "value": "category-belleza-salud"
+  },
+  {
+    "label": "Bienes raíces",
+    "value": "category-bienes-raices"
+  },
+  {
+    "label": "Cámaras y fotografía",
+    "value": "category-camaras-fotografia"
+  },
+  {
+    "label": "Celulares y accesorios",
+    "value": "category-celulares"
+  },
+  {
+    "label": "Cerámica y cristal",
+    "value": "category-ceramica-cristal"
+  },
+  {
+    "label": "Computadoras, tablets y redes",
+    "value": "category-computadoras"
+  },
+  {
+    "label": "DVD y películas",
+    "value": "category-dvd-peliculas"
+  },
+  {
+    "label": "eBay Motors",
+    "value": "category-ebay-motors"
+  },
+  {
+    "label": "Entradas, boletos",
+    "value": "category-entradas"
+  },
+  {
+    "label": "Entretenimiento",
+    "value": "category-entretenimiento"
+  },
+  {
+    "label": "Equipo y maquinaria industrial",
+    "value": "category-equipos-industriales"
+  },
+  {
+    "label": "Hogar y jardín",
+    "value": "category-hogar-jardin"
+  },
+  {
+    "label": "Instrumentos y equipos musicales",
+    "value": "category-instrumentos-musicales"
+  },
+  {
+    "label": "Joyas y relojes",
+    "value": "category-joyas-relojes"
+  },
+  {
+    "label": "Juguetes y pasatiempos",
+    "value": "category-juguetes"
+  },
+  {
+    "label": "Libros",
+    "value": "category-libros"
+  },
+  {
+    "label": "Memorabilia deportiva, cromos y artículos para aficionados",
+    "value": "category-memorabilia-deportiva"
+  },
+  {
+    "label": "Monedas y billetes",
+    "value": "category-monedas-billetes"
+  },
+  {
+    "label": "Muñecas y osos",
+    "value": "category-munecas-osos"
+  },
+  {
+    "label": "Música",
+    "value": "category-musica"
+  },
+  {
+    "label": "Ropa, zapatos y accesorios",
+    "value": "category-ropa"
+  },
+  {
+    "label": "Tarjetas de regalo y cupones",
+    "value": "category-tarjetas-cupones"
+  },
+  {
+    "label": "Sellos",
+    "value": "category-sellos"
+  },
+  {
+    "label": "Servicios especiales",
+    "value": "category-servicios"
+  },
+  {
+    "label": "Viajes",
+    "value": "category-viajes"
+  },
+  {
+    "label": "Videojuegos y consolas",
+    "value": "category-videojuegos"
+  },
+  {
+    "label": "Todo lo demás",
+    "value": "category-otros"
+  }
+]

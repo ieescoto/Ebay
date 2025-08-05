@@ -1,0 +1,140 @@
+/* Estilo del Sitio */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #191919;
+}
+/* Logo de Ebay tamaño */
+.ebay-logo {
+  height: 35px;
+}
+/* Tamaño de texto en las listas de las marcas */
+.brand-list {
+  font-size: 14px;
+}
+/* Decoracion en tarjetas, imagen fija a 200px y su titulo en 14px en negrita */
+.category-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.category-card .card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.category-card .card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #191919;
+  margin-bottom: 0;
+}
+
+.brand-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.brand-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+/* Tarjetas de marcas */
+.brand-card .card-img-top {
+  height: 120px;
+  object-fit: contain;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+}
+
+.brand-card .card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #191919;
+  margin-bottom: 0;
+}
+/* tarjetas de Apple */
+.apple-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.apple-card .card-img-top {
+  height: 150px;
+  object-fit: contain;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+}
+
+.apple-card .card-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #191919;
+  margin-bottom: 0;
+}
+
+h2.h4 {
+  font-weight: 700;
+  color: #191919;
+  margin-bottom: 1.5rem;
+}
+
+
+.container-fluid .row:first-child {
+  background-color: #f7f7f7;
+}
+/* Footer */
+footer {
+  border-top: 1px solid #e5e5e5;
+}
+
+footer a {
+  color: #0654ba;
+  font-size: 13px;
+}
+
+footer small {
+  font-size: 11px;
+}
+
+/* Diseno tarjetas */
+
+.categorias {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.categoria {
+    width: 160px;
+    background-color: #fafafa;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.categoria:hover {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.categoria img {
+    max-width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.categoria p {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+}

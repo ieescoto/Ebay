@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>--- | Ebay</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+	    <link rel="stylesheet" href="assets/css/header.css">
+	    <link rel="stylesheet" href="assets/css/lista_productos.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="user-information-container">
+                <div id="user-login-register">¡Hola!, <a href="login.html">Inicia sesión</a> o <a href="new_account.html">regístrate</a></div>
+                
+                <!-- Plantilla para Cuando un Usuario Ya inicio Sesion -->
+                <!-- <div id="user-username">¡Hola<strong>, Username!</strong></div>
+                <button id="btn-show-user-information"><i class="bi bi-chevron-down"></i></button>
+                <div class="menu-dropdown">
+                    <div class="user-img-name-id-valoration-container">
+                        <div id="user-img"></div>
+                        <div class="user-name-id-valoration-container">
+                            <div id="user-name"><strong>Username</strong></div>
+                            <div id="user-id-valoration">Username-ID (....)</div>
+                        </div>
+                    </div>
+                    <div class="account-configuration-container"><a class="lol1" href="#">Configuración de cuenta</a></div>
+                    <div class="close-session-container"><a class="lol1" href="#">Cerrar sesión</a></div>
+                </div> -->
+                <!-- Plantilla para Cuando un Usuario Ya inicio Sesion -->
+
+            </div>
+            
+            <div class="ebay-options-header-container">
+                <button class="btn-Hdelement" id="location" data-bs-toggle="modal" data-bs-target="#country-selector">Enviar a</button>
+                <button class="btn-Hdelement" id="sell">Vender</button>
+                <button class="btn-Hdelement" id="favorites">Lista de favoritos</button>
+                <button class="btn-Hdelement" id="menu">Mi ebay</button>
+                <button class="btn-Hdelement" id="cart"><i class="bi bi-cart"></i></button>
+            </div>
+        </div>
+        
+        <div class="searchbar">
+            <a class="logo" href="index.html"><img src="assets/img/Ebay.svg" title="eBay Home" width="100" height="100"></a>
+            <input type="text" class="searchInput" name="search "placeholder="Buscar">
+            <button class="search">Buscar</button>
+        </div>
+        <div class="container-fluid py-2 background-container-relationated" style="background-color: #f7f7f7;">
+            <div class="div-container-relationated">
+                <div id="relationated-options">Opciones relacionadas</div>
+                <div class="options"><a href="option1.html">Busqueda 1</a></div>
+                <div class="options"><a href="option2.html">Busqueda 2</a></div>
+                <div class="options"><a href="option3.html">Busqueda 3</a></div>
+                <div class="options"><a href="option4.html">Busqueda 4</a></div>
+                <div class="options"><a href="option5.html">Busqueda 5</a></div>
+                <div class="options"><a href="option6.html">Busqueda 5</a></div>
+                <div class="container-include-description">
+                    <button id="btn-include-description"><i class="bi bi-check-square"></i></button>
+                    <div id="text-include-description">Incluir Descripcion</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid py-2 background-container-relationated" style="background-color: #f7f7f7;">
+            <div class="div-container-relationated">
+                <div id="relationated-options">Opciones relacionadas</div>
+                <div class="options"><a href="option1.html">Busqueda 1</a></div>
+                <div class="options"><a href="option2.html">Busqueda 2</a></div>
+                <div class="options"><a href="option3.html">Busqueda 3</a></div>
+                <div class="options"><a href="option4.html">Busqueda 4</a></div>
+                <div class="options"><a href="option5.html">Busqueda 5</a></div>
+                <div class="options"><a href="option6.html">Busqueda 5</a></div>
+                <div class="container-include-description">
+                    <button id="btn-include-description"><i class="bi bi-check-square"></i></button>
+                    <div id="text-include-description">Incluir Descripcion</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="products">
+            <div class="container-other-options">
+                <div id="later-options" class="specific-category-container">
+                    <div class="container-btn-name">
+                        <div id="later-options-name"><strong>Opciones Posteriores</strong></div>
+                        <button id="later-options-btn" class="btn-for-display-options" type="button"><i class="bi bi-dash"></i></button>
+                    </div>
+                    <div class="container-options"></div>
+                </div>
+
+                <div id="price" class="specific-category-container">
+                    <div class="container-btn-name">
+                        <div id="price-name"><strong>Precio</strong></div>
+                        <button id="price-btn" class="btn-for-display-options" type="button"><i class="bi bi-dash"></i></button>
+                    </div>
+                    <div class="container-options"></div>
+                </div>
+
+                <div id="formatter-shopping" class="specific-category-container">
+                    <div class="container-btn-name">
+                        <div id="formatter-shopping-name"><strong>Formato de Compra</strong></div>
+                        <button id="formatter-shopping-btn" class="btn-for-display-options" type="button"><i class="bi bi-dash"></i></button>
+                    </div>
+                    <div id="all-ads" class="default-container-options">
+                        <button id="all-adds-btn" class="btn-circle-for-filters" type="button"><i class="bi bi-circle"></i></button>
+                        <div id="all-adds-content">Todos los anuncios (...)</div>
+                    </div>
+                    <div id="auction" class="default-container-options">
+                        <button id="auction-btn" class="btn-circle-for-filters" type="button"><i class="bi bi-circle"></i></button>
+                        <div id="auction-content">Subasta (...)</div>
+                    </div>
+                    <div id="buy-it-now" class="default-container-options">
+                        <button id="buy-it-now-btn" class="btn-circle-for-filters" type="button"><i class="bi bi-circle"></i></button>
+                        <div id="buy-it-now-content">¡Cómpralo Ahora! (...)</div>
+                    </div>
+                    <div id="accept-offers" class="default-container-options">
+                        <button id="accept-offers-btn" class="btn-circle-for-filters" type="button"><i class="bi bi-circle"></i></button>
+                        <div id="accept-offers-content">Acepta ofertas (...)</div>
+                    </div>
+                </div>
+
+                <div id="product-ubication" class="specific-category-container">
+                    <div class="container-btn-name">
+                        <div id="product-ubication-name"><strong>Ubicacion del Articulo</strong></div>
+                        <button id="product-ubication-btn" class="btn-for-display-options" type="button"><i class="bi bi-dash"></i></button>
+                    </div>
+                    <div id="predetermined" class="default-container-options">
+                        <button id="predetermined-btn" class="btn-circle-for-filters" type="button"><i class="bi bi-circle"></i></button>
+                        <div id="predetermined-content">Predeterminado</div>
+                    </div>
+                    <div id="EE.UU-only" class="default-container-options">
+                        <button id="EE.UU-only-btn" class="btn-circle-for-filters" type="button"><i class="bi bi-circle"></i></button>
+                        <div id="EE.UU-only-content">Solo EE.UU.</div>
+                    </div>
+                    <div id="north-america" class="default-container-options">
+                        <button id="north-america-btn" class="btn-circle-for-filters" type="button"><i class="bi bi-circle"></i></button>
+                        <div id="north-america-content">Norte America</div>
+                    </div>
+                    <div id="europe" class="default-container-options">
+                        <button id="europe-btn" class="btn-circle-for-filters" type="button"><i class="bi bi-circle"></i></button>
+                        <div id="europe-content">Europa</div>
+                    </div>
+                    <div id="asia" class="default-container-options">
+                        <button id="asia-btn" class="btn-circle-for-filters" type="button"><i class="bi bi-circle"></i></button>
+                        <div id="asia-content">Asia</div>
+                    </div>
+                </div>
+
+                <div id="sending-options" class="specific-category-container">
+                    <div class="container-btn-name">
+                        <div id="sending-options-name"><strong>Opciones de envio</strong></div>
+                        <button id="sending-options-btn" class="btn-for-display-options" type="button"><i class="bi bi-dash"></i></button>
+                    </div>
+                    <div id="free-international-sending" class="default-container-options">
+                        <button id="free-international-sending-btn" class="btn-square-for-filters" type="button"><i class="bi bi-square"></i></button>
+                        <div id="free-international-sending-content">Envio internacional gratis</div>
+                    </div>
+                </div>
+
+                <div id="local-pick-up" class="specific-category-container">
+                    <div class="container-btn-name">
+                        <div id="local-pick-up-name"><strong>Recojo Local</strong></div>
+                        <button id="local-pick-up-btn" class="btn-for-display-options" type="button"><i class="bi bi-dash"></i></button>
+                    </div>
+                    <div id="free-local-pick-up" class="default-container-options">
+                        <button id="free-local-pick-up-btn" class="btn-square-for-filters" type="button"><i class="bi bi-square"></i></button>
+                        <div id="free-local-pick-up-content">Recojo local gratis</div>
+                    </div>
+                </div>
+
+                <div id="only-show" class="specific-category-container">
+                    <div class="container-btn-name">
+                        <div id="only-show-name"><strong>Solo Mostrar</strong></div>
+                        <button id="only-show-btn" class="btn-for-display-options" type="button"><i class="bi bi-dash"></i></button>
+                    </div>
+                    <div id="returns-accepted" class="default-container-options">
+                        <button id="returns-accepted-btn" class="btn-square-for-filters" type="button"><i class="bi bi-square"></i></button>
+                        <div id="returns-accepted-content">Se aceptan devoluciones</div>
+                    </div>
+                    <div id="authorized-seller" class="default-container-options">
+                        <button id="authorized-seller-btn" class="btn-square-for-filters" type="button"><i class="bi bi-square"></i></button>
+                        <div id="authorized-seller-content">Vendedor autorizado</div>
+                    </div>
+                    <div id="finished-articles" class="default-container-options">
+                        <button id="finished-articles-btn" class="btn-square-for-filters" type="button"><i class="bi bi-square"></i></button>
+                        <div id="finished-articles-content">Articulos finalizados</div>
+                    </div>
+                    <div id="items-sold" class="default-container-options">
+                        <button id="items-sold-btn" class="btn-square-for-filters" type="button"><i class="bi bi-square"></i></button>
+                        <div id="items-sold-content">Articulos vendidos</div>
+                    </div>
+                    <div id="discounted-articles" class="default-container-options">
+                        <button id="discounted-articles-btn" class="btn-square-for-filters" type="button"><i class="bi bi-square"></i></button>
+                        <div id="discounted-articles-content">Articulos rebajados</div>
+                    </div>
+                    <div id="for-sale-as-lots" class="default-container-options">
+                        <button id="for-sale-as-lots-btn" class="btn-square-for-filters" type="button"><i class="bi bi-square"></i></button>
+                        <div id="for-sale-as-lots-content">En venta como lotes</div>
+                    </div>
+                    <div id="search-on-description" class="default-container-options">
+                        <button id="search-on-description-btn" class="btn-square-for-filters" type="button"><i class="bi bi-square"></i></button>
+                        <div id="search-on-description-content">Buscar en Descripcion</div>
+                    </div>
+                    <div id="help-a-charity" class="default-container-options">
+                        <button id="help-a-charity-btn" class="btn-square-for-filters" type="button"><i class="bi bi-square"></i></button>
+                        <div id="help-a-charity-content">Ayuda a una organización benefica</div>
+                    </div>
+                    <div id="verified-authenticity" class="default-container-options">
+                        <button id="verified-authenticity-btn" class="btn-square-for-filters" type="button"><i class="bi bi-square"></i></button>
+                        <div id="verified-authenticity-content">Autenticidad verificada</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container-products">
+
+                <!-- Plantilla para Publicacion de Productos -->
+                <div class="container-products-by-individual">
+                    <div class="container-imagen-product"></div>
+                    <div class="container-product-information">
+                        <div class="container-product-name-condition">
+                            <div class="container-product-name"><h3>Nombre del Producto y Descripcion Complementaria</h3></div>
+                            <div class="container-product-condition"><h5>Estado: </h5></div>
+                        </div>
+                        <div class="container-product-more-information-product">
+                            <div class="container-product-price-seller-positive-comentaries">
+                                <div class="container-product-price"><h1>L. ---</h1></div>
+                                <div class="container-product-seller-positive-comentaries">
+                                    <div class="container-product-seller">Nombre del Vendedor</div>
+                                    <div class="container-product-positive-comentaries">---% de comentarios positivos</div>
+                                </div>
+                            </div>
+                            <div class="container-product-price-ship">L. --- por el envio</div>
+                            <div class="container-product-country-origin">Pais de Origen</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plantilla para Publicacion de Productos -->
+                <div class="container-products-by-individual">
+                    <div class="container-imagen-product"></div>
+                    <div class="container-product-information">
+                        <div class="container-product-name-condition">
+                            <div class="container-product-name"><h3>Nombre del Producto y Descripcion Complementaria</h3></div>
+                            <div class="container-product-condition"><h5>Estado: </h5></div>
+                        </div>
+                        <div class="container-product-more-information-product">
+                            <div class="container-product-price-seller-positive-comentaries">
+                                <div class="container-product-price"><h1>L. ---</h1></div>
+                                <div class="container-product-seller-positive-comentaries">
+                                    <div class="container-product-seller">Nombre del Vendedor</div>
+                                    <div class="container-product-positive-comentaries">---% de comentarios positivos</div>
+                                </div>
+                            </div>
+                            <div class="container-product-price-ship">L. --- por el envio</div>
+                            <div class="container-product-country-origin">Pais de Origen</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plantilla para Publicacion de Productos -->
+                <div class="container-products-by-individual">
+                    <div class="container-imagen-product"></div>
+                    <div class="container-product-information">
+                        <div class="container-product-name-condition">
+                            <div class="container-product-name"><h3>Nombre del Producto y Descripcion Complementaria</h3></div>
+                            <div class="container-product-condition"><h5>Estado: </h5></div>
+                        </div>
+                        <div class="container-product-more-information-product">
+                            <div class="container-product-price-seller-positive-comentaries">
+                                <div class="container-product-price"><h1>L. ---</h1></div>
+                                <div class="container-product-seller-positive-comentaries">
+                                    <div class="container-product-seller">Nombre del Vendedor</div>
+                                    <div class="container-product-positive-comentaries">---% de comentarios positivos</div>
+                                </div>
+                            </div>
+                            <div class="container-product-price-ship">L. --- por el envio</div>
+                            <div class="container-product-country-origin">Pais de Origen</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plantilla para Publicacion de Productos -->
+                <div class="container-products-by-individual">
+                    <div class="container-imagen-product"></div>
+                    <div class="container-product-information">
+                        <div class="container-product-name-condition">
+                            <div class="container-product-name"><h3>Nombre del Producto y Descripcion Complementaria</h3></div>
+                            <div class="container-product-condition"><h5>Estado: </h5></div>
+                        </div>
+                        <div class="container-product-more-information-product">
+                            <div class="container-product-price-seller-positive-comentaries">
+                                <div class="container-product-price"><h1>L. ---</h1></div>
+                                <div class="container-product-seller-positive-comentaries">
+                                    <div class="container-product-seller">Nombre del Vendedor</div>
+                                    <div class="container-product-positive-comentaries">---% de comentarios positivos</div>
+                                </div>
+                            </div>
+                            <div class="container-product-price-ship">L. --- por el envio</div>
+                            <div class="container-product-country-origin">Pais de Origen</div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+		
+		<!-- Modal de seleccionar ubicacion -->
+		<div class="modal fade" id="country-selector" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered rounded">
+		    <div class="modal-content px-3">
+		      <div class="modal-header border-0">
+		        <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Especifica tu ubicacion de envio</h1>
+		        <button type="button" id="close-modal" class="btn btn-link btn-lg end-0 top-0 position-absolute text-decoration-none" data-bs-dismiss="modal" aria-label="Close">Listo</button>
+		      </div>
+		      <div class="modal-body">
+		      	<p class="fs-5">Enviar a:</p>
+		        <select id="countries" class="form-select form-select-lg mb-4 w-50 border-top-0 border-end-0 border-start-0 border-4  overflow-y-auto"></select>
+                  <div class="d-flex justify-content-between">
+                      <i class="bi bi-info-circle-fill text-primary position-relative align-content-lg-start"></i>
+                      <p class="modal-footer-text fs-5 fs fw-semibold" id="modal-footer-text">Escoge tu país o región para mostrarte los artículos que se pueden enviar a tu ubicación</p>
+                  </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+
+       <script src="assets/js/bootstrap.bundle.min.js"></script>
+       <script src="assets/js/country.js"></script>
+       <script src="assets/js/accountData.js"></script>
+       <script src="assets/js/header.js"></script>
+    </body>
+</html>

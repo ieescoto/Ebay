@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/venta_producto.css">
+    
+</head>
+<body>
+    <div class="header-fijo">
+        <div id="logo">
+            <a href="index.html"><img src="assets/img/Ebay.svg" height="60" width="150"></a>
+        </div>
+        <hr>
+    </div>
+
+    <div class="root">
+        <br>
+        <div>
+            <h1 id="anuncio">Completa tu anuncio</h1>
+            <p id="foto">FOTOS</p>
+            <p id="foto-info">Puedes agregar hasta 24 fotos. Los compradores quieren ver todos los detalles y los ángulos. </p>
+            <br>
+            
+            <div class="upload-box">
+            <i class="bi bi-image"></i>
+            <p id="foto">Agrega las imagenes</p>
+            <button type="submit" class="btn btn-light image-btn" id="load-image">
+            Cargar imagen
+            </button>
+            <input type="file" style="display: none;" id="filechooser" accept="image/*">
+            </div>
+        </div>
+
+        <br>
+        <hr style="color: #868181;">
+        <div>
+            <p id="foto">TÍTULO</p>
+            <p>Título del artículo</p>
+            <div class="mb-4">
+                <input
+                    type="text"
+                    class="form-control login-input"
+                    id="title"
+                >
+            </div>
+        </div>
+        <br>
+        <hr style="color: #868181;">
+        <div>
+            <p id="foto">Categoría del artículo</p>
+            <div class="input-group-custom">
+				<select class="form-select input-custom login-input-custom" id="categories">
+					<option value="" disabled selected>Categoria del Articulo</option>
+				</select>
+			</div>
+        </div>
+        <br>
+        <hr style="color: #868181;">
+        <div>
+            <p id="foto">CARACTERISTICAS DEL ARTICULO</p>
+            <p id="foto">Obligatorio</p>
+            <p id="foto-info">Los compradores necesitan estas características para encontrar tu artículo. </p>
+            <div class="input-group-custom">
+                <p class="">Brand</p>
+                <input type="text" 
+                    class="form-control input-custom login-input" 
+                    placeholder="Marca"
+                    aria-label="Marca"
+                    id="brand"
+                >
+            </div>
+            <div class="input-group-custom">
+                <p class="">Model</p>
+                <input type="text" 
+                    class="form-control input-custom login-input" 
+                    placeholder="Modelo"
+                    aria-label="Modelo"
+                    id="model"
+                >
+            </div>
+            <p id="foto">Adicional</p>
+            <p id="foto-info">Los compradores también buscan estos detalles. </p>
+            <div id="characteristic-container" class="input-group-custom"></div>
+            <button id="add-category" class="btn-category"><i class="bi bi-plus-lg"></i></button>
+            <button id="eliminate-category" class="btn-category" style="background-color: darkred;"><i class="bi bi-x-lg"></i></button>
+        </div>
+
+        <br>
+        <hr style="color: #868181;">
+        <div>
+            <p id="foto">ESTADO DEL ARTÍCULO</p>
+            <div class="input-group-custom">
+                <p>Estado</p>
+                    <select class="form-select input-custom login-input" id="condition">
+                        <option value="" disabled selected>Estado</option>
+                        <option value="" data-condition-code="1">Nuevo</option>
+                        <option value="" data-condition-code="2">Usado</option>
+                        <option value="" data-condition-code="3">Por partes, no funciona</option>
+                        <option value="" data-condition-code="4">Fuera de la caja</option>
+                    </select>
+            </div>
+           <!--  <p id="foto-info">Descripción de su condición <i class="bi bi-info-circle"></i></p>
+            <textarea class="form-control mb-3" ></textarea> -->
+        </div>
+
+        <br>
+        <hr style="color: #868181;">
+        <div>
+            <p id="foto">DESCRIPCIÓN</p>
+                <textarea class="input-add form-control mb-3" placeholder="Escribe una descripción de tu artículo" id="description"></textarea>
+        </div>
+        <br>
+        <hr style="color: #868181;">
+        
+        <div>
+            <div>
+                <p id="foto">Precio</p>
+                <p style="font-size: 14px;">Formato</p>
+                    <select id="selector" class="form-select input-custom-price login-input-price">
+                        <option value="comprar_ahora" selected>¡Comprar ahora!</option>
+                    </select>
+            </div>    
+            <div id="diseño-comprar-ahora">
+                <br>
+                <p style="font-size: 14px;">Precio del artículo</p>
+                <input
+                    type="text"
+                    class="form-control login-input-price-input"
+                    id="productPrice"
+                >
+                <br>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <input type="checkbox">
+                    <p style="margin: 0;">Requerir pago inmediato cuando el comprador usa ¡Cómpralo ahora!</p>
+                </div>
+                <br>
+                <p style="font-size: 14px;">Cantidad</p>
+                    <input
+                        type="text"
+                        class="form-control login-input-price-input"
+                        id="quantity"
+                    >
+                <!--<div class="box">
+                    <div class="top-right-checkbox">
+                        <label>
+                            <input type="checkbox"> 
+                        </label>
+                    </div>
+                    <p style="font-size: 14px;">Permitir ofertas</p>
+                    <p id="foto-info" style="font-size: 14px;">
+                        Los compradores interesados en tu artículo pueden hacer ofertas y tú las puedes aceptar, hacer una contraoferta o rechazar.
+                    </p>
+                    <div class="input-group-custom-price">
+                        <div>
+                            <p style="font-size: 14px;">Oferta mínima</p>
+                            <input
+                                type="text"
+                                class="form-control login-input-price-input"
+                                placeholder="$"
+                            >
+                        </div>
+                        <div>
+                            <p style="font-size: 14px;">Aceptación automática</p>
+                            <input
+                                type="text"
+                                class="form-control login-input-price-input"
+                                placeholder="$"
+                            >
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="top-right-checkbox">
+                        <label>
+                            <input type="checkbox"> 
+                        </label>
+                    </div>
+                    <p style="font-size: 14px;">Programa tu anuncio</p>
+                    <p id="foto-info" style="font-size: 14px;">
+                        Tu anuncio se activa inmediatamente, a no ser que selecciones una hora y una fecha en la que quieras que empiece.
+                    </p>
+                </div> -->
+            </div>
+        </div>
+        <br>
+        <hr style="color: #868181;">
+        <div>
+            <div>
+                <p id="foto">ENVÍO</p>
+                <p style="font-size: 14px;">Método de envío</p>
+                    <select id="selector2" class="form-select input-custom-price login-input-price" >
+                        <option value="estandar" selected data-method="standard">Envío estándar: artículos pequeños y medianos</option>
+                        <option value="mercancia" data-method="freight">Mercancía: artículos extragrandes</option>
+                </select>
+            </div>
+            <div id="diseño-estandar" class="diseño">
+                <br>
+                <div class="input-group-custom-price">
+                    <div>
+                        <p style="font-size: 14px;">Peso del paquete</p>
+                        <div class="input-group-custom-price">
+                            <input
+                                type="text"
+                                class="form-control login-input-sent"
+                                placeholder="lbs"
+                                id="SweightLbs"
+                            >
+                            <input
+                                type="text"
+                                class="form-control login-input-sent"
+                                placeholder="oz"
+                                id="SweightOz"
+                            >
+                        </div>
+                    </div>
+                    <div>
+                        <p style="font-size: 14px;">Dimensiones del paquete</p>
+                        <div class="input-group-custom-price">
+                            <input
+                                type="text"
+                                class="form-control login-input-sent"
+                                placeholder="pulgadas"
+                                id="Slength"
+                            ><p class="x">x</p>
+                            <input
+                                type="text"
+                                class="form-control login-input-sent"
+                                placeholder="pulgadas"
+                                id="Swidth"
+                            ><p class="x">x</p>
+                            <input
+                                type="text"
+                                class="form-control login-input-sent"
+                                placeholder="pulgadas"
+                                id="Sheight"
+                            >
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div>
+                <p id="foto">Envíos nacionales</p>
+                <p style="font-size: 14px;">Tipos de costo</p>
+                    <select id="selector-tarifa" class="form-select input-custom-price login-input-price-ship">
+                        <option value="fija" selected data-cost-type="flat">Tarifa fija: el mismo costo sin importar cuál sea la ubicación del comprador</option>
+                        <option value="calculada" data-cost-type="calculated">Tarifa calculada: la tarifa varía dependiendo de la ubicación del comprador</option>
+                    </select>
+                </div>
+                <div id="diseño-fija" class="diseño">
+                    <div class="border rounded p-3 bg-light" style="width: 200px;">
+                        <label class="form-label mb-1" style="font-size: 14px;">El comprador paga</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" id="precio" class="form-control" placeholder="0.00">
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div class="top-right-checkbox">
+                            <label>
+                                <input type="checkbox" id="envioGratisFija"> 
+                            </label>
+                        </div>
+                        <p style="font-size: 14px;"><strong>Ofrece envío gratuito</strong></p>
+                        <p id="foto-info" style="font-size: 14px;">
+                            Atrae a los compradores ofreciendo gastos de envío gratis para el servicio de envío principal.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="diseño-calculada" class="diseño">
+                    <div class="border rounded p-3 bg-light" style="width: 200px;">
+                        <label id="labelPago" class="form-label mb-1" style="font-size: 16px;"><strong>El comprador paga:</strong></label>
+                        <p>-</p>
+                    </div>
+
+                    <div class="box">
+                        <div class="top-right-checkbox">
+                            <label>
+                                <input type="checkbox" id="envioGratisCalculada"> 
+                            </label>
+                        </div>
+                        <p style="font-size: 14px;"><strong>Ofrece envío gratuito</strong></p>
+                        <p id="foto-info" style="font-size: 14px;">
+                            Atrae a los compradores ofreciendo gastos de envío gratis para el servicio de envío principal.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="diseño-mercancia" class="diseño">
+                <br>
+                <div class="input-group-custom-price">
+                    <div>
+                        <p style="font-size: 14px;">Peso del paquete</p>
+                        <div class="input-group-custom-price">
+                            <input
+                                type="text"
+                                class="form-control login-input-sent"
+                                placeholder="lbs"
+                                id="Fweight"
+                            >
+                        </div>
+                    </div>
+                    <div>
+                        <p style="font-size: 14px;">Dimensiones del paquete</p>
+                        <div class="input-group-custom-price">
+                            <input
+                                type="text"
+                                class="form-control login-input-sent"
+                                placeholder="pulgadas"
+                                id="Flength"
+                            ><p id="x">x</p>
+                            <input
+                                type="text"
+                                class="form-control login-input-sent"
+                                placeholder="pulgadas"
+                                id="Fwidth"
+                            ><p id="x">x</p>
+                            <input
+                                type="text"
+                                class="form-control login-input-sent"
+                                placeholder="pulgadas"
+                                id="Fheight"
+                            >
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <!-- <div class="box">
+                    <div class="top-right-checkbox">
+                        <label>
+                            <i class="bi bi-pencil"></i> 
+                        </label>
+                    </div>
+                    <p style="font-size: 14px;">Preferencias</p>
+                    <p id="foto-info" style="font-size: 14px;">
+                        Ejemplo
+                    </p>
+                </div> -->
+            </div>
+        
+        </div>
+        <div class="form-section">
+            <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <strong>Aceptar devoluciones</strong><br>
+                <small class="text-muted">Permitir la devolución de artículos comprados en el país.</small>
+            </div>
+            <label class="toggle-switch">
+                <input type="checkbox" id="toggleDevolucion">
+            </label>
+            </div>
+
+            <div class="mt-3">
+            <label for="plazo" class="form-label">Permitido en</label>
+            <select id="plazo" class="form-select" disabled>
+                <option data-return-code="2" selected>14 Días</option>
+                <option data-return-code="3">30 Días</option>
+                <option data-return-code="4">60 Días</option>
+            </select>
+            </div>
+        </div>
+        <br>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary image-btn" style="width: 300px; font-weight: 700;" id="sell">
+                    Ponlo en venta
+                </button>
+            </div>    
+    </div>
+
+    <script src="assets/js/categorie.js"></script>
+    <script src="assets/js/accountData.js"></script>
+    <script src="assets/js/venta_producto.js"></script>
+</body>
+</html>

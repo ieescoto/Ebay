@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>--- | Ebay</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+	    <link rel="stylesheet" href="assets/css/producto.css">
+	    <link rel="stylesheet" href="assets/css/header.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="user-information-container">
+                <div id="user-login-register">¡Hola!, <a href="login.html">Inicia sesión</a> o <a href="new_account.html">regístrate</a></div>
+                
+                <!-- Plantilla para Cuando un Usuario Ya inicio Sesion -->
+                <!-- <div id="user-username">¡Hola<strong>, Username!</strong></div>
+                <button id="btn-show-user-information"><i class="bi bi-chevron-down"></i></button>
+                <div class="menu-dropdown">
+                    <div class="user-img-name-id-valoration-container">
+                        <div id="user-img"></div>
+                        <div class="user-name-id-valoration-container">
+                            <div id="user-name"><strong>Username</strong></div>
+                            <div id="user-id-valoration">Username-ID (....)</div>
+                        </div>
+                    </div>
+                    <div class="account-configuration-container"><a class="lol1" href="#">Configuración de cuenta</a></div>
+                    <div class="close-session-container"><a class="lol1" href="#">Cerrar sesión</a></div>
+                </div> -->
+                <!-- Plantilla para Cuando un Usuario Ya inicio Sesion -->
+
+            </div>
+            
+            <div class="ebay-options-header-container">
+                <button class="btn-Hdelement" id="location" data-bs-toggle="modal" data-bs-target="#country-selector">Enviar a</button>
+                <button class="btn-Hdelement" id="sell">Vender</button>
+                <button class="btn-Hdelement" id="favorites">Lista de favoritos</button>
+                <button class="btn-Hdelement" id="menu">Mi ebay</button>
+                <button class="btn-Hdelement" id="cart"><i class="bi bi-cart"></i></button>
+            </div>
+        </div>
+        
+        <div class="searchbar">
+            <a class="logo" href="index.html"><img src="assets/img/Ebay.svg" title="eBay Home" width="100" height="100"></a>
+            <input type="text" class="searchInput" name="search "placeholder="Buscar">
+            <button class="search">Buscar</button>
+        </div>
+        <div class="container-fluid py-2 background-container-relationated" style="background-color: #f7f7f7;">
+            <div class="div-container-relationated">
+                <div id="relationated-options">Opciones relacionadas</div>
+                <div class="options"><a href="option1.html">Busqueda 1</a></div>
+                <div class="options"><a href="option2.html">Busqueda 2</a></div>
+                <div class="options"><a href="option3.html">Busqueda 3</a></div>
+                <div class="options"><a href="option4.html">Busqueda 4</a></div>
+                <div class="options"><a href="option5.html">Busqueda 5</a></div>
+                <div class="options"><a href="option6.html">Busqueda 5</a></div>
+                <div class="container-include-description">
+                    <button id="btn-include-description"><i class="bi bi-check-square"></i></button>
+                    <div id="text-include-description">Incluir Descripcion</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid py-2 background-container-relationated" style="background-color: #f7f7f7;">
+            <div class="div-container-relationated">
+                <div id="relationated-options">Opciones relacionadas</div>
+                <div class="options"><a href="option1.html">Busqueda 1</a></div>
+                <div class="options"><a href="option2.html">Busqueda 2</a></div>
+                <div class="options"><a href="option3.html">Busqueda 3</a></div>
+                <div class="options"><a href="option4.html">Busqueda 4</a></div>
+                <div class="options"><a href="option5.html">Busqueda 5</a></div>
+                <div class="options"><a href="option6.html">Busqueda 5</a></div>
+                <div class="container-include-description">
+                    <button id="btn-include-description"><i class="bi bi-check-square"></i></button>
+                    <div id="text-include-description">Incluir Descripcion</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="principal-product-container">
+            <div id="items-container">
+                <div id="images-product">
+                    <div id="other-images-product">
+                        <div class="images-container"></div>
+                        <div class="images-container"></div>
+                        <div class="images-container"></div>
+                        <div class="images-container"></div>
+                    </div>
+                    <div id="active-image-product"></div>
+                </div>
+                <div class="similar-items">
+                    <div class="similar-products-title">
+                        <h2 class="name">Artículos Similares</h2>
+                    </div>
+                    <div class="similar-items-container">
+                        <div class="similar-items-img"></div>
+                        <div class="similar-items-content">
+                            <div class="similar-items-information">
+                                <h4 class="title4">Nombre del Producto y Descripcion Complementaria</h4>
+                            </div>
+                            <div class="similar-items-information">
+                                <h4 class="product-quality-title">Estado del Producto</h4>
+                            </div>
+                            <div class="similar-items-information">
+                                <h3 class="similar-items-price">L. ---</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="similar-items">
+                    <div class="similar-products-title">
+                        <h2 class="name">Artículos Similares</h2>
+                    </div>
+                    <div class="similar-items-container">
+                        <div class="similar-items-img"></div>
+                        <div class="similar-items-content">
+                            <div class="similar-items-information">
+                                <h4 class="title4">Nombre del Producto y Descripcion Complementaria</h4>
+                            </div>
+                            <div class="similar-items-information">
+                                <h4 class="product-quality-title">Estado del Producto</h4>
+                            </div>
+                            <div class="similar-items-information">
+                                <h3 class="similar-items-price">L. ---</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="items-information-container">
+                <div class="items-information">
+                    <h1 class="principal-title">Nombre del Producto y Descripcion Complementaria</h1>
+                </div>
+                <div id="sales-information">
+                    <div id="sales-person-img"></div>
+                    <div id="sales-person-name">
+                        <h3 class="principal-title">Nombre del Vendedor y Descripcion Complementaria</h3>
+                    </div>
+                </div>
+                <div class="items-information">
+                    <h1 class="product-price">L. ---</h1>
+                </div>
+                <div id="other-information-container" class="items-information">
+                    <h4 class="product-price">Estado: --- </h4>
+                    <div id="quantity-product">
+                        <h4 class="product-price">Cantidad: </h4>
+                        <div id="quantity-product-number"><strong>---</strong></div>
+                    </div>
+                </div>
+                <button class="btn-items-purchase"><strong>¡Cómpralo Ahora!</strong></button>
+                <button class="btn-items-purchase"><strong>Agregar al carro de compras</strong></button>
+                <button class="btn-items-purchase"><strong>Agregar a la lista de favoritos</strong></button>
+            </div>
+            
+          <!-- Modal de seleccionar ubicacion -->
+		<div class="modal fade" id="country-selector" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered rounded">
+		    <div class="modal-content px-3">
+		      <div class="modal-header border-0">
+		        <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Especifica tu ubicacion de envio</h1>
+		        <button type="button" id="close-modal" class="btn btn-link btn-lg end-0 top-0 position-absolute text-decoration-none" data-bs-dismiss="modal" aria-label="Close">Listo</button>
+		      </div>
+		      <div class="modal-body">
+		      	<p class="fs-5">Enviar a:</p>
+		        <select id="countries" class="form-select form-select-lg mb-4 w-50 border-top-0 border-end-0 border-start-0 border-4  overflow-y-auto"></select>
+                  <div class="d-flex justify-content-between">
+                      <i class="bi bi-info-circle-fill text-primary position-relative align-content-lg-start"></i>
+                      <p class="modal-footer-text fs-5 fs fw-semibold" id="modal-footer-text">Escoge tu país o región para mostrarte los artículos que se pueden enviar a tu ubicación</p>
+                  </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+            
+       <script src="assets/js/bootstrap.bundle.min.js"></script>
+       <script src="assets/js/country.js"></script>
+       <script src="assets/js/accountData.js"></script>
+       <script src="assets/js/header.js"></script>
+        </div>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ebay</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+	    <link rel="stylesheet" href="assets/css/header.css">
+	    <link rel="stylesheet" href="assets/css/index.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="user-information-container">
+                <div id="user-login-register">¡Hola!, <a href="login.html">Inicia sesión</a> o <a href="new_account.html">regístrate</a></div>
+                
+                <!-- Plantilla para Cuando un Usuario Ya inicio Sesion -->
+                <!-- <div id="user-username">¡Hola<strong>, Username!</strong></div>
+                <button id="btn-show-user-information"><i class="bi bi-chevron-down"></i></button>
+                <div class="menu-dropdown">
+                    <div class="user-img-name-id-valoration-container">
+                        <div id="user-img"></div>
+                        <div class="user-name-id-valoration-container">
+                            <div id="user-name"><strong>Username</strong></div>
+                            <div id="user-id-valoration">Username-ID (....)</div>
+                        </div>
+                    </div>
+                    <div class="account-configuration-container"><a class="lol1" href="#">Configuración de cuenta</a></div>
+                    <div class="close-session-container"><a class="lol1" href="#">Cerrar sesión</a></div>
+                </div> -->
+                <!-- Plantilla para Cuando un Usuario Ya inicio Sesion -->
+
+            </div>
+            
+            <div class="ebay-options-header-container">
+                <button class="btn-Hdelement" id="location" data-bs-toggle="modal" data-bs-target="#country-selector">Enviar a</button>
+                <button class="btn-Hdelement" id="sell">Vender</button>
+                <button class="btn-Hdelement" id="favorites">Lista de favoritos</button>
+                <button class="btn-Hdelement" id="menu">Mi ebay</button>
+                <button class="btn-Hdelement" id="cart"><i class="bi bi-cart"></i></button>
+            </div>
+        </div>
+        
+        <div class="searchbar">
+            <a class="logo" href="index.html"><img src="assets/img/EBay_logo.svg" title="eBay Home" width="200px" height="90px"></a>
+            <div class="search-container">
+                <i class="bi bi-search ms-2 me-2 align-self-center"></i>
+                <input type="text" class="searchInput h-auto" name="search "placeholder="Buscar">
+                <select id="search-categories-select" name="categories-select">
+                    <option value="category-todos">Todas las categorías</option>
+                    <option value="category-antiguedades">Antigüedades</option>
+                    <option value="category-arte">Arte</option>
+                    <option value="category-artesania">Artesanía</option>
+                    <option value="category-coleccion">Artículos de colección</option>
+                    <option value="category-deportivos">Artículos deportivos</option>
+                    <option value="category-electronicos">Artículos electrónicos</option>
+                    <option value="category-mascotas">Artículos para mascotas</option>
+                    <option value="category-bebes">Bebés</option>
+                    <option value="category-belleza-salud">Belleza y salud</option>
+                    <option value="category-bienes-raices">Bienes raíces</option>
+                    <option value="category-camaras-fotografia">Cámaras y fotografía</option>
+                    <option value="category-celulares">Celulares y accesorios</option>
+                    <option value="category-ceramica-cristal">Cerámica y cristal</option>
+                    <option value="category-computadoras">Computadoras, tablets y redes</option>
+                    <option value="category-dvd-peliculas">DVD y películas</option>
+                    <option value="category-ebay-motors">eBay Motors</option>
+                    <option value="category-entradas">Entradas, boletos</option>
+                    <option value="category-entretenimiento">Entretenimiento</option>
+                    <option value="category-equipos-industriales">Equipo y maquinaria industrial</option>
+
+                </select>
+            </div>
+
+            <button class="search">Buscar</button>
+        </div>
+        <!-- <div class="container-fluid py-2 background-container-relationated" style="background-color: #f7f7f7;">
+            <div class="div-container-relationated">
+                <div id="relationated-options">Opciones relacionadas</div>
+                <div class="options"><a href="option1.html">Busqueda 1</a></div>
+                <div class="options"><a href="option2.html">Busqueda 2</a></div>
+                <div class="options"><a href="option3.html">Busqueda 3</a></div>
+                <div class="options"><a href="option4.html">Busqueda 4</a></div>
+                <div class="options"><a href="option5.html">Busqueda 5</a></div>
+                <div class="options"><a href="option6.html">Busqueda 5</a></div>
+                <div class="container-include-description">
+                    <button id="btn-include-description"><i class="bi bi-check-square"></i></button>
+                    <div id="text-include-description">Incluir Descripcion</div>
+                </div>
+            </div>
+        </div>
+         -->
+			<!--  -->
+        <div class="categoriesText h-auto align-content-center text-center ">
+            <p class="hov">Guardado</p>
+            <p class="hov cat-pdr " data-codigo-categoria="1">Tecnologia</p>
+            <p class="hov cat-pdr" data-codigo-categoria="2">Vehiculos</p>
+            <p class="hov cat-pdr" data-codigo-categoria="3">Moda</p>
+            <p class="hov cat-pdr text-nowrap" data-codigo-categoria="4">Coleccionables y Arte</p>
+            <p class="hov cat-pdr" data-codigo-categoria="5">Deportes</p>
+            <p class="hov cat-pdr" data-codigo-categoria="6">Salud y Belleza</p>
+            <p class="hov cat-pdr" data-codigo-categoria="7">Equipo Industrial</p>
+            <p class="hov cat-pdr" data-codigo-categoria="8">Hogar y Jardin</p>
+            <p class="hov"><a>Vender</a></p>
+        </div>
+
+        <div class="carousel slide" data-bs-ride="carousel">
+
+            <img title="Banner va aqui">
+        </div>
+
+        <div class="recentProducts"></div>
+        <h4 class="title">Compra por categorias</h4>
+        <div class="categories">
+            <div class="category-container">
+                <div class="circule-card  cat-pdr" data-codigo-categoria="1">
+                <img title="foto" class="category-photo" src="assets/img/Electrodomesticos.webp" width="70%" height="70%">
+                </div>
+                <p class="mt-2">Nueva Electronica</p>
+            </div>
+            <div class="category-container">
+                <div class="circule-card  cat-pdr" data-codigo-categoria="4">
+                    <img title="foto" class="category-photo" src="assets/img/Coleccionables.webp" width="70%" height="70%">
+                </div>
+                <p class="mt-2">Coleccionables</p>
+            </div>
+            <div class="category-container">
+                <div class="circule-card  cat-pdr" data-codigo-categoria="19">
+                    <img title="foto" class="category-photo" src="assets/img/Accesorios%20Vehiculos.webp" width="70%" height="70%">
+                </div>
+                <p class="mt-2">Partes y accesorios</p>
+            </div>
+            <div class="category-container">
+                <div class="circule-card  cat-pdr" data-codigo-categoria="3">
+                    <img title="foto" class="category-photo">
+                </div>
+                <p class="mt-2">Moda</p>
+            </div>
+            <div class="category-container">
+                <div class="circule-card  cat-pdr" data-codigo-categoria="6">
+                    <img title="foto" class="category-photo">
+                </div>
+                <p class="mt-2">Salud y belleza</p>
+            </div>
+            <div class="category-container">
+                <div class="circule-card  cat-pdr" data-codigo-categoria="8">
+                    <img title="foto" class="category-photo">
+                </div>
+                <p class="mt-2">Hogar y jardin</p>
+            </div>
+            <div class="category-container">
+                <div class="circule-card  cat-pdr" data-codigo-categoria="15">
+                    <img title="foto" class="category-photo" src="assets/img/Apple_logo_black.svg" width="70%" height="70%">
+                </div>
+                <p class="mt-2">Reacondicionados</p>
+            </div>
+
+        </div>
+
+        <div class="oferts">
+            <div class="OfertCard">
+                <p class="card-title">
+                   Oferta del dia
+                </p>
+                <p class="card-text">Todo con envio gratis</p>
+                <button class="buyNow">Comprar ahora</button>
+            </div>
+        </div>
+
+        <div class="Sellbanner"></div>
+        <div class="footer"></div>
+		
+		<!-- Modal de seleccionar ubicacion -->
+		<div class="modal fade" id="country-selector" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered rounded">
+		    <div class="modal-content px-3">
+		      <div class="modal-header border-0">
+		        <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Especifica tu ubicacion de envio</h1>
+		        <button type="button" id="close-modal" class="btn btn-link btn-lg end-0 top-0 position-absolute text-decoration-none" data-bs-dismiss="modal" aria-label="Close">Listo</button>
+		      </div>
+		      <div class="modal-body">
+		      	<p class="fs-5">Enviar a:</p>
+		        <select id="countries" class="form-select form-select-lg mb-4 w-50 border-top-0 border-end-0 border-start-0 border-4  overflow-y-auto"></select>
+                  <div class="d-flex justify-content-between">
+                      <i class="bi bi-info-circle-fill text-primary position-relative align-content-lg-start"></i>
+                      <p class="modal-footer-text fs-5 fs fw-semibold" id="modal-footer-text">Escoge tu país o región para mostrarte los artículos que se pueden enviar a tu ubicación</p>
+                  </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/country.js"></script>
+        <script src="assets/js/categorie.js"></script>
+        <script src="assets/js/accountData.js"></script>
+        <script src="assets/js/header.js"></script>
+        <script src="assets/js/index.js"></script>
+    </body>
+        
+</html>

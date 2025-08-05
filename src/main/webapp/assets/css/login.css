@@ -1,0 +1,128 @@
+body {
+	font-family: "Market Sans", "Helvetica Neue", Arial, sans-serif;
+	background-color: #ffffff;
+	margin: 0;
+	padding: 0;
+	color: #333333;
+	line-height: 1.4;
+}
+
+.login-container {
+	margin-bottom: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem 1rem;
+}
+
+.login-form-wrapper {
+	text-align: center;
+	max-width: 400px;
+	width: 100%;
+}
+
+.login-title {
+	font-size: 2rem;
+	font-weight: 400;
+	color: #333333;
+	margin-bottom: 1rem;
+	line-height: 1.2;
+}
+
+.login-subtitle {
+	color: #707070;
+	font-size: 0.875rem;
+	margin-bottom: 2rem;
+	font-weight: 400;
+}
+
+.create-account-link {
+	color: #0064d2;
+	text-decoration: none;
+	font-weight: 400;
+}
+
+.create-account-link:hover {
+	color: #0053ba;
+	text-decoration: underline;
+}
+
+.login-form {
+	margin-top: 2rem;
+}
+
+.login-input {
+	height: 3.5rem;
+	border: 1px solid #cccccc;
+	border-radius: 8px;
+	padding: 1rem;
+	font-size: 1rem;
+	background-color: #ffffff;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-input:focus {
+	border-color: #0064d2;
+	box-shadow: 0 0 0 2px rgba(0, 100, 210, 0.1);
+	outline: none;
+}
+
+.login-input::placeholder {
+	color: #999999;
+	font-weight: 400;
+}
+
+.login-btn {
+	height: 3.5rem;
+	background-color: #3665f3;
+	border: none;
+	border-radius: 28px;
+	font-size: 1rem;
+	font-weight: 600;
+	color: #ffffff;
+	transition: background-color 0.2s ease, transform 0.1s ease;
+	cursor: pointer;
+}
+
+.login-btn:hover {
+	background-color: #2952d9;
+	transform: translateY(-1px);
+}
+
+.login-btn:active {
+	background-color: #2347c4;
+	transform: translateY(0);
+}
+
+.login-btn:focus {
+	box-shadow: 0 0 0 3px rgba(54, 101, 243, 0.3);
+	outline: none;
+}
+
+#logo{
+	margin-top: 85px;
+	margin-left: 30px;
+}
+
+.closeBtn{
+	width: 16vw;
+	border-radius: 35px;
+
+}
+.modal-content{
+	 border-radius: 30px;
+ }
+#login-password {
+	border: solid 1px lightgray;
+	border-radius: 5px;
+}
+#login-username {
+	border: solid 1px lightgray;
+	border-radius: 5px;
+}
+#showPassword-login{
+	cursor: pointer;
+}
+#showPassword-login:hover {
+	color: gray;
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/seller_ventas.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    
+</head>
+<body>
+    <div class="header">
+            <div class="user-information-container">
+                <div id="user-login-register">¡Hola!, <a href="login.html">Inicia sesión</a> o <a href="new_account.html">regístrate</a></div>
+                
+                <!-- Plantilla para Cuando un Usuario Ya inicio Sesion -->
+                <!-- <div id="user-username">¡Hola<strong>, Username!</strong></div>
+                <button id="btn-show-user-information"><i class="bi bi-chevron-down"></i></button>
+                <div class="menu-dropdown">
+                    <div class="user-img-name-id-valoration-container">
+                        <div id="user-img"></div>
+                        <div class="user-name-id-valoration-container">
+                            <div id="user-name"><strong>Username</strong></div>
+                            <div id="user-id-valoration">Username-ID (....)</div>
+                        </div>
+                    </div>
+                    <div class="account-configuration-container"><a class="lol1" href="#">Configuración de cuenta</a></div>
+                    <div class="close-session-container"><a class="lol1" href="#">Cerrar sesión</a></div>
+                </div> -->
+                <!-- Plantilla para Cuando un Usuario Ya inicio Sesion -->
+
+            </div>
+            
+            <div class="ebay-options-header-container">
+                <button class="btn-Hdelement" id="location" data-bs-toggle="modal" data-bs-target="#country-selector">Enviar a</button>
+                <button class="btn-Hdelement" id="sell">Vender</button>
+                <button class="btn-Hdelement" id="favorites">Lista de favoritos</button>
+                <button class="btn-Hdelement" id="menu">Mi ebay</button>
+                <button class="btn-Hdelement" id="cart"><i class="bi bi-cart"></i></button>
+            </div>
+        </div>
+        
+        <div class="searchbar">
+            <a class="logo" href="index.html"><img src="assets/img/Ebay.svg" title="eBay Home" width="100" height="100"></a>
+            <input type="text" class="searchInput" name="search "placeholder="Buscar">
+            <button class="search">Buscar</button>
+        </div>
+        <div class="container-fluid py-2 background-container-relationated" style="background-color: #f7f7f7;">
+            <div class="div-container-relationated">
+                <div id="relationated-options">Opciones relacionadas</div>
+                <div class="options"><a href="option1.html">Busqueda 1</a></div>
+                <div class="options"><a href="option2.html">Busqueda 2</a></div>
+                <div class="options"><a href="option3.html">Busqueda 3</a></div>
+                <div class="options"><a href="option4.html">Busqueda 4</a></div>
+                <div class="options"><a href="option5.html">Busqueda 5</a></div>
+                <div class="options"><a href="option6.html">Busqueda 5</a></div>
+                <div class="container-include-description">
+                    <button id="btn-include-description"><i class="bi bi-check-square"></i></button>
+                    <div id="text-include-description">Incluir Descripcion</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="store-header bg-light py-4">
+            <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-2">
+                <div class="store-logo">
+                    <img class="store-img" src="assets/img/FB.webp">
+                </div>
+                </div>
+                <div class="col-md-6">
+                <h1 class="store-name">Freddy Fazbear</h1>
+                <div class="store-stats">
+                    <span class="me-3">- artículos vendidos</span>
+                    <span class="me-3">- seguidores</span>
+                </div>
+                </div>
+                <div class="col-md-4 text-end">
+                <button class="btn"><i class="bi bi-share"></i> Compartir</button>
+                <button class="btn"><i class="bi bi-chat-right-text"></i> <a href="mensajes.html" style="color: black; text-decoration: none;">Contactar</a></button>
+                <button class="btn"><i class="bi bi-heart"></i> Guardar</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="store-nav bg-white border-bottom">
+            <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                <div class="nav-tabs-container">
+                    <ul class="nav nav-tabs border-0 d-flex">
+                    <li class="nav-item">
+                        <a class="nav-link" href="seller_user.html">Comprar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="seller_ventas.html">Ventas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="seller_about_it.html">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="seller_coment.html">Comentarios</a>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="container my-5">
+            <h2 class="fw-bold mb-4">Artículos con descuento</h2>
+
+            <div class="d-flex gap-3 overflow-auto">
+
+                <div class="bg-black text-white p-4 rounded-4" style="width: 250px;">
+                <h5 class="fw-bold">Ejemplo</h5>
+                <p class="mb-1 small">Contexto</p>
+                <div class="mt-4">
+                    <button class="btn btn-light rounded-pill px-4 fw-bold">Comprar Ahora</button>
+                </div>
+                </div>
+
+                <div class="card rounded-0 rounded-4" style="width: 220px;">
+                <div class="card-body p-2">
+
+                </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Modal de seleccionar ubicacion -->
+		<div class="modal fade" id="country-selector" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered rounded">
+		    <div class="modal-content px-3">
+		      <div class="modal-header border-0">
+		        <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Especifica tu ubicacion de envio</h1>
+		        <button type="button" id="close-modal" class="btn btn-link btn-lg end-0 top-0 position-absolute text-decoration-none" data-bs-dismiss="modal" aria-label="Close">Listo</button>
+		      </div>
+		      <div class="modal-body">
+		      	<p class="fs-5">Enviar a:</p>
+		        <select id="countries" class="form-select form-select-lg mb-4 w-50 border-top-0 border-end-0 border-start-0 border-4  overflow-y-auto"></select>
+                  <div class="d-flex justify-content-between">
+                      <i class="bi bi-info-circle-fill text-primary position-relative align-content-lg-start"></i>
+                      <p class="modal-footer-text fs-5 fs fw-semibold" id="modal-footer-text">Escoge tu país o región para mostrarte los artículos que se pueden enviar a tu ubicación</p>
+                  </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+        
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/country.js"></script>
+        <script src="assets/js/accountData.js"></script>
+        <script src="assets/js/header.js"></script>
+</body>
+</html>

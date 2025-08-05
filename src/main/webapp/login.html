@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Login</title>
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+	    <link rel="stylesheet" href="assets/css/login.css">
+	</head>
+	<body>
+		<a id="logo" class="d-grid gap-2 d-md-block" href="index.html"><img src="assets/img/EBay_logo.svg" height="80" width="200"></a>
+		<main class="login-container">
+		    <div class="container">
+		    <div class="row justify-content-center">
+		        <div class="col-12 col-md-6 col-lg-4">
+		        <div class="login-form-wrapper">
+		            <h1 class="login-title">Inicia sesión en tu cuenta</h1>
+		            <p class="login-subtitle">
+		            ¿Primera vez en eBay? <a class="create-account-link" href="new_account.html">Crear Cuenta</a>
+		            </p>
+		
+		            <form class="login-form">
+			            <div class="mb-4" id="login-username">
+			                <input
+			                type="text"
+			                class="form-control login-input border-0"
+			                placeholder="Correo electronico o nombre de usuario"
+			                aria-label="Correo electronico o nombre de usuario"
+			                id="name"
+			                required
+			                >
+			            </div>
+			            <div class="mb-4 d-flex input-group" id="login-password">
+			                <input
+			                type="password"
+			                class="form-control login-input border-0 password-login"
+			                placeholder="Contraseña"
+			                aria-label="Contraseña"
+			                id="password"
+			                required
+			                >
+							<span class="input-group-text border-0">
+								<i class="bi bi-eye fs-2" id="showPassword-login"></i>
+							</span>
+
+			            </div>
+			            <button type="button" class="btn btn-primary login-btn w-100">
+			                Continuar
+			            </button>
+		            </form>
+		        </div>
+		        </div>
+		    </div>
+		    </div>
+		</main>
+
+		<!--Modal Credenciales Vacias-->
+
+		<div class="modal fade" id="empty-credentials-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered rounded" id="empty-credentials-dialog">
+				<div class="modal-content px-3">
+					<div class="modal-header align-items-center justify-content-center">
+						<i class="bi bi-exclamation-triangle-fill text-danger fs-2 me-4"></i>
+						<h1 class="text-danger d-flex mt-2">Error de Credenciales</h1>
+					</div>
+					<div class="modal-body">
+						<p class="fs-5">Uno o mas campos se encuentran vacios, porfavor verificar y volver a intentar</p>
+						<button type="button" class="btn btn-primary closeBtn" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+					</div>
+				</div>
+				</div>
+			</div>
+		<!--Modal Credenciales Aceptadas-->
+
+		<div class="modal fade" id="valid-credentials-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered rounded" id="valid-credentials-dialog">
+				<div class="modal-content px-3">
+					<div class="modal-header align-items-center justify-content-center">
+						<i class="bi bi-check-circle-fill text-success fs-2 me-4"></i>
+						<h1 class="text-success d-flex mt-2">Informacion aceptada!</h1>
+					</div>
+					<div class="modal-body">
+						<p class="fs-5">Se ingresaron los datos con exito!</p>
+						<button type="button" class="btn btn-primary closeBtn" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Modal Login Fallido-->
+
+		<div class="modal fade" id="invalid-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered rounded" id="invalid-login-dialog">
+				<div class="modal-content px-3">
+					<div class="modal-header align-items-center justify-content-center">
+						<i class="bi bi-exclamation-triangle-fill text-danger fs-2 me-4"></i>
+						<h1 class="text-danger d-flex mt-2">Login no valido</h1>
+					</div>
+					<div class="modal-body">
+						<p class="fs-5">El correo/usuario o contraseña ingresados no coinciden, verifique la informacion</p>
+						<button type="button" class="btn btn-primary closeBtn" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+		<script src="assets/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/js/accountData.js"></script>
+		<script src="assets/js/login.js"></script>
+	</body>
+</html>

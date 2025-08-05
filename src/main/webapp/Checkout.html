@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completar Transaccion</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/checkout.css">
+</head>
+<body>
+    <div id="header-complete-transaction">
+        <div class="left-header">
+            <div id="logo-header"><a href="index.html"><img src="assets/img/Ebay.svg" title="eBay Home" height="70"></a></div>
+            <div id="complete-transaction-name"><h1 id="h11">Completar Transaccion</h1></div>
+        </div>
+        <div class="right-header">
+            <h4 id="feedback-give-us-your-opinion">¿Qué te parece el proceso para completar transacciones? Danos tu opinión</h4>
+        </div>
+    </div>
+    <div id="complete-transaction-container">
+        <div id="complete-transaction-information">
+            <div id="pay-with">
+                <div id="pay-with-name"><h1 id="h12">Pagar con</h1></div>
+                <div class="card-container">
+                    <button class="btn-card"><i class="bi bi-circle"></i></button>
+                    <div class="card-img-name">
+                        <div class="card-img"><img src="assets/resources/PayPal.svg.png" title="PayPal" height="30"></div>
+                        <div class="card-name"></div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <button class="btn-card"><i class="bi bi-circle"></i></button>
+                    <div class="card-img-name">
+                        <div class="card-img"><img src="assets/resources/Google.png" title="Google Pay" height="30"></div>
+                        <div class="card-name"></div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <button class="btn-card"><i class="bi bi-circle"></i></button>
+                    <div class="card-img-name">
+                        <div class="card-img"><img src="assets/resources/PayPal-Credit.png" title="PayPal Credit" height="30"></div>
+                        <div class="card-name"></div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <button class="btn-card" type="button"><i class="bi bi-circle"></i></button>
+                    <h4>Agregar una nueva tarjeta</h4>
+                </div>
+            </div>
+            <div id="sending-data-container">
+                <div id="sending-title"><h1 id="h13">Enviar a</h1></div>
+                <div class="sending-information">
+                    <div class="information" id="name-information">| Informacion del Nombre Completo |</div>
+                    <div class="information" id="name-direction">| Direccion de Barrio o Colonia |</div>
+                    <div class="information" id="name-city-postal-code">| Codigo Postal / Departamento / Ciudad |</div>
+                    <div class="information" id="name-country">| Nombre del Pais |</div>
+                    <div class="information" id="phone-number">| Numero de Telefono |</div>
+                    <button class="btn-change-data" type="button">Cambiar</button>
+                </div>
+            </div>
+            <div id="review-order">
+                <div id="review-order-title"><h1>Revisar pedido</h1></div>
+
+                <!-- Plantilla para la coleccion de pedidos -->
+                <div id="review-order-information">
+                    <div id="review-order-seller-information">
+                        <div id="review-order-seller-person-img"></div>
+                        <div id="review-order-seller-person-name">
+                            <h4 class="principal-title">Nombre del Vendedor y Descripcion Complementaria</h4>
+                            <h5 class="positive-comentaries">---% de Comentarios positivos</h5>
+                        </div>
+                    </div>
+                    <div id="review-order-img-product-name-price">
+                        <div id="review-order-img-container"></div>
+                        <div id="review-order-product-name-price">
+                            <div id="review-order-product-name"><h2>Informacion y Nombre del Pedido / Producto</h2></div>
+                            <div id="review-order-product-price">L. ---</div>
+                        </div>
+                    </div>
+                    <div id="review-order-quantity-product-eliminate">
+                        <div id="review-order-quantity"><strong>Cantidad: </strong></div>
+                        <div id="review-order-quantity-product">---</div>
+                        <button id="btn-eliminate" type="button">Eliminar</button>
+                    </div>
+                    <div id="review-order-delivery">
+                        <div id="review-order-title">Entrega</div>
+                        <div id="review-order-delivery-date-container">
+                            <div id="review-order-delivery-date-title">Entrega prevista: </div>
+                            <div id="review-order-delivery-date">---</div>
+                        </div>
+                        <div id="review-order-agent-intermediate-ship">Informacion del Agente Intermediario</div>
+                        <div id="review-order-ship-price">L. ---</div>
+                    </div>
+                </div>
+
+                <!-- Plantilla para la coleccion de pedidos -->
+                <div id="review-order-information">
+                    <div id="review-order-seller-information">
+                        <div id="review-order-seller-person-img"></div>
+                        <div id="review-order-seller-person-name">
+                            <h4 class="principal-title">Nombre del Vendedor y Descripcion Complementaria</h4>
+                            <h5 class="positive-comentaries">---% de Comentarios positivos</h5>
+                        </div>
+                    </div>
+                    <div id="review-order-img-product-name-price">
+                        <div id="review-order-img-container"></div>
+                        <div id="review-order-product-name-price">
+                            <div id="review-order-product-name"><h2>Informacion y Nombre del Pedido / Producto</h2></div>
+                            <div id="review-order-product-price">L. ---</div>
+                        </div>
+                    </div>
+                    <div id="review-order-quantity-product-eliminate">
+                        <div id="review-order-quantity"><strong>Cantidad: </strong></div>
+                        <div id="review-order-quantity-product">---</div>
+                        <button id="btn-eliminate" type="button">Eliminar</button>
+                    </div>
+                    <div id="review-order-delivery">
+                        <div id="review-order-title">Entrega</div>
+                        <div id="review-order-delivery-date-container">
+                            <div id="review-order-delivery-date-title">Entrega prevista: </div>
+                            <div id="review-order-delivery-date">---</div>
+                        </div>
+                        <div id="review-order-agent-intermediate-ship">Informacion del Agente Intermediario</div>
+                        <div id="review-order-ship-price">L. ---</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div id="complete-transaction-payment">
+            <div id="before-complete-transaction-payment">
+                <div id="complete-transaction-payment-items-title"><strong><h1>Resumen del Pedido</h1></strong></div>
+                <div id="complete-transaction-payment-items-shopping">
+                    <div id="complete-transaction-payment-items-name"><strong>Articulos (---)</strong></div>
+                    <div id="complete-transaction-payment-items-price"><strong>L. ---</strong></div>
+                </div>
+                <div id="complete-transaction-payment-ship-shopping">
+                    <div id="complete-transaction-payment-ship-name"><strong>Envio a ...</strong></div>
+                    <div id="complete-transaction-payment-ship-price"><strong>L. ---</strong></div>
+                </div>
+                <div id="complete-transaction-payment-discount-shopping">
+                    <div id="complete-transaction-payment-discount-name"><strong>Descuentos</strong></div>
+                    <div id="complete-transaction-payment-discount-price"><strong>-L. ---</strong></div>
+                </div>
+            </div>
+            <div id="complete-transaction-payment-total">
+                <div id="complete-transaction-payment-total-container">
+                    <div id="complete-transaction-payment-total-name"><strong>Total</strong></div>
+                    <div id="complete-transaction-payment-total-price"><strong>L. ---</strong></div>
+                </div>
+            <button id="btn-complete-final-transaction"><h2>Pagar con (...)</h2></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

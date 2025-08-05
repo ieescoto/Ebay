@@ -1,0 +1,360 @@
+{
+  "categories": [
+    {
+      "name": "TV, video y audio para el hogar",
+      "code": 9
+    },
+    {
+      "name": "Celulares y accesorios",
+      "code": 10
+    },
+    {
+      "name": "Videojuegos y consolas",
+      "code": 11
+    },
+    {
+      "name": "Computadoras y accesorios",
+      "code": 12
+    },
+    {
+      "name": "Cámaras y fotos",
+      "code": 13
+    },
+    {
+      "name": "Drones con cámara",
+      "code": 14
+    },
+    {
+      "name": "Reacondicionados",
+      "code": 15
+    },
+    {
+      "name": "Hogar Inteligente",
+      "code": 16
+    },
+    {
+      "name": "Audio portátil y audífonos",
+      "code": 17
+    },
+    {
+      "name": "Relojes inteligentes",
+      "code": 18
+    },
+    {
+      "name": "Piezas para auto y camioneta",
+      "code": 19
+    },
+    {
+      "name": "Herramientas y suministros",
+      "code": 20
+    },
+    {
+      "name": "Turbo cargadores",
+      "code": 21
+    },
+    {
+      "name": "Amortiguadores",
+      "code": 22
+    },
+    {
+      "name": "GPS",
+      "code": 23
+    },
+    {
+      "name": "Entradas de aire",
+      "code": 24
+    },
+    {
+      "name": "Piezas para motocicletas",
+      "code": 25
+    },
+    {
+      "name": "Accesorios",
+      "code": 26
+    },
+    {
+      "name": "Llantas",
+      "code": 27
+    },
+    {
+      "name": "Motores y Piezas",
+      "code": 28
+    },
+    {
+      "name": "Ropa para mujer",
+      "code": 29
+    },
+    {
+      "name": "Calzado para mujer",
+      "code": 30
+    },
+    {
+      "name": "Ropa para hombre",
+      "code": 31
+    },
+    {
+      "name": "Calzado para hombre",
+      "code": 32
+    },
+    {
+      "name": "Relojes",
+      "code": 33
+    },
+    {
+      "name": "Joyeria",
+      "code": 34
+    },
+    {
+      "name": "Accesorios para hombre",
+      "code": 35
+    },
+    {
+      "name": "Accesorios para mujer",
+      "code": 36
+    },
+    {
+      "name": "Sneakers",
+      "code": 37
+    },
+    {
+      "name": "Bolsos y carteras para mujeres",
+      "code": 38
+    },
+    {
+      "name": "Lentes de sol para hombres",
+      "code": 39
+    },
+    {
+      "name": "Lentes de sol para mujeres",
+      "code": 40
+    },
+    {
+      "name": "Coleccionables",
+      "code": 41
+    },
+    {
+      "name": "Arte",
+      "code": 42
+    },
+    {
+      "name": "Figuras de acción",
+      "code": 43
+    },
+    {
+      "name": "Dibujos animados",
+      "code": 44
+    },
+    {
+      "name": "Personajes de película y TV",
+      "code": 45
+    },
+    {
+      "name": "Juegos de cartas coleccionables",
+      "code": 46
+    },
+    {
+      "name": "Antigüedades",
+      "code": 47
+    },
+    {
+      "name": "Comics",
+      "code": 48
+    },
+    {
+      "name": "Funko Pop",
+      "code": 49
+    },
+    {
+      "name": "Ciclismo",
+      "code": 50
+    },
+    {
+      "name": "Fitness, Running y Yoga",
+      "code": 51
+    },
+    {
+      "name": "Fitness Tech",
+      "code": 52
+    },
+    {
+      "name": "Pesca",
+      "code": 53
+    },
+    {
+      "name": "Camping",
+      "code": 54
+    },
+    {
+      "name": "Golf",
+      "code": 55
+    },
+    {
+      "name": "Deportes de equipo",
+      "code": 56
+    },
+    {
+      "name": "Deportes de invierno",
+      "code": 57
+    },
+    {
+      "name": "Deportes acuáticos",
+      "code": 58
+    },
+    {
+      "name": "Box y MMA",
+      "code": 59
+    },
+    {
+      "name": "Belleza",
+      "code": 60
+    },
+    {
+      "name": "Maquillaje",
+      "code": 61
+    },
+    {
+      "name": "Salud",
+      "code": 62
+    },
+    {
+      "name": "Manicura y pedicura",
+      "code": 63
+    },
+    {
+      "name": "Productos para el cabello",
+      "code": 64
+    },
+    {
+      "name": "Productos para la piel",
+      "code": 65
+    },
+    {
+      "name": "Productos ortopédicos",
+      "code": 66
+    },
+    {
+      "name": "Baño e higiene personal",
+      "code": 67
+    },
+    {
+      "name": "Higiene bucal",
+      "code": 68
+    },
+    {
+      "name": "Afeitado y depilación",
+      "code": 69
+    },
+    {
+      "name": "Vitaminas y suplementos alimenticios",
+      "code": 70
+    },
+    {
+      "name": "Masajeadores",
+      "code": 71
+    },
+    {
+      "name": "Salud, laboratorio y odontología",
+      "code": 72
+    },
+    {
+      "name": "Equipo y suministros electrónicos",
+      "code": 73
+    },
+    {
+      "name": "Metalurgia y manufactura",
+      "code": 74
+    },
+    {
+      "name": "Motores y automatización industrial",
+      "code": 75
+    },
+    {
+      "name": "Piezas y accesorios para equipo pesado",
+      "code": 76
+    },
+    {
+      "name": "Herramientas y equipo industrial ligero",
+      "code": 77
+    },
+    {
+      "name": "Equipo de inspección, medición y pruebas",
+      "code": 78
+    },
+    {
+      "name": "Embalaje y envío",
+      "code": 79
+    },
+    {
+      "name": "Equipo y suministros de oficina",
+      "code": 80
+    },
+    {
+      "name": "Impresión y artes gráficas",
+      "code": 81
+    },
+    {
+      "name": "Restaurantes y servicio de alimentos",
+      "code": 82
+    },
+    {
+      "name": "Mantenimiento y seguridad",
+      "code": 83
+    },
+    {
+      "name": "Venta minorista y servicio",
+      "code": 84
+    },
+    {
+      "name": "Herramientas y Equipos de taller",
+      "code": 85
+    },
+    {
+      "name": "Patio, Jardín y Exteriores",
+      "code": 86
+    },
+    {
+      "name": "Mejoras para el hogar",
+      "code": 87
+    },
+    {
+      "name": "Cocina, Comedor y Bar",
+      "code": 88
+    },
+    {
+      "name": "Lámparas, Luces y Ventiladores de techo",
+      "code": 89
+    },
+    {
+      "name": "Decoración de interiores",
+      "code": 90
+    },
+    {
+      "name": "Organización del hogar",
+      "code": 91
+    },
+    {
+      "name": "Electrodomésticos",
+      "code": 92
+    },
+    {
+      "name": "Juguetes",
+      "code": 93
+    },
+    {
+      "name": "Mascotas",
+      "code": 94
+    },
+    {
+      "name": "Manualidades",
+      "code": 95
+    },
+    {
+      "name": "Suministros de arte",
+      "code": 96
+    },
+    {
+      "name": "Instrumentos musicales",
+      "code": 97
+    }
+  ]
+}
