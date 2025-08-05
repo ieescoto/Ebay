@@ -186,7 +186,7 @@ public class SQL {
 	 * return x.toString(); }
 	 */
 	
-	//Metodo que actualiza la tabla de Productos
+	//Metodo que agrega un producto a la tabla de Productos
 	public void createProduct(int categoryCode, int sellerID, String name, String description, float productPrice, int conditionCode, float shippingPrice, int returnCode, int quantity, String brand, String model) {
 		String query = "insert into productos(codigo_producto,codigo_categoria,usuario_vendedor,nombre_producto,descripcion,precio,codigo_estado,envio_precio,fecha_entrega_temprana,fecha_entrega_tardia,codigo_devolucion,fecha_publicacion,cantidad_producto,marca,modelo)values(sq_codigo_producto.nextval,?,?,?,?,?,?,?,sysdate+7,sysdate+30,?,sysdate,?,?,?)";
 		
@@ -210,6 +210,7 @@ public class SQL {
 		}
 	}
 	
+	//Actualizar de comprador a vendedor al usuario
 	public void updateUserType(int userID) {
 		String query = String.format("update usuarios set codigo_tipo_usuario = 2 where codigo_usuario = %s",userID);
 		
@@ -221,4 +222,42 @@ public class SQL {
 			e.printStackTrace();
 		}
 	}
+	
+	//Metodo que obtiene el ultimo codigo de producto
+	private int getProductCode() {
+		String query = "select codigo_producto from productos order by codigo_producto desc";
+		int productCode = 0;
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			result.next();
+			productCode = result.getInt("codigo_producto");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return productCode;
 	}
+	
+	//Metodo que agrega las caracteristicas del producto a la BD
+	public void createProductCaracteristics(String[] name,String[] value) {
+		int productCode = this.getProductCode();
+		String query = "insert into caracteristicas_producto(codigo_caracteristica,codigo_producto,caracteristica,descripcion) values(sq_codigo_caracteristica.nextval,?,?,?)";
+		for(int i =0;i<name.length;i++) {
+			try {
+				PreparedStatement statement = con.prepareStatement(query);
+				statement.setInt(1, productCode);
+				statement.setString(2, name[i]);
+				statement.setString(3, value[i]);
+				statement.executeUpdate();
+			}catch(SQLException e) {
+				System.out.println("Fallo al agregar caracteristicas");
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
+}

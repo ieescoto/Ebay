@@ -131,8 +131,8 @@ filechooser.addEventListener("change",(e)=>{
 
 //Mandar los datos del producto a la bd
 const sellBtn = document.querySelector("button#sell")
-const formData = new FormData()
 sellBtn.addEventListener("click",()=>{
+	const formData = new FormData()
 	//Valores de la tabla de productos
 	const title = document.querySelector("input#title").value;  //Usado
 	const categoryCode = categorySelect.selectedOptions[0].dataset.categoryCode; //Usado
@@ -218,6 +218,8 @@ sellBtn.addEventListener("click",()=>{
 	formData.append("brand",brand)	//Funciona
 	formData.append("model",model) //Funciona
 	
+	console.log(formData.getAll("carName"));
+	console.log(formData.getAll("carValue"));
 	account.sendProductData(formData);
 	
 })

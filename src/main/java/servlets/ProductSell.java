@@ -47,8 +47,12 @@ public class ProductSell extends HttpServlet {
 		String brand = request.getParameter("brand");
 		String model = request.getParameter("model");
 		
-		//sql.createProduct(categoryCode,sellerID,name,description,productPrice,conditionCode,shippingPrice,returnCode,quantity,brand,model);
+		String[] caracteristicName = request.getParameterValues("carName");
+		String[] caracteristicValue = request.getParameterValues("carValue");
+		
 		sql.updateUserType(sellerID);
+		sql.createProduct(categoryCode,sellerID,name,description,productPrice,conditionCode,shippingPrice,returnCode,quantity,brand,model);
+		sql.createProductCaracteristics(caracteristicName, caracteristicValue);
 		
 	}
 
