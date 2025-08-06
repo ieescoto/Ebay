@@ -121,13 +121,68 @@ imageBtn.addEventListener("click",()=>{
 	filechooser.click();
 })
 
-//Mandar los datos de la imagen a la bd
+//Mandar los datos de la imagen a la bd (En Proceso)
 const account = new Account()
+const formData = new FormData();
 filechooser.addEventListener("change",(e)=>{
 	const file = e.target.files[0];
-	//formData.append("url",file);
-	//account.sendProductData(formData);
+	if(file != undefined){
+		if(formData.get("url") != null){
+			formData.delete("url");
+		}
+			
+		formData.append("url",file);
+		const imageQuantity = document.querySelectorAll("div.image-wrapper");
+		const xhr = new XMLHttpRequest();
+		xhr.open("POST","ProductImage")
+		xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+		xhr.onload = function() {
+			if(xhr.status = 200){
+				const response = JSON.parse(xhr.responseText)
+				if(imageQuantity.length == 0){
+					document.querySelector("i#image-logo").remove();
+					document.querySelector("p.image-text").remove();	
+				}
+				
+				if(imageQuantity.length < 5){
+					const container = document.querySelector("div.container")
+					const loadBtn = document.querySelector("button#load-image");
+					
+					const imageContainer = document.createElement("div");
+					imageContainer.classList.add("image-wrapper");
+					imageContainer.innerHTML = `<img src="${response.imgRoute}"><button class="btn-close delete-btn"></button>`;
+					container.appendChild(imageContainer)
+					loadBtn.classList.add("move-btn")
+					
+					const deleteBtn = document.querySelectorAll("button.delete-btn");
+					deleteBtn.forEach(btn =>{
+						btn.addEventListener("click",()=>{
+							console.log("Antes"+imageQuantity.length)
+							btn.parentNode.remove();
+							console.log("Despues"+imageQuantity.length)
+							if(imageQuantity.length == 0){
+								console.log("Borraste la ultima imagen")			
+							}else{
+								console.log("Quedan varias imagenes")	
+							}
+						})
+					})
+				}
+				
+				
+				
+			}
+		}
+		
+		if(imageQuantity.length < 5 ){
+			xhr.send(formData);
+		}
+		
+	}
+	
+	
 })
+
 
 //Mandar los datos del producto a la bd
 const sellBtn = document.querySelector("button#sell")

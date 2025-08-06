@@ -22,16 +22,23 @@
         <div>
             <h1 id="anuncio">Completa tu anuncio</h1>
             <p id="foto">FOTOS</p>
-            <p id="foto-info">Puedes agregar hasta 24 fotos. Los compradores quieren ver todos los detalles y los ángulos. </p>
+            <p id="foto-info">Puedes agregar hasta 5 fotos. Los compradores quieren ver todos los detalles y los ángulos. </p>
             <br>
             
             <div class="upload-box">
-            <i class="bi bi-image"></i>
-            <p id="foto">Agrega las imagenes</p>
-            <button type="submit" class="btn btn-light image-btn" id="load-image">
-            Cargar imagen
-            </button>
-            <input type="file" style="display: none;" id="filechooser" accept="image/*">
+	            <i class="bi bi-image" id="image-logo"></i>
+	            <p class="image-text" id="foto">Agrega las imagenes</p>
+	            <div class="container">
+	            <!-- <div class="image-wrapper"><img src="assets/img/Arte.webp"><button class="btn-close delete-btn"></button></div>
+	            <div class="image-wrapper"><img src="assets/img/Acuaticos.webp"><button class="btn-close delete-btn"></button></div>
+	            <div class="image-wrapper"><img src="assets/img/Apple_logo_black.svg"><button class="btn-close delete-btn"></button></div>
+	            <div class="image-wrapper"><img src="assets/img/Belleza.webp"><button class="btn-close delete-btn"></button></div>
+	            <div class="image-wrapper"><img src="assets/img/camara.webp"><button class="btn-close delete-btn"></button></div> -->
+	            </div>
+	            <button type="submit" class="btn btn-light image-btn" id="load-image">
+	            Cargar imagen
+	            </button>
+	            <input type="file" style="display: none;" id="filechooser" accept="image/*">
             </div>
         </div>
 
@@ -373,7 +380,7 @@
                 </button>
             </div>    
     </div>
-
+    
     <script src="assets/js/categorie.js"></script>
     <script src="assets/js/accountData.js"></script>
     <script src="assets/js/venta_producto.js"></script>
