@@ -11,16 +11,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Servlet implementation class Searcher
+ * Servlet implementation class UserProducts
  */
-@WebServlet("/Searcher")
-public class Searcher extends HttpServlet {
+@WebServlet("/UserProducts")
+public class UserProducts extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Searcher() {
+    public UserProducts() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,23 +29,14 @@ public class Searcher extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		response.setContentType("application/json");
 		SQL sql = new SQL();
-		if(!Boolean.parseBoolean(request.getParameter("isCategorie"))) {
-			String searchValue = request.getParameter("search").toLowerCase();
-			String products = sql.getProducts(searchValue);
-			
-			PrintWriter out = response.getWriter();
-			out.print(products);
-		}else {
-			int searchValue = Integer.parseInt(request.getParameter("search"));
-			String products = sql.getProductsByCategory(searchValue);
-			
-			PrintWriter out = response.getWriter();
-			out.print(products);
-		}
+		int userCode = Integer.parseInt(request.getParameter("code"));
+		String json = sql.getUserProducts(userCode);
 		
-		
+		PrintWriter out = response.getWriter();
+		out.print(json);
 	}
 
 	/**

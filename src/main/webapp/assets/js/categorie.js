@@ -29,22 +29,24 @@ class Categorie{
 		
 		card.classList.add("card");
 		card.style.width = "17rem";
+		card.dataset.codigoCategoria = json.id[i];
 		container.appendChild(card);
 		
 		cardBody.classList.add("card-body");
 		card.appendChild(cardBody);
 		
-		a.href = "Lista_Productos.html";
+		a.href = `Lista_Productos.html?search=${json.id[i]}`;
 		cardBody.appendChild(a);
 		
 		img.classList.add("card-img-top");
 		img.src = json.url[i];
 		a.appendChild(img);
 		
-		title.href = "Lista_Productos.html";
+		title.href = `Lista_Productos.html?search=${json.id[i]}`;
 		title.classList.add("fs-3");
 		title.innerText = json.categories[i];
 		card.appendChild(title);
+		
 	}
 	
 	getCategoriesJSON(select){

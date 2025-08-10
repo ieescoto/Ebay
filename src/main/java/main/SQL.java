@@ -260,7 +260,7 @@ public class SQL {
 		}
 	}
 	
-	//Metodo que agrega las caracteristicas del producto a la BD
+	//Metodo que agrega las rutas de las imagenes del producto a la BD
 	public void createProductImage(String[] url) {
 		int productCode = this.getProductCode();
 		String query = " insert into imagen_x_producto(codigo_producto,imagen_producto) values(?,?)";
@@ -276,6 +276,133 @@ public class SQL {
 			}
 			
 		}
+	}
+	
+	//Metodo que devuelve los productos para la informacion del producto
+	public String getUserProducts(int userCode) {
+		String query = String.format("Select a.nombre_producto,a.codigo_producto, min(b.imagen_producto) as imagen_producto from productos a left join imagen_x_producto b on a.codigo_producto = b.codigo_producto where a.usuario_vendedor = %s group by a.nombre_producto,a.codigo_producto order by a.codigo_producto",userCode);
+		int amount = this.getUserProductsAmount(userCode);
+		int counter = 0;
+		StringBuilder json = new StringBuilder("{ \"products\" : [");
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+
+			while (result.next()) {
+				json.append(String.format("{ \"title\": \"%s\" ,\"url\": \"%s\",\"code\":%s}",result.getString("nombre_producto"),result.getString("imagen_producto"),result.getInt("codigo_producto")));
+				counter++;
+				if(counter != amount) {
+					json.append(",");					
+				}
+			}
+			
+			json.append("] }");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return json.toString();
+	}
+	
+	//Metodo que devuelve la cantidad de productos por un vendedor
+	private int getUserProductsAmount(int userCode) {
+		int amount = 0;
+		String query = String.format(
+				"Select count(nombre_producto) as cantidad from productos where usuario_vendedor = %s",userCode);
+		try {
+			Statement statement = con.createStatement();
+			ResultSet amountOfCategories = statement.executeQuery(query);
+			amountOfCategories.next();
+			amount = amountOfCategories.getInt("cantidad");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return amount;
+	}
+	
+	//Obtener todos los productos por palabra clave
+	public String getProducts(String searchValue) {
+		String query = String.format("select a.nombre_producto,a.precio,a.envio_precio,b.username,c.estado,min(d.imagen_producto) as imagen_producto from productos a left join usuarios b on a.usuario_vendedor = b.codigo_usuario left join estados_producto c on a.codigo_estado = c.codigo_estado left join imagen_x_producto d on a.codigo_producto = d.codigo_producto where LOWER(nombre_producto) LIKE LOWER('%%%s%%') group by a.nombre_producto,a.precio,a.envio_precio,b.username,c.estado,a.codigo_producto",searchValue);
+		int counter = 0;
+		int amount = this.getProductsAmount(searchValue);
+		StringBuilder json = new StringBuilder("{ \"products\": [");		
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+
+			while (result.next()) {
+				json.append(String.format("{ \"image\":\"%s\", \"title\": \"%s\", \"price\":%s, \"shipping\": %s, \"condition\":\"%s\", \"seller\": \"%s\" }", result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getFloat("envio_precio"),result.getString("estado"),result.getString("username")));
+				counter++;
+				if(counter != amount) {
+					json.append(",");					
+				}
+			}
+			
+			json.append("] }");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return json.toString();
+	}
+	
+	//Metodo que obtiene la cantidad de productos buscados por palabra clave
+	private int getProductsAmount(String searchValue) {
+		int amount = 0;
+		String query = String.format("Select count(nombre_producto) as cantidad from productos where LOWER(nombre_producto) LIKE LOWER('%%%s%%')",searchValue);
+		try {
+			Statement statement = con.createStatement();
+			ResultSet amountOfCategories = statement.executeQuery(query);
+			amountOfCategories.next();
+			amount = amountOfCategories.getInt("cantidad");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return amount;
+	}
+	
+	public String getProductsByCategory(int categoryID) {
+		String query = String.format("select a.nombre_producto,a.precio,a.envio_precio,b.username,c.estado,min(d.imagen_producto) as imagen_producto from productos a left join usuarios b on a.usuario_vendedor = b.codigo_usuario left join estados_producto c on a.codigo_estado = c.codigo_estado left join imagen_x_producto d on a.codigo_producto = d.codigo_producto where a.codigo_categoria = %s group by a.nombre_producto,a.precio,a.envio_precio,b.username,c.estado,a.codigo_producto",categoryID);
+		int counter = 0;
+		int amount = this.getProductsAmountByCategorie(categoryID);
+		StringBuilder json = new StringBuilder("{ \"products\": [");		
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+
+			while (result.next()) {
+				json.append(String.format("{ \"image\":\"%s\", \"title\": \"%s\", \"price\":%s, \"shipping\": %s, \"condition\":\"%s\", \"seller\": \"%s\" }", result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getFloat("envio_precio"),result.getString("estado"),result.getString("username")));
+				counter++;
+				if(counter != amount) {
+					json.append(",");					
+				}
+			}
+			
+			json.append("] }");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return json.toString();
+	}
+
+	private int getProductsAmountByCategorie(int categoryID) {
+		int amount = 0;
+		String query = String.format("Select count(nombre_producto) as cantidad from productos where codigo_categoria = %s",categoryID);
+		try {
+			Statement statement = con.createStatement();
+			ResultSet amountOfCategories = statement.executeQuery(query);
+			amountOfCategories.next();
+			amount = amountOfCategories.getInt("cantidad");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return amount;
 	}
 	
 }
