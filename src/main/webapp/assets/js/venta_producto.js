@@ -124,20 +124,18 @@ imageBtn.addEventListener("click",()=>{
 //Mandar los datos de la imagen a la bd (En Proceso)
 const account = new Account()
 const formData = new FormData();
+formData.append("remove",false);
 filechooser.addEventListener("change",(e)=>{
 	const file = e.target.files[0];
 	if(file != undefined){
-		if(formData.get("url") != null){
-			formData.delete("url");
-		}
 			
-		formData.append("url",file);
+		formData.set("url",file);
 		const imageQuantity = document.querySelectorAll("div.image-wrapper");
 		const xhr = new XMLHttpRequest();
 		xhr.open("POST","ProductImage")
 		xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-		xhr.onload = function() {
-			if(xhr.status = 200){
+		xhr.addEventListener("readystatechange",()=> {
+			if(xhr.status = 200 && xhr.readyState == xhr.DONE){
 				const response = JSON.parse(xhr.responseText)
 				if(imageQuantity.length == 0){
 					document.querySelector("i#image-logo").remove();
@@ -150,29 +148,46 @@ filechooser.addEventListener("change",(e)=>{
 					
 					const imageContainer = document.createElement("div");
 					imageContainer.classList.add("image-wrapper");
-					imageContainer.innerHTML = `<img src="${response.imgRoute}"><button class="btn-close delete-btn"></button>`;
+					imageContainer.innerHTML = `<img src="${response.imgRoute}" class="preview-image"><button class="btn-close delete-btn"></button>`;
 					container.appendChild(imageContainer)
 					loadBtn.classList.add("move-btn")
-					
-					const deleteBtn = document.querySelectorAll("button.delete-btn");
-					deleteBtn.forEach(btn =>{
-						btn.addEventListener("click",()=>{
-							console.log("Antes"+imageQuantity.length)
-							btn.parentNode.remove();
-							console.log("Despues"+imageQuantity.length)
-							if(imageQuantity.length == 0){
-								console.log("Borraste la ultima imagen")			
-							}else{
-								console.log("Quedan varias imagenes")	
-							}
-						})
+										
+					const deleteBtnContainer = document.querySelector("div#image-preview")
+					clone = deleteBtnContainer.cloneNode(true);
+					clone.addEventListener("click", (e)=>{
+						if(e.target.classList.contains("delete-btn")){
+							e.target.parentNode.remove();
+						}
+						if(document.querySelectorAll("div.image-wrapper").length == 0){
+							//<i class="bi bi-image" id="image-logo"></i>
+							//<p class="image-text" id="foto">Agrega las imagenes</p>
+							const mainContainer = document.querySelector("div.upload-box")
+							const imageLogo = document.createElement("i")		
+							const imageText = document.createElement("p")
+								
+							imageLogo.classList.add("bi");
+							imageLogo.classList.add("bi-image");
+							imageLogo.id = "image-logo";
+								
+							imageText.classList.add("image-text")
+							imageText.id = "foto"
+							imageText.innerText = "Agrega las imagenes";
+								
+							loadBtn.classList.remove("move-btn");
+								
+							mainContainer.insertBefore(imageText,mainContainer.firstChild)
+							mainContainer.insertBefore(imageLogo,mainContainer.firstChild)
+										
+						}
 					})
+					
+					deleteBtnContainer.replaceWith(clone)
 				}
 				
 				
 				
 			}
-		}
+		})
 		
 		if(imageQuantity.length < 5 ){
 			xhr.send(formData);
@@ -248,6 +263,12 @@ sellBtn.addEventListener("click",()=>{
 		shippingPrice = 0.0;
 	}	
 	
+	//Imagenes
+	const images = document.querySelectorAll("img.preview-image");
+	for(let i = 0;i<images.length;i++){
+		formData.append("url",images[i].src.replace("http://localhost:8080/Ebay/","").replace("%20"," ").replace("%C3%B1","ñ"));
+	}
+	
 	//Caracteristicas
 	const caracteristics = document.querySelectorAll("div#molde-0");
 	
@@ -273,8 +294,6 @@ sellBtn.addEventListener("click",()=>{
 	formData.append("brand",brand)	//Funciona
 	formData.append("model",model) //Funciona
 	
-	console.log(formData.getAll("carName"));
-	console.log(formData.getAll("carValue"));
 	account.sendProductData(formData);
 	
 })

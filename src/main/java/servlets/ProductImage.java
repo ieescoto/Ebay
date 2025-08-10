@@ -43,13 +43,14 @@ public class ProductImage extends HttpServlet {
 		//Entiendo (Ruta donde se guardara)
 		String uploadPath = getServletContext().getRealPath("") + File.separator + "assets/uploads";
 		File uploadDir = new File(uploadPath);
-		if (!uploadDir.exists()) uploadDir.mkdirs();	
-		//No entiendo (Guardar archivo)
+		if (!uploadDir.exists()) uploadDir.mkdirs();
 		String filePath = uploadPath + File.separator + fileName;
+		
+		//No entiendo (Guardar archivo)
 		try (InputStream fileContent = filepart.getInputStream()) {
 			Files.copy(fileContent, Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
 		}
-			    
+		
 		//Entiendo (Responder con la ruta)
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();

@@ -260,4 +260,22 @@ public class SQL {
 		}
 	}
 	
+	//Metodo que agrega las caracteristicas del producto a la BD
+	public void createProductImage(String[] url) {
+		int productCode = this.getProductCode();
+		String query = " insert into imagen_x_producto(codigo_producto,imagen_producto) values(?,?)";
+		for(int i =0;i<url.length;i++) {
+			try {
+				PreparedStatement statement = con.prepareStatement(query);
+				statement.setInt(1, productCode);
+				statement.setString(2, url[i]);
+				statement.executeUpdate();
+			}catch(SQLException e) {
+				System.out.println("Fallo al agregar imagenes");
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
 }

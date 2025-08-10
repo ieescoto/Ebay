@@ -1,6 +1,7 @@
 package servlets;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import java.io.IOException;
  * Servlet implementation class ProductSell
  */
 @WebServlet("/ProductSell")
+@MultipartConfig
 public class ProductSell extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -44,9 +46,12 @@ public class ProductSell extends HttpServlet {
 		String[] caracteristicName = request.getParameterValues("carName");
 		String[] caracteristicValue = request.getParameterValues("carValue");
 		
+		String[] url = request.getParameterValues("url");
+		
 		sql.updateUserType(sellerID);
 		sql.createProduct(categoryCode,sellerID,name,description,productPrice,conditionCode,shippingPrice,returnCode,quantity,brand,model);
 		sql.createProductCaracteristics(caracteristicName, caracteristicValue);
+		sql.createProductImage(url);
 		
 	}
 
