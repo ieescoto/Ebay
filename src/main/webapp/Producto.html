@@ -2,16 +2,19 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>--- | Ebay</title>
+        <title>Ebay</title>
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
 	    <link rel="stylesheet" href="assets/css/producto.css">
 	    <link rel="stylesheet" href="assets/css/header.css">
     </head>
     <body>
+
+        <!-- INICIO-ENCABEZADO -->
+         
         <div class="header">
             <div class="user-information-container">
-                <div id="user-login-register">¡Hola!, <a href="login.html">Inicia sesión</a> o <a href="new_account.html">regístrate</a></div>
+                <div id="user-login-register">¡Hola!, <a href="login.html">Inicia sesión</a> o <a href="login.html">regístrate</a></div>
                 
                 <!-- Plantilla para Cuando un Usuario Ya inicio Sesion -->
                 <!-- <div id="user-username">¡Hola<strong>, Username!</strong></div>
@@ -30,7 +33,7 @@
                 <!-- Plantilla para Cuando un Usuario Ya inicio Sesion -->
 
             </div>
-            
+
             <div class="ebay-options-header-container">
                 <button class="btn-Hdelement" id="location" data-bs-toggle="modal" data-bs-target="#country-selector">Enviar a</button>
                 <button class="btn-Hdelement" id="sell">Vender</button>
@@ -39,10 +42,10 @@
                 <button class="btn-Hdelement" id="cart"><i class="bi bi-cart"></i></button>
             </div>
         </div>
-        
+
         <div class="searchbar">
-            <a class="logo" href="index.html"><img src="assets/img/Ebay.svg" title="eBay Home" width="100" height="100"></a>
-            <input type="text" class="searchInput" name="search "placeholder="Buscar">
+            <a class="logo" href="index.html"><img src="assets/resources/EBay.svg.png" title="eBay Home" height="70"></a>
+            <input type="text" class="searchInput" placeholder="Buscar">
             <button class="search">Buscar</button>
         </div>
         <div class="container-fluid py-2 background-container-relationated" style="background-color: #f7f7f7;">
@@ -61,119 +64,260 @@
             </div>
         </div>
         
-        <div class="container-fluid py-2 background-container-relationated" style="background-color: #f7f7f7;">
-            <div class="div-container-relationated">
-                <div id="relationated-options">Opciones relacionadas</div>
-                <div class="options"><a href="option1.html">Busqueda 1</a></div>
-                <div class="options"><a href="option2.html">Busqueda 2</a></div>
-                <div class="options"><a href="option3.html">Busqueda 3</a></div>
-                <div class="options"><a href="option4.html">Busqueda 4</a></div>
-                <div class="options"><a href="option5.html">Busqueda 5</a></div>
-                <div class="options"><a href="option6.html">Busqueda 5</a></div>
-                <div class="container-include-description">
-                    <button id="btn-include-description"><i class="bi bi-check-square"></i></button>
-                    <div id="text-include-description">Incluir Descripcion</div>
-                </div>
-            </div>
-        </div>
-        
+        <!-- FIN-ENCABEZADO -->
+
         <div id="principal-product-container">
             <div id="items-container">
                 <div id="images-product">
                     <div id="other-images-product">
+                        <!-- <div class="images-container"></div>
                         <div class="images-container"></div>
                         <div class="images-container"></div>
-                        <div class="images-container"></div>
-                        <div class="images-container"></div>
+                        <div class="images-container"></div> -->
                     </div>
                     <div id="active-image-product"></div>
                 </div>
-                <div class="similar-items">
-                    <div class="similar-products-title">
-                        <h2 class="name">Artículos Similares</h2>
-                    </div>
-                    <div class="similar-items-container">
-                        <div class="similar-items-img"></div>
-                        <div class="similar-items-content">
-                            <div class="similar-items-information">
-                                <h4 class="title4">Nombre del Producto y Descripcion Complementaria</h4>
-                            </div>
-                            <div class="similar-items-information">
-                                <h4 class="product-quality-title">Estado del Producto</h4>
-                            </div>
-                            <div class="similar-items-information">
-                                <h3 class="similar-items-price">L. ---</h3>
+
+                <!-- <div class="relationated-items-container">
+                    Plantilla para Colocar Productos Similares
+                    <div class="similar-items">
+                        <div class="similar-products-title">
+                            <div class="name">Artículos Similares</div>
+                        </div>
+                        <div class="similar-items-information-container">
+                            <div class="similar-items-img"></div>
+                            <div class="similar-items-content">
+                                <div class="similar-items-information">
+                                    <div class="similar-items-name">Nombre del Producto y Descripcion Complementaria</div>
+                                    
+                                </div>
+                                <div class="similar-items-information">
+                                    <div class="product-quality-title">Estado del Producto</div>
+                                </div>
+                                <div class="similar-items-information">
+                                    <div class="similar-items-price">L. ---</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="similar-items">
-                    <div class="similar-products-title">
-                        <h2 class="name">Artículos Similares</h2>
-                    </div>
-                    <div class="similar-items-container">
-                        <div class="similar-items-img"></div>
-                        <div class="similar-items-content">
-                            <div class="similar-items-information">
-                                <h4 class="title4">Nombre del Producto y Descripcion Complementaria</h4>
-                            </div>
-                            <div class="similar-items-information">
-                                <h4 class="product-quality-title">Estado del Producto</h4>
-                            </div>
-                            <div class="similar-items-information">
-                                <h3 class="similar-items-price">L. ---</h3>
+                    Plantilla para Colocar Productos Similares
+
+                    Plantilla para Colocar Productos Similares
+                    <div class="similar-items">
+                        <div class="similar-products-title">
+                            <div class="name">Artículos Similares</div>
+                        </div>
+                        <div class="similar-items-information-container">
+                            <div class="similar-items-img"></div>
+                            <div class="similar-items-content">
+                                <div class="similar-items-information">
+                                    <div class="similar-items-name">Nombre del Producto y Descripcion Complementaria</div>
+                                    
+                                </div>
+                                <div class="similar-items-information">
+                                    <div class="product-quality-title">Estado del Producto</div>
+                                </div>
+                                <div class="similar-items-information">
+                                    <div class="similar-items-price">L. ---</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    Plantilla para Colocar Productos Similares
+
+                    Plantilla para Colocar Productos Similares
+                    <div class="similar-items">
+                        <div class="similar-products-title">
+                            <div class="name">Artículos Similares</div>
+                        </div>
+                        <div class="similar-items-information-container">
+                            <div class="similar-items-img"></div>
+                            <div class="similar-items-content">
+                                <div class="similar-items-information">
+                                    <div class="similar-items-name">Nombre del Producto y Descripcion Complementaria</div>
+                                    
+                                </div>
+                                <div class="similar-items-information">
+                                    <div class="product-quality-title">Estado del Producto</div>
+                                </div>
+                                <div class="similar-items-information">
+                                    <div class="similar-items-price">L. ---</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    Plantilla para Colocar Productos Similares
+                </div>   -->
             </div>
+
             <div id="items-information-container">
                 <div class="items-information">
-                    <h1 class="principal-title">Nombre del Producto y Descripcion Complementaria</h1>
+                    <div class="principal-title-items-information" id="title">Nombre del Producto y Descripcion Complementaria</div>
                 </div>
                 <div id="sales-information">
                     <div id="sales-person-img"></div>
                     <div id="sales-person-name">
-                        <h3 class="principal-title">Nombre del Vendedor y Descripcion Complementaria</h3>
+                        <div class="principal-title" id="seller">Nombre del Vendedor y Descripcion Complementaria</div>
+                        <div class="positive-comentaries" id="rating">---% de Comentarios Positivos</div>
                     </div>
                 </div>
                 <div class="items-information">
-                    <h1 class="product-price">L. ---</h1>
+                    <div class="product-price" id="price">L. ---</div>
                 </div>
                 <div id="other-information-container" class="items-information">
-                    <h4 class="product-price">Estado: --- </h4>
+                    <div id="product-condition">Estado: --- </div>
                     <div id="quantity-product">
-                        <h4 class="product-price">Cantidad: </h4>
+                        <div id="quantity-product-container">Cantidad: </div>
                         <div id="quantity-product-number"><strong>---</strong></div>
                     </div>
                 </div>
-                <button class="btn-items-purchase"><strong>¡Cómpralo Ahora!</strong></button>
-                <button class="btn-items-purchase"><strong>Agregar al carro de compras</strong></button>
-                <button class="btn-items-purchase"><strong>Agregar a la lista de favoritos</strong></button>
+                <button id="btn-buy-it-now" class="btn-items-purchase">¡Cómpralo Ahora!</button>
+                <button id="btn-add-to-shopping-cart" class="btn-items-purchase">Agregar al carro de compras</button>
+                <button id="btn-add-to-favorites-list" class="btn-items-purchase"><i class="bi bi-suit-heart" style="margin-right: 5px;"></i>Agregar a la lista de favoritos</button>
+                
+                <div id="product-characteristics-container">
+                    <div class="product-characteristics-header">
+                        <div id="about-item-title">Acerca del Articulo</div>
+                        <div id="id-item">XXX-XXX-XXX-XXX-XXX</div>
+                    </div>
+                    <div class="item-characteristics-container1">
+                        <div id="item-characteristics-title">Caracteristicas del Articulo</div>
+                        <div id="item-characteristics-container2">
+
+                            <div id="item-char-condition-container" class="item-char-container-molde">
+                                <div id="item-char-condition-name" class="item-char-name">Estado</div>
+                                <div id="item-char-condition-value" class="item-char-value">Descripcion del Estado del Articulo</div>
+                            </div>
+
+                            <div id="item-char-model-container" class="item-char-container-molde">
+                                <div id="item-char-model-name" class="item-char-name">Modelo</div>
+                                <div id="item-char-model-value" class="item-char-value">Descripcion del Modelo del Articulo</div>
+                            </div>
+
+                            <div id="item-char-brand-container" class="item-char-container-molde">
+                                <div id="item-char-brand-name" class="item-char-name">Marca</div>
+                                <div id="item-char-brand-value" class="item-char-value">Descripcion de la Marca del Articulo</div>
+                            </div>
+
+                            <div id="item-char-category-container" class="item-char-container-molde">
+                                <div id="item-char-category-name" class="item-char-name">Categoria</div>
+                                <div id="item-char-category-value" class="item-char-value">Descripcion de la Categoria del Articulo</div>
+                            </div>
+                            
+                            <!-- Plantilla para Agregar las Caracteristicas Agregadas por el Usuario -->
+                            
+                            <!-- <div class="item-char-container-molde">
+                                <div class="item-char-name">Nombre de la Caracteristica</div>
+                                <div class="item-char-value">Descripcion de la Caracteristica del Articulo</div>
+                            </div>
+
+                            <div class="item-char-container-molde">
+                                <div class="item-char-name">Nombre de la Caracteristica</div>
+                                <div class="item-char-value">Descripcion de la Caracteristica del Articulo</div>
+                            </div>
+
+                            <div class="item-char-container-molde">
+                                <div class="item-char-name">Nombre de la Caracteristica</div>
+                                <div class="item-char-value">Descripcion de la Caracteristica del Articulo</div>
+                            </div>
+
+                            <div class="item-char-container-molde">
+                                <div class="item-char-name">Nombre de la Caracteristica</div>
+                                <div class="item-char-value">Descripcion de la Caracteristica del Articulo</div>
+                            </div>
+
+                            <div class="item-char-container-molde">
+                                <div class="item-char-name">Nombre de la Caracteristica</div>
+                                <div class="item-char-value">Descripcion de la Caracteristica del Articulo</div>
+                            </div>
+
+                            <div class="item-char-container-molde">
+                                <div class="item-char-name">Nombre de la Caracteristica</div>
+                                <div class="item-char-value">Descripcion de la Caracteristica del Articulo</div>
+                            </div>
+ -->
+                            <!-- Plantilla para Agregar las Caracteristicas Agregadas por el Usuario -->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="item-comentaries-container">
+                    <div class="items-comentaries-title">Comentarios del Vendedor (Articulo Especifico)</div>
+                    <div class="items-comentaries">
+
+                        <!-- Plantilla para el Comentario del Producto en Singular -->
+                        <div class="item-comentary-molde">
+                            <div class="item-comentary-img-name">
+                                <div id="item-comentary-img"></div>
+                                <div id="item-comentary-itself-name"><strong>Nombre del Comprador</strong></div>
+                            </div>
+                            <div class="item-comentary-date">XX/XX/XXXX</div>
+                            <div class="item-comentary-data">Top quality product. I had to return because daughter gave us one from her apt. The return as just as good as Amazon. Listed the reason for the return, seller emailed a fed ex prepaid return, took the package to a fed ex location and off it went. I highly recommend this seller, this person lives up to the description of the product and a total hassle freed return. Exceptional seller. Top quality product. I had to return because daughter gave us one from her apt.The return as just as good as Amazon. Listed the reason for the return, seller emailed a fed ex prepaid return, took the package to a fed ex location and off it went. I highly recommend this seller, this person lives up to the description of the product and a total hassle freed return. Exceptional seller</div>
+                        </div>
+                        <!-- Plantilla para el Comentario del Producto en Singular -->
+                         
+                        <!-- Plantilla para el Comentario del Producto en Singular -->
+                        <div class="item-comentary-molde">
+                            <div class="item-comentary-img-name">
+                                <div id="item-comentary-img"></div>
+                                <div id="item-comentary-itself-name"><strong>Nombre del Comprador</strong></div>
+                            </div>
+                            <div class="item-comentary-date">XX/XX/XXXX</div>
+                            <div class="item-comentary-data">Top quality product. I had to return because daughter gave us one from her apt. The return as just as good as Amazon. Listed the reason for the return, seller emailed a fed ex prepaid return, took the package to a fed ex location and off it went. I highly recommend this seller, this person lives up to the description of the product and a total hassle freed return. Exceptional seller. Top quality product. I had to return because daughter gave us one from her apt.The return as just as good as Amazon. Listed the reason for the return, seller emailed a fed ex prepaid return, took the package to a fed ex location and off it went. I highly recommend this seller, this person lives up to the description of the product and a total hassle freed return. Exceptional seller</div>
+                        </div>
+                        <!-- Plantilla para el Comentario del Producto en Singular -->
+
+                        <!-- Plantilla para el Comentario del Producto en Singular -->
+                        <div class="item-comentary-molde">
+                            <div class="item-comentary-img-name">
+                                <div id="item-comentary-img"></div>
+                                <div id="item-comentary-itself-name"><strong>Nombre del Comprador</strong></div>
+                            </div>
+                            <div class="item-comentary-date">XX/XX/XXXX</div>
+                            <div class="item-comentary-data">Top quality product. I had to return because daughter gave us one from her apt. The return as just as good as Amazon. Listed the reason for the return, seller emailed a fed ex prepaid return, took the package to a fed ex location and off it went. I highly recommend this seller, this person lives up to the description of the product and a total hassle freed return. Exceptional seller. Top quality product. I had to return because daughter gave us one from her apt.The return as just as good as Amazon. Listed the reason for the return, seller emailed a fed ex prepaid return, took the package to a fed ex location and off it went. I highly recommend this seller, this person lives up to the description of the product and a total hassle freed return. Exceptional seller</div>
+                        </div>
+                        <!-- Plantilla para el Comentario del Producto en Singular -->
+
+                        <!-- Plantilla para el Comentario del Producto en Singular -->
+                        <div class="item-comentary-molde">
+                            <div class="item-comentary-img-name">
+                                <div id="item-comentary-img"></div>
+                                <div id="item-comentary-itself-name"><strong>Nombre del Comprador</strong></div>
+                            </div>
+                            <div class="item-comentary-date">XX/XX/XXXX</div>
+                            <div class="item-comentary-data">Top quality product. I had to return because daughter gave us one from her apt. The return as just as good as Amazon. Listed the reason for the return, seller emailed a fed ex prepaid return, took the package to a fed ex location and off it went. I highly recommend this seller, this person lives up to the description of the product and a total hassle freed return. Exceptional seller. Top quality product. I had to return because daughter gave us one from her apt.The return as just as good as Amazon. Listed the reason for the return, seller emailed a fed ex prepaid return, took the package to a fed ex location and off it went. I highly recommend this seller, this person lives up to the description of the product and a total hassle freed return. Exceptional seller</div>
+                        </div>
+                        <!-- Plantilla para el Comentario del Producto en Singular -->
+                        
+
+                    </div>
+                </div>
             </div>
-            
-          <!-- Modal de seleccionar ubicacion -->
-		<div class="modal fade" id="country-selector" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered rounded">
-		    <div class="modal-content px-3">
-		      <div class="modal-header border-0">
-		        <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Especifica tu ubicacion de envio</h1>
-		        <button type="button" id="close-modal" class="btn btn-link btn-lg end-0 top-0 position-absolute text-decoration-none" data-bs-dismiss="modal" aria-label="Close">Listo</button>
-		      </div>
-		      <div class="modal-body">
-		      	<p class="fs-5">Enviar a:</p>
-		        <select id="countries" class="form-select form-select-lg mb-4 w-50 border-top-0 border-end-0 border-start-0 border-4  overflow-y-auto"></select>
-                  <div class="d-flex justify-content-between">
-                      <i class="bi bi-info-circle-fill text-primary position-relative align-content-lg-start"></i>
-                      <p class="modal-footer-text fs-5 fs fw-semibold" id="modal-footer-text">Escoge tu país o región para mostrarte los artículos que se pueden enviar a tu ubicación</p>
-                  </div>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-            
-       <script src="assets/js/bootstrap.bundle.min.js"></script>
-       <script src="assets/js/country.js"></script>
-       <script src="assets/js/accountData.js"></script>
-       <script src="assets/js/header.js"></script>
         </div>
+                        
+                        <!-- Modal de seleccionar ubicacion -->
+                    <div class="modal fade" id="country-selector" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered rounded">
+                        <div class="modal-content px-3">
+                        <div class="modal-header border-0">
+                            <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Especifica tu ubicacion de envio</h1>
+                            <button type="button" id="close-modal" class="btn btn-link btn-lg end-0 top-0 position-absolute text-decoration-none" data-bs-dismiss="modal" aria-label="Close">Listo</button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="fs-5">Enviar a:</p>
+                            <select id="countries" class="form-select form-select-lg mb-4 w-50 border-top-0 border-end-0 border-start-0 border-4  overflow-y-auto"></select>
+                            <div class="d-flex justify-content-between">
+                                <i class="bi bi-info-circle-fill text-primary position-relative align-content-lg-start"></i>
+                                <p class="modal-footer-text fs-5 fs fw-semibold" id="modal-footer-text">Escoge tu país o región para mostrarte los artículos que se pueden enviar a tu ubicación</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                <script src="assets/js/bootstrap.bundle.min.js"></script>
+                <script src="assets/js/country.js"></script>
+                <script src="assets/js/accountData.js"></script>
+                <script src="assets/js/header.js"></script>
+                <script src="assets/js/productos.js"></script>
+       </body>
+</html>

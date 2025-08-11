@@ -323,7 +323,7 @@ public class SQL {
 	
 	//Obtener todos los productos por palabra clave
 	public String getProducts(String searchValue) {
-		String query = String.format("select a.nombre_producto,a.precio,a.envio_precio,b.username,c.estado,min(d.imagen_producto) as imagen_producto from productos a left join usuarios b on a.usuario_vendedor = b.codigo_usuario left join estados_producto c on a.codigo_estado = c.codigo_estado left join imagen_x_producto d on a.codigo_producto = d.codigo_producto where LOWER(nombre_producto) LIKE LOWER('%%%s%%') group by a.nombre_producto,a.precio,a.envio_precio,b.username,c.estado,a.codigo_producto",searchValue);
+		String query = String.format("select a.codigo_producto,a.nombre_producto,a.precio,a.envio_precio,b.username,c.estado,min(d.imagen_producto) as imagen_producto from productos a left join usuarios b on a.usuario_vendedor = b.codigo_usuario left join estados_producto c on a.codigo_estado = c.codigo_estado left join imagen_x_producto d on a.codigo_producto = d.codigo_producto where LOWER(nombre_producto) LIKE LOWER('%%%s%%') group by a.nombre_producto,a.precio,a.envio_precio,b.username,c.estado,a.codigo_producto",searchValue);
 		int counter = 0;
 		int amount = this.getProductsAmount(searchValue);
 		StringBuilder json = new StringBuilder("{ \"products\": [");		
@@ -332,7 +332,7 @@ public class SQL {
 			ResultSet result = statement.executeQuery(query);
 
 			while (result.next()) {
-				json.append(String.format("{ \"image\":\"%s\", \"title\": \"%s\", \"price\":%s, \"shipping\": %s, \"condition\":\"%s\", \"seller\": \"%s\" }", result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getFloat("envio_precio"),result.getString("estado"),result.getString("username")));
+				json.append(String.format("{ \"image\":\"%s\", \"title\": \"%s\", \"price\":%s, \"shipping\": %s, \"condition\":\"%s\", \"seller\": \"%s\",\"code\":%s }", result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getFloat("envio_precio"),result.getString("estado"),result.getString("username"),result.getInt("codigo_producto")));
 				counter++;
 				if(counter != amount) {
 					json.append(",");					
@@ -364,8 +364,9 @@ public class SQL {
 		return amount;
 	}
 	
+	//Metodo que obtiene la cantidad de productos buscados por categoria
 	public String getProductsByCategory(int categoryID) {
-		String query = String.format("select a.nombre_producto,a.precio,a.envio_precio,b.username,c.estado,min(d.imagen_producto) as imagen_producto from productos a left join usuarios b on a.usuario_vendedor = b.codigo_usuario left join estados_producto c on a.codigo_estado = c.codigo_estado left join imagen_x_producto d on a.codigo_producto = d.codigo_producto where a.codigo_categoria = %s group by a.nombre_producto,a.precio,a.envio_precio,b.username,c.estado,a.codigo_producto",categoryID);
+		String query = String.format("select a.codigo_producto,a.nombre_producto,a.precio,a.envio_precio,b.username,c.estado,min(d.imagen_producto) as imagen_producto from productos a left join usuarios b on a.usuario_vendedor = b.codigo_usuario left join estados_producto c on a.codigo_estado = c.codigo_estado left join imagen_x_producto d on a.codigo_producto = d.codigo_producto where a.codigo_categoria = %s group by a.nombre_producto,a.precio,a.envio_precio,b.username,c.estado,a.codigo_producto",categoryID);
 		int counter = 0;
 		int amount = this.getProductsAmountByCategorie(categoryID);
 		StringBuilder json = new StringBuilder("{ \"products\": [");		
@@ -374,7 +375,7 @@ public class SQL {
 			ResultSet result = statement.executeQuery(query);
 
 			while (result.next()) {
-				json.append(String.format("{ \"image\":\"%s\", \"title\": \"%s\", \"price\":%s, \"shipping\": %s, \"condition\":\"%s\", \"seller\": \"%s\" }", result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getFloat("envio_precio"),result.getString("estado"),result.getString("username")));
+				json.append(String.format("{ \"image\":\"%s\", \"title\": \"%s\", \"price\":%s, \"shipping\": %s, \"condition\":\"%s\", \"seller\": \"%s\",\"code\":%s }", result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getFloat("envio_precio"),result.getString("estado"),result.getString("username"),result.getInt("codigo_producto")));
 				counter++;
 				if(counter != amount) {
 					json.append(",");					
@@ -389,7 +390,8 @@ public class SQL {
 		
 		return json.toString();
 	}
-
+	
+	//Obtener todos los productos por cataegoria
 	private int getProductsAmountByCategorie(int categoryID) {
 		int amount = 0;
 		String query = String.format("Select count(nombre_producto) as cantidad from productos where codigo_categoria = %s",categoryID);
@@ -405,4 +407,86 @@ public class SQL {
 		return amount;
 	}
 	
+	//Metodo para obtener la informacion del producto
+	public String getProductInfo(int productID) {
+		String query = String.format("select a.nombre_producto,b.username,NVL(b.valoracion_total,0) as valoracion_total,a.precio,c.estado,a.cantidad_producto,a.marca,a.modelo,d.nombre_categoria from productos a left join usuarios b on a.usuario_vendedor = b.codigo_usuario left join estados_producto c on a.codigo_estado = c.codigo_estado left join categorias d on a.codigo_categoria = d.codigo_categoria where a.codigo_producto = %s"
+,productID);
+		StringBuilder json = new StringBuilder("\"info\": {");
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			result.next();
+			json.append(String.format("\"title\": \"%s\", \"username\": \"%s\",\"rating\": %s,\"price\": %s,\"condition\": \"%s\",\"quantity\": %s,\"model\": \"%s\", \"brand\": \"%s\",\"category\": \"%s\"",result.getString("nombre_producto"),result.getString("username"),result.getFloat("valoracion_total"), result.getFloat("precio"), result.getString("estado"),result.getInt("cantidad_producto"),result.getString("modelo"),result.getString("marca"),result.getString("nombre_categoria")));
+			
+			json.append("},");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+	
+	//Metodo para obtener las imagenes del producto
+	public String getProductImages(int productID) {
+		String query = String.format("select imagen_producto from imagen_x_producto where codigo_producto = %s" ,productID);
+		StringBuilder json = new StringBuilder("\"images\": [");
+		int counter = 0;
+		int amount = this.getAmountOfProduct("imagen_x_producto", "imagen_producto", productID);
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			while(result.next()) {
+				json.append("\""+result.getString("imagen_producto")+"\"");
+				counter++;
+				if(counter != amount) {
+					json.append(",");					
+				}
+			};
+							
+			json.append("],");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+	
+	//Metodo para obtener las caracteristicas del producto
+	public String getProductCharacteristics(int productID) {
+		String query = String.format("select caracteristica,descripcion from caracteristicas_producto where codigo_producto = %s" ,productID);
+		StringBuilder json = new StringBuilder("\"characteristics\": [");
+		int counter = 0;
+		int amount = this.getAmountOfProduct("caracteristicas_producto", "caracteristica", productID);
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			while(result.next()) {
+				json.append(String.format("{\"characteristic\": \"%s\", \"value\": \"%s\" }",result.getString("caracteristica"),result.getString("descripcion")));
+				counter++;
+				if(counter != amount) {
+					json.append(",");					
+				}
+			};
+							
+			json.append("]");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+	
+	
+	private int getAmountOfProduct(String table,String column,int productID) {
+		int amount = 0;
+		String query = String.format("select count(%s) as cantidad from %s where codigo_producto = %s",column,table,productID);
+		try {
+			Statement statement = con.createStatement();
+			ResultSet amountOfCategories = statement.executeQuery(query);
+			amountOfCategories.next();
+			amount = amountOfCategories.getInt("cantidad");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return amount;
+	}
 }

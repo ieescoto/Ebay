@@ -289,3 +289,11 @@ button.btn-square-for-filters{
 }
 
 /* -------------------------------------------------------------------- */
+
+
+#product-card:hover{
+	cursor: pointer;
+	transform: translateY(-5px); /* Se "levanta" 5px hacia arriba */
+  	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  	border: solid black 1px;
+}

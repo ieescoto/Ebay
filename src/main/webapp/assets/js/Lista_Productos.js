@@ -1,9 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
 const searchValue = urlParams.get('search');
 let isCategorie = false;
-console.log(searchValue); //Si es null es porque viene de categorias no el buscador
 
-if(parseInt(searchValue) == NaN){
+if(isNaN(parseInt(searchValue))){
 	isCategorie = false;
 }else{
 	isCategorie = true;
@@ -19,6 +18,7 @@ xhr.addEventListener("load",()=>{
 	for(let i=0;i<json.products.length;i++){
 		const card = document.createElement("div")
 		card.classList.add("container-products-by-individual");
+		card.id = "product-card";
 		card.innerHTML = `<div class="container-imagen-product"><img src="${json.products[i].image}"></div>
 			              <div class="container-product-information">
 			                 <div class="container-product-name-condition">
@@ -36,6 +36,13 @@ xhr.addEventListener("load",()=>{
 		if(json.products[i].shipping == 0.0){
 			document.querySelector("div#shipping").innerText = "Envio Gratis"
 		}
+	}
+	
+	const cards = document.querySelectorAll("div#product-card");
+	for(let i=0;i<cards.length;i++){
+		cards[i].addEventListener("click",()=>{
+			window.location.href = `Producto.html?id=${json.products[i].code}`;
+		})
 	}
 	
 	
