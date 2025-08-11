@@ -21,16 +21,20 @@ xhr.addEventListener("load",()=>{
 		card.dataset.codigoProducto = json.products[i].code;
 		card.innerHTML = `<div class="seller-left"><div class="seller-img"><img src=${json.products[i].url}></div><div class="seller-info"><strong>${json.products[i].title}<strong></div></div>`;
 		container.appendChild(card);
+		
+		card.addEventListener("click",(e)=>{
+			window.location.href = `Producto.html?id=${json.products[i].code}`
+		})
 	}
 	
-	container.addEventListener("click",(e)=>{
+	/*container.addEventListener("click",(e)=>{
 		const father = e.target.parentNode.parentNode.parentNode;
 		if(father.classList.contains("seller-card")){
 			localStorage.setItem("productCode",father.dataset.codigoProducto);
 		}else{
 			localStorage.setItem("productCode",e.target.dataset.codigoProducto);
 		}
-		window.location.href = "Producto.html";
-	})
+		window.location.href = `Producto.html?`;
+	})*/
 })
 xhr.send(`code=${userCode}`);

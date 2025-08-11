@@ -3,6 +3,8 @@ body {
   font-size: 14px;
   line-height: 1.4;
   color: var(--ebay-text);
+  
+  
 }
 
 div.header{
@@ -184,4 +186,49 @@ p#cart{
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 20px;
+}
+
+/*Divisor  */
+#product-grid{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 97vw;
+	gap: 10px;
+}
+.card {
+	width: 250px;
+	border-radius: 10px;
+	overflow: hidden;
+	background: white;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+	transition: transform 0.2s;
+}
+
+.card:hover {
+	transform: translateY(-5px);
+}
+
+.card img {
+	width: 100%;
+	height: 250px;
+	object-fit: cover; /* Hace que la imagen llene el contenedor sin deformarse */
+}
+
+.card-content {
+	padding: 10px;
+}
+
+.title {
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	color: #333;
+}
+
+.price {
+	font-size: 16px;
+	font-weight: bold;
+	color: #2c8f2c;
 }

@@ -226,6 +226,13 @@ button.btn-square-for-filters{
     border: 1px gray dashed;
 }
 
+.container-imagen-product img{
+   	width: 100%;
+    height: 100%;
+    object-fit: cover;        
+    object-position: center;
+}
+
 .container-product-condition{
     /* font-style: oblique; */
     font-weight: 500;

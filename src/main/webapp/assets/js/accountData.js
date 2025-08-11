@@ -197,6 +197,9 @@ class Account{
 		const profilePic = document.createElement("div")
 		const nameContainer = document.createElement("div")
 		profilePic.id = "user-img";
+		profilePic.addEventListener("click",()=>{
+			window.location.href = "Description.html"
+		})
 		
 		nameContainer.classList.add("user-name-id-valoration-container");
 		

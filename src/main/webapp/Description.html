@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Descripcion del Usuario | Ebay</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+	    <link rel="stylesheet" href="assets/css/description.css">
+	    <link rel="stylesheet" href="assets/css/header.css">
+    </head>
+    <body>
+
+        <!-- INICIO-ENCABEZADO -->
+         
+        <div class="header">
+            <div class="user-information-container">
+                <div id="user-login-register">¡Hola!, <a href="login.html">Inicia sesión</a> o <a href="login.html">regístrate</a></div>
+                
+                <!-- Plantilla para Cuando un Usuario Ya inicio Sesion -->
+                <!-- <div id="user-username">¡Hola<strong>, Username!</strong></div>
+                <button id="btn-show-user-information"><i class="bi bi-chevron-down"></i></button>
+                <div class="menu-dropdown">
+                    <div class="user-img-name-id-valoration-container">
+                        <div id="user-img"></div>
+                        <div class="user-name-id-valoration-container">
+                            <div id="user-name"><strong>Username</strong></div>
+                            <div id="user-id-valoration">Username-ID (....)</div>
+                        </div>
+                    </div>
+                    <div class="account-configuration-container"><a class="lol1" href="#">Configuración de cuenta</a></div>
+                    <div class="close-session-container"><a class="lol1" href="#">Cerrar sesión</a></div>
+                </div> -->
+                <!-- Plantilla para Cuando un Usuario Ya inicio Sesion -->
+
+            </div>
+
+            <div class="ebay-options-header-container">
+                <button class="btn-Hdelement" id="location" data-bs-toggle="modal" data-bs-target="#country-selector">Enviar a</button>
+                <button class="btn-Hdelement" id="sell">Vender</button>
+                <button class="btn-Hdelement" id="favorites">Lista de favoritos</button>
+                <button class="btn-Hdelement" id="menu">Mi ebay</button>
+                <button class="btn-Hdelement" id="cart"><i class="bi bi-cart"></i></button>
+            </div>
+        </div>
+
+        <div class="searchbar">
+            <a class="logo" href="index.html"><img src="assets/resources/EBay.svg.png" title="eBay Home" height="70"></a>
+            <input type="text" class="searchInput" placeholder="Buscar">
+            <button class="search">Buscar</button>
+        </div>
+        <!-- FIN-ENCABEZADO -->
+
+    <div class="user-description-main-container">
+        <div id="user-description-img-container"><img src="assets/resources/descarga (1).jfif"></div>
+        <div class="user-description-name-container">Nombre del Usuario</div>
+        <button id="btn-user-description-edit-perfil-container">
+            <i class="bi bi-pencil"></i>
+            <div id="btn-user-description-edit-perfil" type="button">Editar perfil</div>
+        </button>
+
+    </div>
+
+    <div class="user-description-other-information-container">
+        <div class="user-description-about-me-container">
+            <div class="user-description-about-me-title">Acerca De</div>
+            <!-- <div class="user-description-about-me-instructions">Usa este espacio para contarle a otros usuarios de eBay sobre ti y las cosas que te gustan. ¡Dale a los compradores más razones para seguirte!</div>
+            <textarea class="user-description-about-me-information-container" name="texto_de_descripcion" placeholder="Escribe aqui">TRALALERO TRALALA PORCODILO PORCOALA</textarea> -->
+            <div id="user-description-about-me-information">Espacio donde el Usuario llenara con su Descripcion</div>
+        </div>
+        <div class="user-description-more-information-container">
+            <div class="user-description-location-container" style="display: flex; gap: 5px;">
+            <div class="user-description-ubication-name">Usuario:</div>
+            <div id="user-description-ubication-information"><strong>Honduras</strong></div>
+        </div>
+        <div class="user-description-creation-date-container" style="display: flex; gap: 5px;">
+            <div class="user-description-creation-date-name">Usuario desde:</div>
+            <div id="user-description-creation-date-information"><strong>10 de Agosto del 2025</strong></div>
+        </div>
+        </div>
+    </div>
+    
+    <!-- Modal de seleccionar ubicacion -->
+		<div class="modal fade" id="country-selector" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered rounded">
+		    <div class="modal-content px-3">
+		      <div class="modal-header border-0">
+		        <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Especifica tu ubicacion de envio</h1>
+		        <button type="button" id="close-modal" class="btn btn-link btn-lg end-0 top-0 position-absolute text-decoration-none" data-bs-dismiss="modal" aria-label="Close">Listo</button>
+		      </div>
+		      <div class="modal-body">
+		      	<p class="fs-5">Enviar a:</p>
+		        <select id="countries" class="form-select form-select-lg mb-4 w-50 border-top-0 border-end-0 border-start-0 border-4  overflow-y-auto"></select>
+                  <div class="d-flex justify-content-between">
+                      <i class="bi bi-info-circle-fill text-primary position-relative align-content-lg-start"></i>
+                      <p class="modal-footer-text fs-5 fs fw-semibold" id="modal-footer-text">Escoge tu país o región para mostrarte los artículos que se pueden enviar a tu ubicación</p>
+                  </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	
+	<script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/country.js"></script>
+    <script src="assets/js/categorie.js"></script>
+    <script src="assets/js/accountData.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/description.js"></script>
+
+    </body>
+</html>

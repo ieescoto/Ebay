@@ -6,8 +6,9 @@ xhr.open("POST","Product")
 xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
 xhr.addEventListener("load",()=>{
 	const json = JSON.parse(xhr.responseText);
+	const seller = document.querySelector("div#seller");
 	document.querySelector("div#title").innerText = `${json.info.title}`;
-	document.querySelector("div#seller").innerText = `${json.info.username}`;
+	seller.innerText = `${json.info.username}`;
 	document.querySelector("div#rating").innerText = `${json.info.rating}% de Comentarios Positivos`;
 	document.querySelector("div#price").innerText = `L. ${json.info.price}`;
 	document.querySelector("div#product-condition").innerText = `Estado: ${json.info.condition}`;
@@ -39,5 +40,9 @@ xhr.addEventListener("load",()=>{
 				     			<div class="item-char-value">${json.characteristics[i].value}</div>`;
 		characteristicsContainer.appendChild(container);
 	}
+	
+	seller.addEventListener("click",()=>{
+		window.location.href = `seller_about_it.html?sellerID=${json.info.sellerCode}`
+	})
 })
 xhr.send(`productID=${productID}`);

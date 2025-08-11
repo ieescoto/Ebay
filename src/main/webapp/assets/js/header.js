@@ -50,3 +50,5 @@ if(localStorage.getItem("isLogin") == "true"){
 	})
 	
 }
+
+const profilePic = document.querySelector("div#user-img")

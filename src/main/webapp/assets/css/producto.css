@@ -241,6 +241,13 @@ div#other-images-product{
     height: 100%;
 }
 
+div#other-images-product img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        
+    object-position: center;
+}
+
 div#active-image-product{
     position: relative;
     display: flex;
@@ -250,6 +257,13 @@ div#active-image-product{
     background-color: lightgray;
     border: 1px dashed gray;
     border-radius: 2.5%;
+}
+
+div#active-image-product img{
+   	width: 100%;
+    height: 100%;
+    object-fit: cover;        
+    object-position: center;
 }
 
 div.images-container{
@@ -600,4 +614,9 @@ div.similar-items-content{
 
 .item-comentary-data{
     text-align: justify;
+}
+
+#seller:hover{
+	cursor: pointer;
+	text-decoration: underline;
 }

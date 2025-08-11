@@ -47,7 +47,7 @@
             <input type="text" class="searchInput" name="search "placeholder="Buscar">
             <button class="search">Buscar</button>
         </div>
-        <div class="container-fluid py-2 background-container-relationated" style="background-color: #f7f7f7;">
+        <!-- <div class="container-fluid py-2 background-container-relationated" style="background-color: #f7f7f7;">
             <div class="div-container-relationated">
                 <div id="relationated-options">Opciones relacionadas</div>
                 <div class="options"><a href="option1.html">Busqueda 1</a></div>
@@ -61,26 +61,26 @@
                     <div id="text-include-description">Incluir Descripcion</div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="store-header bg-light py-4">
             <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-2">
                 <div class="store-logo">
-                    <img class="store-img" src="assets/img/FB.webp">
+                    <img class="store-img" id="profilePic">
                 </div>
                 </div>
                 <div class="col-md-6">
-                <h1 class="store-name">Freddy Fazbear</h1>
+                <h1 class="store-name" id="seller-name"></h1>
                 <div class="store-stats">
                     <span class="me-3">- artículos vendidos</span>
-                    <span class="me-3">- seguidores</span>
+                    <span class="me-3" id="followers"></span>
                 </div>
                 </div>
                 <div class="col-md-4 text-end">
-                <button class="btn"><i class="bi bi-share"></i> Compartir</button>
-                <button class="btn"><i class="bi bi-chat-right-text"></i> <a href="mensajes.html" style="color: black; text-decoration: none;">Contactar</a></button>
+                <!-- <button class="btn"><i class="bi bi-share"></i> Compartir</button>
+                <button class="btn"><i class="bi bi-chat-right-text"></i> <a href="mensajes.html" style="color: black; text-decoration: none;">Contactar</a></button> -->
                 <button class="btn"><i class="bi bi-heart"></i> Guardar</button>
                 </div>
             </div>
@@ -94,16 +94,16 @@
                 <div class="nav-tabs-container">
                     <ul class="nav nav-tabs border-0 d-flex">
                     <li class="nav-item">
-                        <a class="nav-link" href="seller_user.html">Comprar</a>
+                        <a id="user-products" class="nav-link" href="seller_user.html">Comprar</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="seller_ventas.html">Ventas</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a id="about-it" class="nav-link" href="seller_about_it.html">Acerca de</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="seller_about_it.html">Acerca de</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="seller_coment.html">Comentarios</a>
+                        <a id="comments" class="nav-link active" href="seller_coment.html">Comentarios</a>
                     </li>
                     </ul>
                 </div>
@@ -149,5 +149,6 @@
         <script src="assets/js/country.js"></script>
         <script src="assets/js/accountData.js"></script>
         <script src="assets/js/header.js"></script>
+        <script src="assets/js/seller_header.js"></script>
 </body>
 </html>

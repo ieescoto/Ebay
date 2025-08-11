@@ -77,7 +77,7 @@ public class SQL {
 	
 	//Metodo que introduce los datos del usuario a la bd
 	public void createAccount(String[] array,HttpServletResponse response) {
-		String query = "insert into usuarios(codigo_usuario,nombre_usuario,apellido_usuario,username,correo_electronico,contraseña,codigo_pais,numero_telefono,direccion,codigo_tipo_usuario)values(sq_codigo_usuario.nextval,?,?,?,?,?,?,?,?,1)";
+		String query = "insert into usuarios(codigo_usuario,nombre_usuario,apellido_usuario,username,correo_electronico,contraseña,codigo_pais,numero_telefono,direccion,codigo_tipo_usuario,fecha_creacion)values(sq_codigo_usuario.nextval,?,?,?,?,?,?,?,?,1,sysdate)";
 		
 		
 		try {
@@ -188,7 +188,7 @@ public class SQL {
 	
 	//Metodo que agrega un producto a la tabla de Productos
 	public void createProduct(int categoryCode, int sellerID, String name, String description, float productPrice, int conditionCode, float shippingPrice, int returnCode, int quantity, String brand, String model) {
-		String query = "insert into productos(codigo_producto,codigo_categoria,usuario_vendedor,nombre_producto,descripcion,precio,codigo_estado,envio_precio,fecha_entrega_temprana,fecha_entrega_tardia,codigo_devolucion,fecha_publicacion,cantidad_producto,marca,modelo)values(sq_codigo_producto.nextval,?,?,?,?,?,?,?,sysdate+7,sysdate+30,?,sysdate,?,?,?)";
+		String query = "insert into productos(codigo_producto,codigo_categoria,usuario_vendedor,nombre_producto,descripcion,precio,codigo_estado,envio_precio,codigo_devolucion,fecha_publicacion,cantidad_producto,marca,modelo)values(sq_codigo_producto.nextval,?,?,?,?,?,?,?,?,sysdate,?,?,?)";
 		
 		try {
 			PreparedStatement statement = con.prepareStatement(query);
@@ -409,14 +409,14 @@ public class SQL {
 	
 	//Metodo para obtener la informacion del producto
 	public String getProductInfo(int productID) {
-		String query = String.format("select a.nombre_producto,b.username,NVL(b.valoracion_total,0) as valoracion_total,a.precio,c.estado,a.cantidad_producto,a.marca,a.modelo,d.nombre_categoria from productos a left join usuarios b on a.usuario_vendedor = b.codigo_usuario left join estados_producto c on a.codigo_estado = c.codigo_estado left join categorias d on a.codigo_categoria = d.codigo_categoria where a.codigo_producto = %s"
+		String query = String.format("select a.nombre_producto,b.username,b.codigo_usuario,NVL(b.valoracion_total,0) as valoracion_total,a.precio,c.estado,a.cantidad_producto,a.marca,a.modelo,d.nombre_categoria from productos a left join usuarios b on a.usuario_vendedor = b.codigo_usuario left join estados_producto c on a.codigo_estado = c.codigo_estado left join categorias d on a.codigo_categoria = d.codigo_categoria where a.codigo_producto = %s"
 ,productID);
 		StringBuilder json = new StringBuilder("\"info\": {");
 		try {
 			Statement statement = con.createStatement();
 			ResultSet result = statement.executeQuery(query);
 			result.next();
-			json.append(String.format("\"title\": \"%s\", \"username\": \"%s\",\"rating\": %s,\"price\": %s,\"condition\": \"%s\",\"quantity\": %s,\"model\": \"%s\", \"brand\": \"%s\",\"category\": \"%s\"",result.getString("nombre_producto"),result.getString("username"),result.getFloat("valoracion_total"), result.getFloat("precio"), result.getString("estado"),result.getInt("cantidad_producto"),result.getString("modelo"),result.getString("marca"),result.getString("nombre_categoria")));
+			json.append(String.format("\"title\": \"%s\", \"username\": \"%s\",\"rating\": %s,\"price\": %s,\"condition\": \"%s\",\"quantity\": %s,\"model\": \"%s\", \"brand\": \"%s\",\"category\": \"%s\", \"sellerCode\": %s",result.getString("nombre_producto"),result.getString("username"),result.getFloat("valoracion_total"), result.getFloat("precio"), result.getString("estado"),result.getInt("cantidad_producto"),result.getString("modelo"),result.getString("marca"),result.getString("nombre_categoria"),result.getInt("codigo_usuario")));
 			
 			json.append("},");
 		} catch (SQLException e) {
@@ -478,6 +478,78 @@ public class SQL {
 	private int getAmountOfProduct(String table,String column,int productID) {
 		int amount = 0;
 		String query = String.format("select count(%s) as cantidad from %s where codigo_producto = %s",column,table,productID);
+		try {
+			Statement statement = con.createStatement();
+			ResultSet amountOfCategories = statement.executeQuery(query);
+			amountOfCategories.next();
+			amount = amountOfCategories.getInt("cantidad");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return amount;
+	}
+	
+	public String getSellerHeaderInfo(int sellerCode) {
+		String query = String.format("select a.username,a.imagen_perfil,count(b.codigo_vendedor) as seguidores from usuarios a left join vendedores_guardados b on a.codigo_usuario = b.codigo_vendedor where a.codigo_usuario = %s group by a.username,a.imagen_perfil" ,sellerCode);
+		StringBuilder json = new StringBuilder("{");
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			result.next();
+			json.append(String.format("\"profilePic\": \"%s\", \"username\": \"%s\",\"followers\": %s",result.getString("imagen_perfil"),result.getString("username"),result.getInt("seguidores")));
+			
+			json.append("}");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+	
+	public String getSellerAboutIt(int sellerCode) {
+		String query = String.format("select a.username,a.descripcion,to_char(a.fecha_creacion,'DD-Month-YYYY') as fecha_creacion,b.pais from usuarios a left join paises b on a.codigo_pais = b.codigo_pais where a.codigo_usuario = %s",sellerCode);
+		StringBuilder json = new StringBuilder("{");
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			result.next();
+			json.append(String.format("\"description\": \"%s\", \"username\": \"%s\",\"date\": \"%s\",\"country\": \"%s\"",result.getString("descripcion"),result.getString("username"),result.getString("fecha_creacion").replace("-", " "),result.getString("pais")));
+			
+			json.append("}");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+	
+	public String getSellerProducts(int sellerCode) {
+		String query = String.format("select min(b.imagen_producto) as imagen_producto,a.codigo_producto, a.nombre_producto,a.precio from productos a left join imagen_x_producto b on a.codigo_producto = b.codigo_producto where a.usuario_vendedor = %s group by a.nombre_producto,a.precio,a.codigo_producto",sellerCode);
+		StringBuilder json = new StringBuilder("{ \"products\": [");
+		int counter = 0;
+		int amount = this.getAmountOfSellerProduct(sellerCode);
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			while(result.next()) {
+				json.append(String.format("{\"image\": \"%s\", \"title\": \"%s\",\"price\": %s,\"productID\": %s}",result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getInt("codigo_producto")));
+				counter++;
+				if(counter != amount) {
+					json.append(",");					
+				}
+			};
+			
+			json.append("] }");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+		
+	}
+	
+	private int getAmountOfSellerProduct(int sellerID) {
+		int amount = 0;
+		String query = String.format("select count(codigo_producto) as cantidad from productos where usuario_vendedor = %s",sellerID);
 		try {
 			Statement statement = con.createStatement();
 			ResultSet amountOfCategories = statement.executeQuery(query);
