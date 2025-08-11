@@ -561,4 +561,56 @@ public class SQL {
 
 		return amount;
 	}
+	
+	public void setFavoriteProduct(int userID, int productID) {
+		String query = "insert into lista_de_favoritos (codigo_usuario,codigo_producto) values(?,?)";
+		
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setInt(1, userID);
+			statement.setInt(2, productID);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Fallo al agregar el producto a favoritos");
+			e.printStackTrace();
+		}
+	}
+	
+	public String getUserFavorites(int userID) {
+		String query = String.format("select a.codigo_producto, min(c.imagen_producto) as imagen_producto, b.nombre_producto, d.estado, b.precio, e.username from lista_de_favoritos a left join productos b on a.codigo_producto = b.codigo_producto left join imagen_x_producto c on a.codigo_producto = c.codigo_producto left join estados_producto d on b.codigo_estado = d.codigo_estado left join usuarios e on b.usuario_vendedor = e.codigo_usuario where a.codigo_usuario = %s group by a.codigo_producto,b.nombre_producto,d.estado,b.precio,e.username",userID);
+		StringBuilder json = new StringBuilder("{ \"products\": [");
+		int counter = 0;
+		String amountQuery = String.format("select count(codigo_producto) as cantidad from lista_de_favoritos where codigo_usuario = %s",userID);
+		int amount = this.getGenericAmount(amountQuery);
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			while(result.next()) {
+				json.append(String.format("{\"image\": \"%s\", \"title\": \"%s\",\"price\": %s,\"productID\": %s, \"condition\": \"%s\", \"username\":\"%s\"}",result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getInt("codigo_producto"),result.getString("estado"),result.getString("username")));
+				counter++;
+				if(counter != amount) {
+					json.append(",");					
+				}
+			};
+			
+			json.append("] }");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+	
+	private int getGenericAmount(String query) {
+		int amount = 0;
+		try {
+			Statement statement = con.createStatement();
+			ResultSet amountOfCategories = statement.executeQuery(query);
+			amountOfCategories.next();
+			amount = amountOfCategories.getInt("cantidad");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return amount;
+	}
 }

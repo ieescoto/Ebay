@@ -26,15 +26,5 @@ xhr.addEventListener("load",()=>{
 			window.location.href = `Producto.html?id=${json.products[i].code}`
 		})
 	}
-	
-	/*container.addEventListener("click",(e)=>{
-		const father = e.target.parentNode.parentNode.parentNode;
-		if(father.classList.contains("seller-card")){
-			localStorage.setItem("productCode",father.dataset.codigoProducto);
-		}else{
-			localStorage.setItem("productCode",e.target.dataset.codigoProducto);
-		}
-		window.location.href = `Producto.html?`;
-	})*/
 })
 xhr.send(`code=${userCode}`);

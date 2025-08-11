@@ -121,7 +121,7 @@ imageBtn.addEventListener("click",()=>{
 	filechooser.click();
 })
 
-//Mandar los datos de la imagen a la bd (En Proceso)
+//Mandar los datos de la imagen a la bd
 const account = new Account()
 const formData = new FormData();
 formData.append("remove",false);

@@ -1,6 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const productID = urlParams.get('id');
 
+//Llenar pagina con info correspondiente
 const xhr = new XMLHttpRequest()
 xhr.open("POST","Product")
 xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
@@ -46,3 +47,18 @@ xhr.addEventListener("load",()=>{
 	})
 })
 xhr.send(`productID=${productID}`);
+
+//Boton de favoritos
+const favoriteBtn = document.querySelector("button#btn-add-to-favorites-list")
+favoriteBtn.addEventListener("click",()=>{
+	const xhr = new XMLHttpRequest();
+	xhr.open("POST","FavoriteListAdder")
+	xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+	xhr.send(`userID=${JSON.parse(localStorage.getItem("userInfo")).codigo}&productID=${productID}`);
+})
+
+//Boton de carrito de compras
+const cartBtn = document.querySelector("button#btn-add-to-shopping-cart")
+cartBtn.addEventListener("click",()=>{
+	
+})
