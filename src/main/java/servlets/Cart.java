@@ -10,16 +10,16 @@ import main.SQL;
 import java.io.IOException;
 
 /**
- * Servlet implementation class FavoriteList
+ * Servlet implementation class Cart
  */
-@WebServlet("/FavoriteListAdder")
-public class FavoriteListAdder extends HttpServlet {
+@WebServlet("/Cart")
+public class Cart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FavoriteListAdder() {
+    public Cart() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +29,9 @@ public class FavoriteListAdder extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SQL sql = new SQL();
-		boolean isFavorited = Boolean.parseBoolean(request.getParameter("isFavorited"));
 		int userID = Integer.parseInt(request.getParameter("userID"));
 		int productID = Integer.parseInt(request.getParameter("productID"));
-		if(isFavorited) {
-			sql.deleteFavorite(userID,productID);
-		}else {
-			sql.setFavoriteProduct(userID,productID);
-		}
-		
+		sql.addToCart(userID,productID);
 	}
 
 	/**

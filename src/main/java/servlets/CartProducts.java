@@ -8,18 +8,19 @@ import jakarta.servlet.http.HttpServletResponse;
 import main.SQL;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
- * Servlet implementation class FavoriteList
+ * Servlet implementation class CartProducts
  */
-@WebServlet("/FavoriteListAdder")
-public class FavoriteListAdder extends HttpServlet {
+@WebServlet("/CartProducts")
+public class CartProducts extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FavoriteListAdder() {
+    public CartProducts() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,16 +29,13 @@ public class FavoriteListAdder extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("application/json");
 		SQL sql = new SQL();
-		boolean isFavorited = Boolean.parseBoolean(request.getParameter("isFavorited"));
 		int userID = Integer.parseInt(request.getParameter("userID"));
-		int productID = Integer.parseInt(request.getParameter("productID"));
-		if(isFavorited) {
-			sql.deleteFavorite(userID,productID);
-		}else {
-			sql.setFavoriteProduct(userID,productID);
-		}
+		String json = sql.getCartProducts(userID);
 		
+		PrintWriter out = response.getWriter();
+		out.print(json);
 	}
 
 	/**

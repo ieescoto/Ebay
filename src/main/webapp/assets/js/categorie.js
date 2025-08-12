@@ -22,30 +22,40 @@ class Categorie{
 	createCards(i,json){
 		const container = document.querySelector("div#categorie-container");
 		const card = document.createElement("div");
-		const cardBody = document.createElement("div");
-		const a = document.createElement("a");
-		const img = document.createElement("img");
-		const title = document.createElement("a");
+		//const img = document.createElement("img");
+		//const title = document.createElement("a");
+		//const cardBody = document.createElement("div");
+		//const a = document.createElement("a");
+		
+		/*<div class="card">
+			<img src="assets/img/Cartas.webp" alt="Maquillaje">
+			<p>Maquillaje</p>
+		</div>*/
 		
 		card.classList.add("card");
-		card.style.width = "17rem";
 		card.dataset.codigoCategoria = json.id[i];
+		card.innerHTML = `<img src="${json.url[i]}" alt="Maquillaje">
+						<p>${json.categories[i]}</p>`
 		container.appendChild(card);
 		
-		cardBody.classList.add("card-body");
-		card.appendChild(cardBody);
+		card.addEventListener("click",()=>{
+			window.location.href = `Lista_Productos.html?search=${json.id[i]}`
+		})
 		
-		a.href = `Lista_Productos.html?search=${json.id[i]}`;
-		cardBody.appendChild(a);
+		/*cardBody.classList.add("card-body");
+		card.appendChild(cardBody);*/
 		
-		img.classList.add("card-img-top");
-		img.src = json.url[i];
-		a.appendChild(img);
+		/*a.href = `Lista_Productos.html?search=${json.id[i]}`;
+		cardBody.appendChild(a);*/
+		
+		//img.classList.add("card-img-top");
+		/*img.src = json.url[i];
+		card.appendChild(img);
 		
 		title.href = `Lista_Productos.html?search=${json.id[i]}`;
 		title.classList.add("fs-3");
 		title.innerText = json.categories[i];
-		card.appendChild(title);
+		card.appendChild(title);*/
 		
 	}
 	

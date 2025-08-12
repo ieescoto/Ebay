@@ -577,7 +577,7 @@ public class SQL {
 	}
 	
 	public String getUserFavorites(int userID) {
-		String query = String.format("select a.codigo_producto, min(c.imagen_producto) as imagen_producto, b.nombre_producto, d.estado, b.precio, e.username from lista_de_favoritos a left join productos b on a.codigo_producto = b.codigo_producto left join imagen_x_producto c on a.codigo_producto = c.codigo_producto left join estados_producto d on b.codigo_estado = d.codigo_estado left join usuarios e on b.usuario_vendedor = e.codigo_usuario where a.codigo_usuario = %s group by a.codigo_producto,b.nombre_producto,d.estado,b.precio,e.username",userID);
+		String query = String.format("select a.codigo_producto, min(c.imagen_producto) as imagen_producto, b.nombre_producto, d.estado, b.precio, e.username,e.codigo_usuario from lista_de_favoritos a left join productos b on a.codigo_producto = b.codigo_producto left join imagen_x_producto c on a.codigo_producto = c.codigo_producto left join estados_producto d on b.codigo_estado = d.codigo_estado left join usuarios e on b.usuario_vendedor = e.codigo_usuario where a.codigo_usuario = %s group by a.codigo_producto,b.nombre_producto,d.estado,b.precio,e.username,e.codigo_usuario",userID);
 		StringBuilder json = new StringBuilder("{ \"products\": [");
 		int counter = 0;
 		String amountQuery = String.format("select count(codigo_producto) as cantidad from lista_de_favoritos where codigo_usuario = %s",userID);
@@ -586,7 +586,7 @@ public class SQL {
 			Statement statement = con.createStatement();
 			ResultSet result = statement.executeQuery(query);
 			while(result.next()) {
-				json.append(String.format("{\"image\": \"%s\", \"title\": \"%s\",\"price\": %s,\"productID\": %s, \"condition\": \"%s\", \"username\":\"%s\"}",result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getInt("codigo_producto"),result.getString("estado"),result.getString("username")));
+				json.append(String.format("{\"image\": \"%s\", \"title\": \"%s\",\"price\": %s,\"productID\": %s, \"condition\": \"%s\", \"username\":\"%s\",\"userID\":%s}",result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getInt("codigo_producto"),result.getString("estado"),result.getString("username"),result.getInt("codigo_usuario")));
 				counter++;
 				if(counter != amount) {
 					json.append(",");					
@@ -612,5 +612,86 @@ public class SQL {
 		}
 
 		return amount;
+	}
+	
+	public String checkFavorites(int userID, int productID) {
+		String query = String.format("select count(codigo_usuario) as favorito from lista_de_favoritos where codigo_usuario = %s and codigo_producto = %s",userID,productID);
+		StringBuilder json = new StringBuilder("{");
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			result.next();
+			json.append(String.format("\"isFavorited\": %s",result.getString("favorito")));
+			
+			json.append("}");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+	
+	public void deleteFavorite(int userID, int productID) {
+		String query =  "delete from lista_de_favoritos where codigo_usuario = ? and codigo_producto = ?";
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setInt(1, userID);
+			statement.setInt(2, productID);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void addToCart(int userID, int productID) {
+		String query = "insert into carrito(codigo_comprador,codigo_producto,cantidad) values(?,?,1)";
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setInt(1, userID);
+			statement.setInt(2, productID);
+			statement.executeUpdate();
+		}catch(SQLException e) {
+			System.out.println("Fallo al agregar al carrito");
+			e.printStackTrace();
+		}
+	}
+	
+	public String checkCart(int userID, int productID) {
+		String query = String.format("select count(codigo_producto) as carrito from carrito where codigo_comprador = %s and codigo_producto = %s",userID,productID);
+		StringBuilder json = new StringBuilder("{");
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			result.next();
+			json.append(String.format("\"isInCart\": %s",result.getString("carrito")));
+			
+			json.append("}");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+	
+	public String getCartProducts(int userID) {
+		String query = String.format("select a.codigo_producto, min(c.imagen_producto) as imagen_producto, b.nombre_producto,d.estado, b.precio, e.username,e.codigo_usuario,f.dias_devolucion,e.imagen_perfil,b.envio_precio,b.cantidad_producto from carrito a  left join productos b on a.codigo_producto = b.codigo_producto  left join imagen_x_producto c on a.codigo_producto = c.codigo_producto  left join estados_producto d on b.codigo_estado = d.codigo_estado  left join usuarios e  on b.usuario_vendedor = e.codigo_usuario left join devoluciones f on b.codigo_devolucion = f.codigo_devolucion where a.codigo_comprador = %s group by a.codigo_producto,b.nombre_producto,d.estado,b.precio,e.username,e.codigo_usuario,f.dias_devolucion,e.imagen_perfil,b.envio_precio,b.cantidad_producto",userID);
+		StringBuilder json = new StringBuilder("{ \"products\": [");
+		int counter = 0;
+		String amountQuery = String.format("select count(codigo_producto) as cantidad from carrito where codigo_comprador = %s",userID);
+		int amount = this.getGenericAmount(amountQuery);
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			while(result.next()) {
+				json.append(String.format("{\"image\": \"%s\", \"title\": \"%s\",\"price\": %s,\"productID\": %s, \"condition\": \"%s\", \"username\":\"%s\",\"userID\":%s,\"return\":%s,\"profilePic\":\"%s\",\"shipping\": %s,\"quantity\": %s}",result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getInt("codigo_producto"),result.getString("estado"),result.getString("username"),result.getInt("codigo_usuario"),result.getInt("dias_devolucion"),result.getString("imagen_perfil"),result.getFloat("envio_precio"),result.getString("cantidad_producto")));
+				counter++;
+				if(counter != amount) {
+					json.append(",");					
+				}
+			};
+			
+			json.append("] }");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
 	}
 }

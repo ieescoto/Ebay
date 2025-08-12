@@ -35,7 +35,11 @@ if(localStorage.getItem("isLogin") == "true"){
 //Redireccionar al carrito
 const cart = document.querySelector("button#cart");
 cart.addEventListener("click",()=>{
-	window.location.href = "Carro_de_Compras.html";
+	if(localStorage.getItem("isLogin") == "true"){
+		window.location.href = "Carro_de_Compras.html";
+	}else{
+		window.location.href = "login.html";
+	}
 })
 
 //Redireccionar a Lista de Favoritos

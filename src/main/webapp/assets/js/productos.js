@@ -1,5 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const productID = urlParams.get('id');
+let isFavorited = false;
+let isInCart = false;
 
 //Llenar pagina con info correspondiente
 const xhr = new XMLHttpRequest()
@@ -48,17 +50,82 @@ xhr.addEventListener("load",()=>{
 })
 xhr.send(`productID=${productID}`);
 
+//Revisar si esta en favoritos
+const xhr2 = new XMLHttpRequest();
+xhr2.open("POST","FavoriteChecker")
+xhr2.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+xhr2.addEventListener("load",()=>{
+	const json = JSON.parse(xhr2.responseText);
+	if(json.isFavorited == 1){
+		isFavorited = true;
+		const icon = document.querySelector("i#heart-icon");
+		icon.classList.remove("bi-suit-heart")
+		icon.classList.add("bi-suit-heart-fill")
+		icon.style.color = "red";
+	}
+})
+
+//Revisar si esta en el carrito
+const xhr3 = new XMLHttpRequest()
+xhr3.open("POST","CartChecker")
+xhr3.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+xhr3.addEventListener("load",()=>{
+	const json = JSON.parse(xhr3.responseText);
+	if(json.isInCart == 1){
+		isInCart = true;
+		const cartBtn = document.querySelector("button#btn-add-to-shopping-cart");
+		cartBtn.innerText = "Ver en la cesta";
+	}
+})
+
+if(localStorage.getItem("isLogin") == "true"){
+	xhr2.send(`userID=${JSON.parse(localStorage.getItem("userInfo")).codigo}&productID=${productID}`);
+	xhr3.send(`userID=${JSON.parse(localStorage.getItem("userInfo")).codigo}&productID=${productID}`);
+}
+
+
 //Boton de favoritos
 const favoriteBtn = document.querySelector("button#btn-add-to-favorites-list")
 favoriteBtn.addEventListener("click",()=>{
-	const xhr = new XMLHttpRequest();
-	xhr.open("POST","FavoriteListAdder")
-	xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
-	xhr.send(`userID=${JSON.parse(localStorage.getItem("userInfo")).codigo}&productID=${productID}`);
+	if(localStorage.getItem("isLogin") == "true"){
+		const xhr = new XMLHttpRequest();
+		xhr.open("POST","FavoriteListAdder")
+		xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+		xhr.send(`userID=${JSON.parse(localStorage.getItem("userInfo")).codigo}&productID=${productID}&isFavorited=${isFavorited}`);
+		const icon = document.querySelector("i#heart-icon");
+		if(isFavorited){
+			isFavorited = false;
+			icon.classList.remove("bi-suit-heart-fill")
+			icon.classList.add("bi-suit-heart")
+			icon.style.color = "#0968F6";
+			
+		}else{
+			isFavorited = true;
+			icon.classList.remove("bi-suit-heart")
+			icon.classList.add("bi-suit-heart-fill")
+			icon.style.color = "red";
+		}
+	}else{
+		window.location.href = "login.html"
+	}
 })
 
 //Boton de carrito de compras
 const cartBtn = document.querySelector("button#btn-add-to-shopping-cart")
 cartBtn.addEventListener("click",()=>{
-	
+	if(localStorage.getItem("isLogin") == "true"){
+		if(isInCart){
+			window.location.href = "Carro_de_Compras.html";
+		}else{
+			isInCart = true;
+			const xhr = new XMLHttpRequest();
+			xhr.open("POST","Cart")
+			xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+			xhr.send(`userID=${JSON.parse(localStorage.getItem("userInfo")).codigo}&productID=${productID}`);
+			const cartBtn = document.querySelector("button#btn-add-to-shopping-cart");
+			cartBtn.innerText = "Ver en la cesta";
+		}
+	}else{
+		window.location.href = "login.html"
+	}
 })

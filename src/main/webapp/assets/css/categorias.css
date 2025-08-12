@@ -138,3 +138,45 @@ footer small {
     text-align: center;
     margin: 0;
 }
+
+/* asa */
+input.searchInput{
+    width: 45%;
+    height: 100%;
+    border-radius: 40px;
+    align-self: center;
+    border: solid black 3px;
+    padding: 15px;
+    font-size: 20px;
+
+}
+
+#categorie-container{
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.card {
+	width: 200px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.card img {
+	width: 100%;
+	height: 180px;
+	object-fit: cover; /* La imagen llena el contenedor sin deformarse */
+	border-radius: 10px;
+}
+
+.card p {
+	margin-top: 8px;
+	font-size: 15px;
+	font-weight: bold;
+	transition: all 0.2s ease;
+}
+
+.card:hover p {
+	text-decoration: underline;
+}

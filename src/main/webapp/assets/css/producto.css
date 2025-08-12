@@ -480,11 +480,21 @@ div.similar-items-content{
     border: 1px solid #0968F6;
 }
 
+#btn-add-to-shopping-cart:hover{
+	background-color: #0968F6;
+	color: white;
+}
+
 #btn-add-to-favorites-list{
     background-color: white;
     color: #0968F6;
     border: 1px solid #0968F6;
     margin-bottom: 20px;
+}
+
+#btn-add-to-favorites-list:hover{
+    background-color: #0968F6;
+	color: white;
 }
 
 #product-characteristics-container{
