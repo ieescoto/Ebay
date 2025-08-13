@@ -455,3 +455,7 @@ div.product-image img{
   	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
   	border: solid black 1px;
 }
+
+.delete-product:hover{
+	text-decoration: underline;
+}

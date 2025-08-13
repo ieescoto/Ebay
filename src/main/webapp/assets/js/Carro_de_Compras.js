@@ -11,11 +11,16 @@ xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
 xhr.addEventListener("load",()=>{
 	const json = JSON.parse(xhr.responseText);
 	const container = document.querySelector("div#shopping-cart-items")
+	const price = document.querySelector("div#items-price");
+	const shipping = document.querySelector("div#ship-price");
+	const subtotal = document.querySelector("div#subtotal-price")
+	const amountOfProductsTag = document.querySelector("div#items-name");
+	let amount = 0;
 	let totalPrice = 0;
 	let totalShipping = 0;
 	
 	for(let i=0;i<json.products.length;i++){
-		totalPrice += json.products[i].price
+		totalPrice += json.products[i].price * json.products[i].quantitySelected
 		totalShipping += json.products[i].shipping
 		
 		let devolution = "No se aceptan devoluciones";
@@ -29,6 +34,7 @@ xhr.addEventListener("load",()=>{
 		const card = document.createElement("div");
 		card.classList.add("shopping-cart-product-model")
 		card.id = "product-card"
+		card.dataset.productCode = json.products[i].productID
 		card.innerHTML = `<div class="products-seller">
 		                  	<div class="sales-person-img2"><img src="${json.products[i].profilePic}"></div>
 		                    <div class="sales-person-name2">
@@ -52,10 +58,12 @@ xhr.addEventListener("load",()=>{
 		                        	<div class="price-product"><strong>L. ${json.products[i].price}</strong></div>
 									<div class="price-shipping"><strong>${shippingTag}</strong></div>
 		                        	<div class="devolution-politics"><strong>${devolution}</strong></div>
+									<div class="delete-product">Eliminar</div>
 		                        </div>
 		                  </div>`
 						  
 		container.appendChild(card);
+		
 		
 		const select = card.querySelector("select.quantity-product-number2");
 		for(let j=0;j<json.products[i].quantity;j++){
@@ -64,28 +72,48 @@ xhr.addEventListener("load",()=>{
 			select.appendChild(option);
 		}
 		
+		select.addEventListener("change",()=>{
+			const xhr = new XMLHttpRequest();
+			xhr.open("POST","QuantityUpdater")
+			xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+			xhr.send(`userID=${JSON.parse(localStorage.getItem("userInfo")).codigo}&quantity=${select.value}&productID=${json.products[i].productID}`);
+			
+			//Actualizar los pagos
+			const selects = document.querySelectorAll("select.quantity-product-number2")
+			totalPrice = 0
+			amount = 0;
+			for(let i=0;i<json.products.length;i++){
+				totalPrice += json.products[i].price * parseInt(selects[i].options[selects[i].selectedIndex].value)
+				amount += parseInt(selects[i].options[selects[i].selectedIndex].value)
+			}
+			amountOfProductsTag.innerHTML = `<strong>Articulos (${amount})</strong>`
+			price.innerHTML = `<strong>L. ${totalPrice}</strong>`
+			subtotal.innerHTML = `<strong>L. ${(totalPrice + totalShipping).toFixed(2)}</strong>`
+		})
 		card.addEventListener("click",(e)=>{
 			if(e.target.classList.contains("sellers-name")){
 				window.location.href = `seller_about_it.html?sellerID=${json.products[i].userID}`
-			}else if(e.target.classList.contains("quantity-product-number2")){
-				//Actualizar la BD con el dato puesto
-				//Actualizar los pagos
 			}else if(e.target.classList.contains("title")){
 				window.location.href = `Producto.html?id=${json.products[i].productID}`
+			}else if(e.target.classList.contains("delete-product")){
+				e.currentTarget.remove();
+				//borrar de la base de datos ese registro
+				//Modificar precios
 			}
 		})
+		
+		select.selectedIndex = json.products[i].quantitySelected-1
 	}
 	
-	const price = document.querySelector("div#items-price");
-	const shipping = document.querySelector("div#ship-price");
-	const amountOfProductsTag = document.querySelector("div#items-name");
-	const amount = document.querySelectorAll("div.shopping-cart-product-model").length
-	const subtotal = document.querySelector("div#subtotal-price")
+	const selects = document.querySelectorAll("select.quantity-product-number2")
+	for(let i=0;i<selects.length;i++){
+		amount += parseInt(selects[i].options[selects[i].selectedIndex].value)
+	}
 	
 	price.innerHTML = `<strong>L. ${totalPrice}</strong>`
 	shipping.innerHTML = `<strong>L. ${totalShipping}</strong>`
 	amountOfProductsTag.innerHTML = `<strong>Articulos (${amount})</strong>`
-	subtotal.innerHTML = `<strong>L. ${totalPrice + totalShipping}</strong>`
+	subtotal.innerHTML = `<strong>L. ${(totalPrice + totalShipping).toFixed(2)}</strong>`
 	
 	
 })

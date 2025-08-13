@@ -672,7 +672,7 @@ public class SQL {
 	}
 	
 	public String getCartProducts(int userID) {
-		String query = String.format("select a.codigo_producto, min(c.imagen_producto) as imagen_producto, b.nombre_producto,d.estado, b.precio, e.username,e.codigo_usuario,f.dias_devolucion,e.imagen_perfil,b.envio_precio,b.cantidad_producto from carrito a  left join productos b on a.codigo_producto = b.codigo_producto  left join imagen_x_producto c on a.codigo_producto = c.codigo_producto  left join estados_producto d on b.codigo_estado = d.codigo_estado  left join usuarios e  on b.usuario_vendedor = e.codigo_usuario left join devoluciones f on b.codigo_devolucion = f.codigo_devolucion where a.codigo_comprador = %s group by a.codigo_producto,b.nombre_producto,d.estado,b.precio,e.username,e.codigo_usuario,f.dias_devolucion,e.imagen_perfil,b.envio_precio,b.cantidad_producto",userID);
+		String query = String.format("select a.codigo_producto, min(c.imagen_producto) as imagen_producto, b.nombre_producto,d.estado, b.precio, e.username,e.codigo_usuario,f.dias_devolucion,e.imagen_perfil,b.envio_precio,b.cantidad_producto,a.cantidad from carrito a  left join productos b on a.codigo_producto = b.codigo_producto  left join imagen_x_producto c on a.codigo_producto = c.codigo_producto  left join estados_producto d on b.codigo_estado = d.codigo_estado  left join usuarios e  on b.usuario_vendedor = e.codigo_usuario left join devoluciones f on b.codigo_devolucion = f.codigo_devolucion where a.codigo_comprador = %s group by a.codigo_producto,b.nombre_producto,d.estado,b.precio,e.username,e.codigo_usuario,f.dias_devolucion,e.imagen_perfil,b.envio_precio,b.cantidad_producto,a.cantidad",userID);
 		StringBuilder json = new StringBuilder("{ \"products\": [");
 		int counter = 0;
 		String amountQuery = String.format("select count(codigo_producto) as cantidad from carrito where codigo_comprador = %s",userID);
@@ -681,7 +681,7 @@ public class SQL {
 			Statement statement = con.createStatement();
 			ResultSet result = statement.executeQuery(query);
 			while(result.next()) {
-				json.append(String.format("{\"image\": \"%s\", \"title\": \"%s\",\"price\": %s,\"productID\": %s, \"condition\": \"%s\", \"username\":\"%s\",\"userID\":%s,\"return\":%s,\"profilePic\":\"%s\",\"shipping\": %s,\"quantity\": %s}",result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getInt("codigo_producto"),result.getString("estado"),result.getString("username"),result.getInt("codigo_usuario"),result.getInt("dias_devolucion"),result.getString("imagen_perfil"),result.getFloat("envio_precio"),result.getString("cantidad_producto")));
+				json.append(String.format("{\"image\": \"%s\", \"title\": \"%s\",\"price\": %s,\"productID\": %s, \"condition\": \"%s\", \"username\":\"%s\",\"userID\":%s,\"return\":%s,\"profilePic\":\"%s\",\"shipping\": %s,\"quantity\": %s,\"quantitySelected\": %s}",result.getString("imagen_producto"),result.getString("nombre_producto"),result.getFloat("precio"),result.getInt("codigo_producto"),result.getString("estado"),result.getString("username"),result.getInt("codigo_usuario"),result.getInt("dias_devolucion"),result.getString("imagen_perfil"),result.getFloat("envio_precio"),result.getString("cantidad_producto"),result.getInt("cantidad")));
 				counter++;
 				if(counter != amount) {
 					json.append(",");					
@@ -693,5 +693,17 @@ public class SQL {
 			e.printStackTrace();
 		}
 		return json.toString();
+	}
+	
+	public void updateCartQuantity(int quantity,int userID,int productID) {
+		String query = String.format("update carrito set cantidad = %s where codigo_comprador = %s and codigo_producto=%s",quantity,userID,productID);
+		
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Fallo al actualizar cantidad");
+			e.printStackTrace();
+		}
 	}
 }
