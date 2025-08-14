@@ -56,7 +56,7 @@ xhr.addEventListener("load",()=>{
 		                    	</div>
 		                        <div class="price-total-by-product">
 		                        	<div class="price-product"><strong>L. ${json.products[i].price}</strong></div>
-									<div class="price-shipping"><strong>${shippingTag}</strong></div>
+									<div class="price-shipping"><strong id="shipping-price">${shippingTag}</strong></div>
 		                        	<div class="devolution-politics"><strong>${devolution}</strong></div>
 									<div class="delete-product">Eliminar</div>
 		                        </div>
@@ -90,6 +90,7 @@ xhr.addEventListener("load",()=>{
 			price.innerHTML = `<strong>L. ${totalPrice}</strong>`
 			subtotal.innerHTML = `<strong>L. ${(totalPrice + totalShipping).toFixed(2)}</strong>`
 		})
+		
 		card.addEventListener("click",(e)=>{
 			if(e.target.classList.contains("sellers-name")){
 				window.location.href = `seller_about_it.html?sellerID=${json.products[i].userID}`
@@ -98,7 +99,30 @@ xhr.addEventListener("load",()=>{
 			}else if(e.target.classList.contains("delete-product")){
 				e.currentTarget.remove();
 				//borrar de la base de datos ese registro
+				const xhr = new XMLHttpRequest()
+				xhr.open("POST","CartDeleter")
+				xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+				xhr.send(`userID=${JSON.parse(localStorage.getItem("userInfo")).codigo}&productID=${json.products[i].productID}`);
 				//Modificar precios
+				const selects = document.querySelectorAll("select.quantity-product-number2")
+				totalPrice = 0
+				amount = 0;
+				totalShipping = 0
+				for(let i=0;i<selects.length;i++){
+					totalPrice += json.products[i].price * parseInt(selects[i].options[selects[i].selectedIndex].value)
+					amount += parseInt(selects[i].options[selects[i].selectedIndex].value)
+					const father = selects[i].parentNode.parentNode.parentNode
+					const priceTag = father.querySelector("strong#shipping-price").innerText
+					if(priceTag == "Envio gratis"){
+						totalShipping +=0;
+					}else{
+					totalShipping = parseFloat(priceTag.substring(5))
+					}
+				}
+				amountOfProductsTag.innerHTML = `<strong>Articulos (${amount})</strong>`
+				price.innerHTML = `<strong>L. ${totalPrice}</strong>`
+				subtotal.innerHTML = `<strong>L. ${(totalPrice + totalShipping).toFixed(2)}</strong>`
+				shipping.innerHTML = `<strong>L. ${totalShipping.toFixed(2)}</strong>`
 			}
 		})
 		
@@ -110,8 +134,8 @@ xhr.addEventListener("load",()=>{
 		amount += parseInt(selects[i].options[selects[i].selectedIndex].value)
 	}
 	
-	price.innerHTML = `<strong>L. ${totalPrice}</strong>`
-	shipping.innerHTML = `<strong>L. ${totalShipping}</strong>`
+	price.innerHTML = `<strong>L. ${totalPrice.toFixed(2)}</strong>`
+	shipping.innerHTML = `<strong>L. ${totalShipping.toFixed(2)}</strong>`
 	amountOfProductsTag.innerHTML = `<strong>Articulos (${amount})</strong>`
 	subtotal.innerHTML = `<strong>L. ${(totalPrice + totalShipping).toFixed(2)}</strong>`
 	

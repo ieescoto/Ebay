@@ -706,4 +706,81 @@ public class SQL {
 			e.printStackTrace();
 		}
 	}
+	
+	public void deleteCartProduct(int userID,int productID) {
+		String query =  "delete from carrito where codigo_comprador = ? and codigo_producto = ?";
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setInt(1, userID);
+			statement.setInt(2, productID);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setSavedSeller(int userID,int sellerID) {
+		String query = "insert into vendedores_guardados(codigo_usuario,codigo_vendedor) values(?,?)";
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setInt(1, userID);
+			statement.setInt(2, sellerID);
+			statement.executeUpdate();
+		}catch(SQLException e) {
+			System.out.println("Fallo al agregar a vendedores guardados");
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteSavedSeller(int userID,int sellerID) {
+		String query =  "delete from vendedores_guardados where codigo_usuario = ? and codigo_vendedor = ?";
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setInt(1, userID);
+			statement.setInt(2, sellerID);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String checkSavedSeller(int userID,int sellerID) {
+		String query = String.format("select count(codigo_vendedor) as guardado from vendedores_guardados where codigo_usuario = %s and codigo_vendedor = %s",userID,sellerID);
+		StringBuilder json = new StringBuilder("{");
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			result.next();
+			json.append(String.format("\"isSaved\": %s",result.getString("guardado")));
+			
+			json.append("}");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+	
+	public String getSavedSellers(int userID) {
+		String query = String.format("select b.username,b.imagen_perfil,a.codigo_vendedor from vendedores_guardados a left join usuarios b on a.codigo_vendedor = b.codigo_usuario where a.codigo_usuario = %s",userID);
+		StringBuilder json = new StringBuilder("{ \"sellers\": [");
+		int counter = 0;
+		String amountQuery = String.format("select count(codigo_vendedor) as cantidad from vendedores_guardados where codigo_usuario = %s",userID);
+		int amount = this.getGenericAmount(amountQuery);
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			while(result.next()) {
+				json.append(String.format("{\"image\": \"%s\", \"username\":\"%s\",\"sellerID\":%s}",result.getString("imagen_perfil"),result.getString("username"),result.getInt("codigo_vendedor")));
+				counter++;
+				if(counter != amount) {
+					json.append(",");					
+				}
+			};
+			
+			json.append("] }");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
 }
