@@ -2947,66 +2947,84 @@ create sequence sq_codigo_compra increment by 1;
 --Inserts usuarios de prueba
 INSERT INTO usuarios(codigo_usuario, username,contraseña ,nombre_usuario, apellido_usuario, 
 correo_electronico,numero_telefono, direccion, codigo_tipo_usuario, 
-valoracion_total, codigo_pais, fecha_creacion)
+valoracion_total, codigo_pais, fecha_creacion,imagen_perfil)
 VALUES (sq_codigo_usuario.NEXTVAL, 'GlobalTrendsStore','$2a$12$5bxJz9rzTFpX9bFyW7VVUOAeHL6nGmUAiwQejhQYLUc39cTd1/WxG' ,'Global', 'Trends', 'support@globaltrendsstore.com',
-'416-555-0099', '77 King Street, Toronto', 2, 95.4, 36, DATE '2025-08-14');
+'416-555-0099', '77 King Street, Toronto', 2, 95.4, 36, DATE '2025-08-14',
+'assets/img/global-trends-store.png');
 
 INSERT INTO usuarios(codigo_usuario, username,contraseña , nombre_usuario, apellido_usuario, 
 correo_electronico,
-numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion)
+numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion,
+imagen_perfil)
 VALUES (sq_codigo_usuario.NEXTVAL, 'AllGoodsStore','$2a$12$5bxJz9rzTFpX9bFyW7VVUOAeHL6nGmUAiwQejhQYLUc39cTd1/WxG', 'All', 'Goods', 'sales@allgoodsstore.com',
-'20-5550-1010', '50 Oxford Street, London', 2, 90.2, 219, DATE '2025-02-18');
+'20-5550-1010', '50 Oxford Street, London', 2, 90.2, 219, DATE '2025-02-18',
+'assets/img/all-goods-store.jpg');
 
 INSERT INTO usuarios(codigo_usuario, username, contraseña ,nombre_usuario, apellido_usuario, 
 correo_electronico,
-numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion)
+numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion,
+imagen_perfil)
 VALUES (sq_codigo_usuario.NEXTVAL, 'UniversalShopOnline','$2a$12$5bxJz9rzTFpX9bFyW7VVUOAeHL6nGmUAiwQejhQYLUc39cTd1/WxG', 'Universal', 'Shop', 'support@universalshoponline.com',
-'2-5550-2020', '12 George Street, Sydney', 2, 95.6, 13, DATE '2025-03-10');
+'2-5550-2020', '12 George Street, Sydney', 2, 95.6, 13, DATE '2025-03-10',
+'assets/img/online-shop.jpg');
 
 INSERT INTO usuarios(codigo_usuario, username, contraseña ,nombre_usuario, apellido_usuario, 
 correo_electronico,
-numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion)
+numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion,
+imagen_perfil)
 VALUES (sq_codigo_usuario.NEXTVAL, 'MegaStoreWorldwide', '$2a$12$5bxJz9rzTFpX9bFyW7VVUOAeHL6nGmUAiwQejhQYLUc39cTd1/WxG','Mega', 'Store', 'info@megastoreworldwide.com',
-'30-5550-3030', 'Friedrichstr. 33, Berlin', 2, 98.1, 78, DATE '2025-04-05');
+'30-5550-3030', 'Friedrichstr. 33, Berlin', 2, 98.1, 78, DATE '2025-04-05',
+'assets/img/worldwide.jpg');
 
 
 INSERT INTO usuarios(codigo_usuario, username, contraseña ,nombre_usuario, apellido_usuario, 
 correo_electronico,
-numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion)
+numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion,
+imagen_perfil)
 VALUES (sq_codigo_usuario.NEXTVAL, 'OneStopShop', '$2a$12$5bxJz9rzTFpX9bFyW7VVUOAeHL6nGmUAiwQejhQYLUc39cTd1/WxG','One', 'Stop', 'contact@onestopshop.com',
-'1-5550-4040', '22 Rue de Rivoli, Paris', 2, 89.9, 71, DATE '2025-05-12');
+'1-5550-4040', '22 Rue de Rivoli, Paris', 2, 89.9, 71, DATE '2025-05-12',
+'assets/img/one-stop-shop.jpg');
 
 INSERT INTO usuarios(codigo_usuario, username, contraseña ,nombre_usuario, apellido_usuario, 
 correo_electronico,
-numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion)
+numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion,
+imagen_perfil)
 VALUES (sq_codigo_usuario.NEXTVAL, 'WorldBazaarOnline', '$2a$12$5bxJz9rzTFpX9bFyW7VVUOAeHL6nGmUAiwQejhQYLUc39cTd1/WxG','World', 'Bazaar', 'sales@worldbazaaronline.com',
-'3-5550-5050', '3-5-1 Shibuya, Tokyo', 2, 99.9, 104, DATE '2025-06-01');
+'3-5550-5050', '3-5-1 Shibuya, Tokyo', 2, 99.9, 104, DATE '2025-06-01',
+'assets/img/world-bazar.jpg');
 
 
 INSERT INTO usuarios(codigo_usuario, username, contraseña ,nombre_usuario, apellido_usuario,
  correo_electronico,
-numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion)
+numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion,
+imagen_perfil)
 VALUES (sq_codigo_usuario.NEXTVAL, 'EverythingStore', '$2a$12$5bxJz9rzTFpX9bFyW7VVUOAeHL6nGmUAiwQejhQYLUc39cTd1/WxG','Everything', 'Store', 'support@everythingstore.com',
-'305-555-6060', '200 Ocean Drive, Miami, FL', 2, 99.9, 220, DATE '2025-06-25');
+'305-555-6060', '200 Ocean Drive, Miami, FL', 2, 99.9, 220, DATE '2025-06-25',
+'assets/img/everything-store.jpg');
 
 ------------
 INSERT INTO usuarios(codigo_usuario, username, contraseña,nombre_usuario, apellido_usuario, 
 correo_electronico,
-numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion)
+numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion,
+imagen_perfil)
 VALUES (sq_codigo_usuario.NEXTVAL, 'GlobalTradingPost','$2a$12$5bxJz9rzTFpX9bFyW7VVUOAeHL6nGmUAiwQejhQYLUc39cTd1/WxG', 'Global', 'Trading', 'info@globaltradingpost.com',
 '06-5550-7070', 'Via Roma 88, Rome', 2, 85.7, 
-102, DATE '2025-07-10');
+102, DATE '2025-07-10','assets/img/global-trading.jpg');
 
 INSERT INTO usuarios(codigo_usuario, username, contraseña ,nombre_usuario, apellido_usuario, 
 correo_electronico,
-numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion)
+numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion,
+imagen_perfil)
 VALUES (sq_codigo_usuario.NEXTVAL, 'OnlineShopCenter', '$2a$12$5bxJz9rzTFpX9bFyW7VVUOAeHL6nGmUAiwQejhQYLUc39cTd1/WxG','Online', 'Shop', 'contact@onlineshopcenter.com',
-'416-555-8080', '77 King Street, Toronto', 2, 86.7, 36, DATE '2025-07-28');
+'416-555-8080', '77 King Street, Toronto', 2, 86.7, 36, DATE '2025-07-28',
+'assets/img/online-center.jpg');
 
 INSERT INTO usuarios(codigo_usuario, username, contraseña ,nombre_usuario, apellido_usuario,
  correo_electronico,
-numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion)
+numero_telefono, direccion, codigo_tipo_usuario, valoracion_total, codigo_pais, fecha_creacion,
+imagen_perfil)
 VALUES (sq_codigo_usuario.NEXTVAL, 'AllInOneStore', '$2a$12$5bxJz9rzTFpX9bFyW7VVUOAeHL6nGmUAiwQejhQYLUc39cTd1/WxG','AllInOne', 'Store', 'sales@allinonestore.com',
-'20-5550-9090', '10 Downing Street, London', 2, 92.7, 219, DATE '2025-08-08');
+'20-5550-9090', '10 Downing Street, London', 2, 92.7, 219, DATE '2025-08-08',
+'assets/img/all-in-one.jpg');
 
 commit;
