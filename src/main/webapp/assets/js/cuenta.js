@@ -1,3 +1,7 @@
+/*const paypalRadio = document.querySelector("input.paypal")
+const creditCardRadio = document.querySelector("input.credit-card")*/
+let paymentID = null;
+
 //Nose que hace esto porque no comentan
 document.querySelectorAll('.sidebar a').forEach(link => {
    link.addEventListener('click', function (e) {
@@ -17,7 +21,7 @@ document.querySelectorAll('.sidebar a').forEach(link => {
    });
  });
 
-  document.querySelector('#btn-modal-continue').addEventListener('click', function () {
+  document.querySelector('#btn-modal-continue').addEventListener('click', () => {
     const selected = document.querySelector('input[name="paymentOption"]:checked');
 
     if (!selected) {
@@ -38,9 +42,11 @@ document.querySelectorAll('.sidebar a').forEach(link => {
     if (selectedValue === 'credit_card') {
       const modal = new bootstrap.Modal(document.getElementById('modal-add-card-DC'));
       modal.show();
+	  paymentID = 1;
     } else if (selectedValue === 'paypal') {
       const modal = new bootstrap.Modal(document.getElementById('modal-add-paypal'));
       modal.show();
+	  paymentID = 2;
     }
   });
 
@@ -91,4 +97,87 @@ document.querySelectorAll('.sidebar a').forEach(link => {
  btnSave.addEventListener("click",account.updatePersonalInfo.bind(account,inptName,inptLastName,inptAddress,select));
  passBtn.addEventListener("click",account.updatePassword.bind(account,inptPass))
  
+ //Agregar los metodos de pago a la Bd
+ const creditCradBtn = document.querySelector("button#credit-card")
+ const paypalBtn = document.querySelector("button#paypal")
+ const xhr = new XMLHttpRequest()
+ const formData = new FormData();
+ formData.set("userID",JSON.parse(localStorage.getItem("userInfo")).codigo)
+ xhr.open("POST","Payments")
+ creditCradBtn.addEventListener("click",()=>{
+	const creditCardNumber = document.querySelector("input#credit-card-number").value
+	const expirationDate = document.querySelector("input#expiration-date").value
+	const CVV = document.querySelector("input#cvv").value
+	const creditCardName = document.querySelector("input#name").value
+	const creditCardLastName = document.querySelector("input#last-name").value
+	formData.set("creditCardNumber",creditCardNumber)
+	formData.set("expirationDate",expirationDate)
+	formData.set("CVV",CVV)
+	formData.set("creditCardName",creditCardName)
+	formData.set("creditCardLastName",creditCardLastName)
+	formData.set("method","creditCard")
+	xhr.send(formData);
+ })
  
+ paypalBtn.addEventListener("click",()=>{
+	const paypalUser = document.querySelector("input#paypal-user").value
+	const paypalEmail = document.querySelector("input#paypal-email").value
+	formData.set("paypalUser",paypalUser)
+	formData.set("paypalEmail",paypalEmail)
+	formData.set("method","paypal")
+	xhr.send(formData);
+	
+ })
+ 
+ //Creacion de tarjetas y Traida de informacion
+ const xhr2 = new XMLHttpRequest()
+ xhr2.open("POST","PaymentCards")
+ xhr2.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+ xhr2.addEventListener("load",()=>{
+	const json = JSON.parse(xhr2.responseText)
+	const container = document.querySelector("div#cards-container");
+	for(let i=0;i<json.payment.length;i++){
+		const card = document.createElement("div");
+		card.classList.add("payment-card")
+		if(json.payment[i].paymentType  == 1){
+			card.classList.add("bank")
+			card.innerHTML = `	<div class="card-header" data-payment-id="${json.payment[i].paymentID}">
+								  <div class="card-type">
+								      <img src="bank-icon.svg" alt="Banco">
+								      <span>Tarjeta Bancaria</span>
+								  </div>
+								  <button class="delete-btn">Eliminar</button>
+								</div>
+								  <div class="card-info">
+								    <p class="card-number">•••• •••• •••• ${json.payment[i].creditCardNumber.substring(12)}</p>
+								    <p class="expiry">Expira: ${json.payment[i].expirationDate}</p>
+								  </div>`
+			
+		}else if(json.payment[i].paymentType  == 2){
+			card.classList.add("paypal")
+			card.innerHTML = `<div class="card-header" data-payment-id="${json.payment[i].paymentID}">
+							    <div class="card-type">
+							      <img src="paypal-icon.svg" alt="PayPal">
+							      <span>PayPal</span>
+							    </div>
+							    <button class="delete-btn">Eliminar</button>
+							  </div>
+							  <div class="card-info">
+							    <p class="paypal-email">${json.payment[i].paypalEmail}</p>
+							  </div>`
+			
+		}
+		container.prepend(card)
+		
+		const deletBtn = card.querySelector("button.delete-btn");
+		deletBtn.addEventListener("click",(e)=>{
+			const paymentID = e.target.parentNode.dataset.paymentId
+			e.target.parentNode.parentNode.remove()
+			const xhr = new XMLHttpRequest()
+			xhr.open("POST","PaymentDeleter")
+			xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+			xhr.send(`paymentID=${paymentID}`)
+		})
+	}
+ })
+ xhr2.send(`userID=${JSON.parse(localStorage.getItem("userInfo")).codigo}`);

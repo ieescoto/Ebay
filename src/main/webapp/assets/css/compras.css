@@ -255,6 +255,7 @@ input.searchInput{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   gap: 20px;
+  padding-bottom: 20px;
 }
 
 .seller-card {

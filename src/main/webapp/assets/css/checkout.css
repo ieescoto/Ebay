@@ -391,3 +391,208 @@ div#complete-transaction-payment-total-container{
     border: none;
     color: white;
 }
+
+/* --------------------- css del carrito ---------------------------- */
+
+div.shopping-cart-product-model{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    border: 1px lightgray solid;
+    border-radius: 35px;
+
+    margin-bottom: 20px;
+}
+
+div.products-seller{
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    width: fit-content;
+
+    gap: 15px;
+    margin: 15px;
+
+}
+
+div.sales-person-img2{
+   /*  border-radius: 50%;
+    background-color: lightgray;
+    border: 1px dashed gray;
+
+    height: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    object-fit: cover; */
+    
+    width: 60px; 
+    height: 60px;
+    border-radius: 50%;
+    background-color: lightgray;
+    border: 1px dashed gray;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.sales-person-img2 img{
+     width: 100%;
+    height: 100%;
+    object-fit: cover;        
+    object-position: center;
+}
+
+div.sales-person-name2{
+    position: relative;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sellers-name{
+    /* text-decoration: underline; */
+    font-size: large;
+}
+
+.sellers-name:hover{
+    text-decoration: underline;
+}
+
+div.product-information{
+    position: relative;
+    display: flex;
+    
+    gap: 2.5%;
+    margin-bottom: 2%;
+    /* height: 75%; */
+
+}
+
+
+div.product-image{
+    position: relative;
+    flex: 1;
+    
+    height: 100%;
+    aspect-ratio: 1/1;
+    margin-left: 2%;
+    border-radius: 15px;
+    background-color: lightgray;
+    border: 1px dashed gray;
+}
+
+div.product-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        
+    object-position: center
+}
+
+.producto-condition-name{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+
+    gap: 5%;
+    border-radius: 15px;
+    /* border: 1px dashed gray; */
+}
+
+.product-information2{
+    font-size: larger;
+}
+
+.product-information2:hover{
+    text-decoration: underline;
+}
+
+.product-condition{
+    font-size: larger;
+    color: gray;
+    font-style: italic;
+}
+
+.product-information-content2{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    flex: 1;
+
+    gap: 5%;
+
+    /* border-radius: 15px;
+    background-color: lightgray;
+    border: 1px dashed gray; */
+}
+
+.quantity-product-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    gap: 5%;
+
+}
+
+.quantity-product-number2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: x-large;
+    /* width: fit-content; */
+
+    background-color: FFFFFC;
+    border: 1px dashed gray;
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+}
+
+.price-total-by-product{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: flex-end;
+
+    flex: 1;
+    
+    gap: 5%;
+    margin-right: 2%;
+
+    /* border-radius: 15px;
+    background-color: lightgray;
+    border: 1px dashed gray; */
+}
+
+.price-product{
+    font-size: x-large;
+}
+
+.devolution-politics{
+    font-size: large;
+    text-align: right;
+    width: fit-content;
+}
+
+.delete-product:hover{
+	text-decoration: underline;
+}
+
+#product-card:hover{
+	cursor: pointer;
+	transform: translateY(-5px); /* Se "levanta" 5px hacia arriba */
+  	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  	border: solid black 1px;
+}

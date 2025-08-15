@@ -23,6 +23,7 @@ xhr.addEventListener("load",()=>{
 	document.querySelector("img#profilePic").src = json.profilePic
 	document.querySelector("h1#seller-name").innerText = json.username
 	document.querySelector("span#followers").innerText = `${json.followers} seguidores`
+	document.querySelector("span#products-selled").innerText = `${json.sellProducts} artículos vendidos`
 	
 });
 xhr.send(`sellerID=${sellerID}`)

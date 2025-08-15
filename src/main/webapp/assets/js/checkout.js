@@ -1,19 +1,30 @@
-//rellenar la info
+//Boton de checkout
+const checkoutBtn = document.querySelector("button#btn-complete-final-transaction")
+
+
+//rellenar la info de los productos
 const xhr = new XMLHttpRequest();
 xhr.open("POST","CartProducts")
 xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
 xhr.addEventListener("load",()=>{
 	const json = JSON.parse(xhr.responseText);
+	const formData = new FormData()
+	
+	
+	
 	const container = document.querySelector("div#review-order")
 	const price = document.querySelector("div#complete-transaction-payment-items-price");
 	const shipping = document.querySelector("div#complete-transaction-payment-ship-price");
-	const subtotal = document.querySelector("div#complete-transaction-payment-ship-price")
+	const subtotal = document.querySelector("div#complete-transaction-payment-total-price")
 	const amountOfProductsTag = document.querySelector("div#complete-transaction-payment-items-name");
 	let amount = 0;
 	let totalPrice = 0;
 	let totalShipping = 0;
 	
 	for(let i=0;i<json.products.length;i++){
+		formData.append("products",json.products[i].productID)
+		formData.append("sellerID",json.products[i].userID)
+		
 		totalPrice += json.products[i].price * json.products[i].quantitySelected
 		totalShipping += json.products[i].shipping
 		
@@ -123,6 +134,33 @@ xhr.addEventListener("load",()=>{
 		select.selectedIndex = json.products[i].quantitySelected-1
 	}
 	
+	checkoutBtn.addEventListener("click",()=>{
+		//Guardar en historial de compras
+		const selects = document.querySelectorAll("select.quantity-product-number2")
+		for(let i=0;i<selects.length;i++){
+			formData.append("quantityBought",parseInt(selects[i].options[selects[i].selectedIndex].value))
+			formData.append("subtotal",(json.products[i].price * parseInt(selects[i].options[selects[i].selectedIndex].value))+json.products[i].shipping);
+			formData.append("totalQuantity",json.products[i].quantity)
+		}
+		formData.append("buyerID",JSON.parse(localStorage.getItem("userInfo")).codigo);
+		
+		const shopHistory = new XMLHttpRequest()
+		shopHistory.open("POST","BoughtHistory")
+		shopHistory.send(formData);
+		//Borrar el carrito
+		const cartDeleter = new XMLHttpRequest()
+		cartDeleter.open("POST","DeleteAllCart")
+		cartDeleter.send(formData)
+		
+		//Reducir cantidad de producto
+		const quantityReducer = new XMLHttpRequest();
+		quantityReducer.open("POST","QuantityReducer")
+		quantityReducer.send(formData)
+		
+		//Aumentar lo de productos comprados del vendedor
+		
+	})
+	
 	const selects = document.querySelectorAll("select.quantity-product-number2")
 	for(let i=0;i<selects.length;i++){
 		amount += parseInt(selects[i].options[selects[i].selectedIndex].value)
@@ -136,3 +174,59 @@ xhr.addEventListener("load",()=>{
 	
 })
 xhr.send(`userID=${JSON.parse(localStorage.getItem("userInfo")).codigo}`);
+
+
+//Rellenar la info de la direccion
+const user = JSON.parse(localStorage.getItem("userInfo"))
+document.querySelector("div#name-information").innerText = user.nombre+" "+user.apellido
+document.querySelector("div#name-direction").innerText = user.direccion
+document.querySelector("div#name-country").innerText = user.pais
+document.querySelector("div#phone-number").innerText = user.numero_telefono
+
+//Rellenar formas de pago
+const xhr2 = new XMLHttpRequest()
+xhr2.open("POST","PaymentCards")
+xhr2.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+xhr2.addEventListener("load",()=>{
+	const json = JSON.parse(xhr2.responseText)
+	const container = document.querySelector("div#pay-with")
+	const checkoutTag = document.querySelector("h2#checkout-tag")
+	for(let i=0;i<json.payment.length;i++){
+		const card = document.createElement("div");
+		card.classList.add("card-container")
+		if(json.payment[i].paymentType == 1){
+			//Es tarjeta
+			card.innerHTML = `<button class="btn-card"><i class="bi bi-circle"></i></button>
+						      <div class="card-img-name">
+						          <div class="card-img"><img src="assets/img/Visa.svg" title="Credit Card" height="30"> x-${json.payment[i].creditCardNumber.substring(12)}</div>
+						          <div class="card-name"></div>
+						      </div>`
+							  		
+			container.appendChild(card)
+			const radioBtn = card.querySelector("button.btn-card")
+		
+			radioBtn.addEventListener("click",()=>{
+				const allRadioBtn = document.querySelectorAll("button.btn-card");
+				for(let i=0;i<allRadioBtn.length;i++){
+					allRadioBtn[i].innerHTML = '<i class="bi bi-circle"></i>';
+				}
+				radioBtn.innerHTML = '<i class="bi bi-circle-fill"></i>'
+				checkoutTag.innerText = "Confirmar y pagar"
+			
+			})
+		}
+		
+		
+	}
+	
+	const paypalRadio = document.querySelector("button#paypal-radio")
+	paypalRadio.addEventListener("click",()=>{
+		const allRadioBtn = document.querySelectorAll("button.btn-card");
+		for(let i=0;i<allRadioBtn.length;i++){
+			allRadioBtn[i].innerHTML = '<i class="bi bi-circle"></i>';
+		}
+		paypalRadio.innerHTML = '<i class="bi bi-circle-fill"></i>'
+		checkoutTag.innerText = "Pagar con PayPal"
+	})
+})
+xhr2.send(`userID=${JSON.parse(localStorage.getItem("userInfo")).codigo}`);

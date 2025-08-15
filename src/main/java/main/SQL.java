@@ -491,13 +491,13 @@ public class SQL {
 	}
 	
 	public String getSellerHeaderInfo(int sellerCode) {
-		String query = String.format("select a.username,a.imagen_perfil,count(b.codigo_vendedor) as seguidores from usuarios a left join vendedores_guardados b on a.codigo_usuario = b.codigo_vendedor where a.codigo_usuario = %s group by a.username,a.imagen_perfil" ,sellerCode);
+		String query = String.format("with productos_comprados as(select codigo_vendedor,sum(cantidad_comprado) as productos_vendidos from historial_compras where codigo_vendedor = %s group by codigo_vendedor) select a.username,a.imagen_perfil,count(b.codigo_vendedor) as seguidores, c.productos_vendidos from usuarios a  left join vendedores_guardados b  on a.codigo_usuario = b.codigo_vendedor left join productos_comprados c on a.codigo_usuario = c.codigo_vendedor where a.codigo_usuario = %s group by a.username,a.imagen_perfil,c.productos_vendidos" ,sellerCode,sellerCode);
 		StringBuilder json = new StringBuilder("{");
 		try {
 			Statement statement = con.createStatement();
 			ResultSet result = statement.executeQuery(query);
 			result.next();
-			json.append(String.format("\"profilePic\": \"%s\", \"username\": \"%s\",\"followers\": %s",result.getString("imagen_perfil"),result.getString("username"),result.getInt("seguidores")));
+			json.append(String.format("\"profilePic\": \"%s\", \"username\": \"%s\",\"followers\": %s,\"sellProducts\": %s",result.getString("imagen_perfil"),result.getString("username"),result.getInt("seguidores"),result.getInt("productos_vendidos")));
 			
 			json.append("}");
 		} catch (SQLException e) {
@@ -808,6 +808,147 @@ public class SQL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return json.toString();
+	}
+	
+	public void insertCreditCard(String creditCardNumber, String expirationDate, int cVV, String creditCardName, String creditCardLastName, int userID) {
+		String query = "insert into pagos_por_usuarios (codigo_pago,codigo_comprador,codigo_formas_pago,numero_tarjeta,fecha_vencimiento,cvv,nombre_titular,apellido_titular) values(sq_codigo_pago.nextval,?,1,?,?,?,?,?)";
+		
+		
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setInt(1, userID);
+			statement.setString(2, creditCardNumber);
+			statement.setString(3, expirationDate);
+			statement.setInt(4, cVV);
+			statement.setString(5, creditCardName);
+			statement.setString(6, creditCardLastName);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertPaypal(String paypalUser, String paypalEmail, int userID) {
+String query = "insert into pagos_por_usuarios (codigo_pago,codigo_comprador,codigo_formas_pago,usuario_paypal,correo_paypal) values(sq_codigo_pago.nextval,?,2,?,?)";
+		
+		
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setInt(1, userID);
+			statement.setString(2, paypalUser);
+			statement.setString(3, paypalEmail);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String getPaymentCards(int userID) {
+		String query = String.format("select codigo_pago,codigo_formas_pago,numero_tarjeta,fecha_vencimiento,correo_paypal from pagos_por_usuarios where codigo_comprador = %s",userID);
+		StringBuilder json = new StringBuilder("{ \"payment\": [");
+		int counter = 0;
+		String amountQuery = String.format("select count(codigo_comprador) as cantidad from pagos_por_usuarios where codigo_comprador = %s",userID);
+		int amount = this.getGenericAmount(amountQuery);
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			while(result.next()) {
+				json.append(String.format("{\"paymentType\": %s, \"creditCardNumber\":\"%s\",\"expirationDate\":\"%s\",\"paypalEmail\":\"%s\",\"paymentID\":%s}",result.getInt("codigo_formas_pago"),result.getString("numero_tarjeta"),result.getString("fecha_vencimiento"),result.getString("correo_paypal"),result.getInt("codigo_pago")));
+				counter++;
+				if(counter != amount) {
+					json.append(",");					
+				}
+			};
+			
+			json.append("] }");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+	
+	public void deletePaymentCard(int paymentID) {
+		String query =  "delete from pagos_por_usuarios where codigo_pago = ?";
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setInt(1, paymentID);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setBoughtHistory(int buyerID, String[] productsID, String[] sellersID, String[] quantityBought, String[] subtotal) {
+		String query = "insert into historial_compras(codigo_compra,codigo_producto_comprado,codigo_comprador,codigo_vendedor,cantidad_comprado,subtotal) values(sq_codigo_compra.nextval,?,?,?,?,?)";
+		for(int i=0;i<productsID.length;i++) {
+			try {
+				PreparedStatement statement = con.prepareStatement(query);
+				statement.setInt(1, Integer.parseInt(productsID[i]));
+				statement.setInt(2, buyerID);
+				statement.setInt(3, Integer.parseInt(sellersID[i]));
+				statement.setInt(4, Integer.parseInt(quantityBought[i]));
+				statement.setFloat(5, Float.parseFloat(subtotal[i]));
+				statement.executeUpdate();
+			}catch(SQLException e) {
+				System.out.println("Fallo al agregar caracteristicas");
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	public void deleteAllCartProduct(int buyerID, String[] productsID) {
+		String query =  "delete from carrito where codigo_comprador = ? and codigo_producto = ?";
+		for(int i=0;i<productsID.length;i++) {
+			try {
+				PreparedStatement statement = con.prepareStatement(query);
+				statement.setInt(1, buyerID);
+				statement.setInt(2, Integer.parseInt(productsID[i]));
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void updateProductQuantity(String[] productsID, String[] quantityBought, String[] oldQuantity) {
+		String query = "update productos set cantidad_producto = ? where codigo_producto= ?";
+		for(int i=0;i<productsID.length;i++) {
+			try {
+				PreparedStatement statement = con.prepareStatement(query);
+				statement.setInt(1,Integer.parseInt(oldQuantity[i])-Integer.parseInt(quantityBought[i]));
+				statement.setInt(2,Integer.parseInt(productsID[i]));
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("Fallo al actualizar cantidad");
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public String getBoughtProducts(int userCode) {
+		String query = String.format("Select c.nombre_producto,a.codigo_producto_comprado, min(b.imagen_producto) as imagen_producto from historial_compras a left join imagen_x_producto b on a.codigo_producto_comprado = b.codigo_producto left join productos c on a.codigo_producto_comprado = c.codigo_producto where a.codigo_comprador = %s group by c.nombre_producto,a.codigo_producto_comprado order by a.codigo_producto_comprado",userCode);
+		String amountQuery = String.format("select count(DISTINCT codigo_producto_comprado) as cantidad from historial_compras where codigo_comprador = %s", userCode);
+		int amount = this.getGenericAmount(amountQuery);
+		int counter = 0;
+		StringBuilder json = new StringBuilder("{ \"products\" : [");
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+
+			while (result.next()) {
+				json.append(String.format("{ \"title\": \"%s\" ,\"url\": \"%s\",\"code\":%s}",result.getString("nombre_producto"),result.getString("imagen_producto"),result.getInt("codigo_producto_comprado")));
+				counter++;
+				if(counter != amount) {
+					json.append(",");					
+				}
+			}
+			
+			json.append("] }");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return json.toString();
 	}
 }

@@ -162,7 +162,38 @@
                   </div>
               </div>
               <h3><strong>Tarjetas y cuentas</strong></h3>
-              <div class="add-card-box">
+              
+              <div class="add-card-box" id="cards-container">
+              
+              
+              
+	              <!-- <div class="payment-card bank">
+					  <div class="card-header">
+					    <div class="card-type">
+					      <img src="bank-icon.svg" alt="Banco">
+					      <span>Tarjeta Bancaria</span>
+					    </div>
+					    <button class="delete-btn">Eliminar</button>
+					  </div>
+					  <div class="card-info">
+					    <p class="card-number">•••• •••• •••• 1234</p>
+					    <p class="expiry">Expira: 08/27</p>
+					  </div>
+				</div> -->
+				
+				<!-- <div class="payment-card paypal">
+				  <div class="card-header">
+				    <div class="card-type">
+				      <img src="paypal-icon.svg" alt="PayPal">
+				      <span>PayPal</span>
+				    </div>
+				    <button class="delete-btn">Eliminar</button>
+				  </div>
+				  <div class="card-info">
+				    <p class="paypal-email">micorreo@ejemplo.com</p>
+				  </div>
+				</div> -->
+              
                 <button class="btn btn-outline-primary btn-add" data-bs-toggle="modal" data-bs-target="#agregarTarjetaModal">
                   Agregar tarjetas y cuentas
                 </button>
@@ -346,14 +377,14 @@
                 Agrega una forma de pago para completar la transacción más rápidamente. Tus detalles de pago son seguros y privados.
               </p>
               <div class="form-check d-flex align-items-center border rounded p-3 mb-2">
-                <input class="form-check-input me-3" type="radio" name="paymentOption" value="credit_card" id="option" checked>
+                <input data-codigo-pago="1" class="form-check-input me-3" type="radio" name="paymentOption" value="credit_card" id="option" checked>
                 <label class="form-check-label d-flex align-items-center w-100" for="cardOption">
                   <img src="assets/img/credit-card.webp" alt="Tarjeta" height="30" class="me-3">
                   <span>Tarjeta de Crédito o Débito</span>
                 </label>
               </div>
               <div class="form-check d-flex align-items-center border rounded p-3 mb-2">
-                <input class="form-check-input me-3" type="radio" name="paymentOption" value="paypal" id="option" checked>
+                <input data-codigo-pago="2" class="form-check-input me-3" type="radio" name="paymentOption" value="paypal" id="option" checked>
                 <label class="form-check-label d-flex align-items-center w-100" for="paypalOption">
                   <img src="assets/img/PayPal.svg.png" alt="PayPal" height="30" class="me-3">
                   <span>PayPal</span>
@@ -382,22 +413,22 @@
               </p>
               <form>
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="Número de tarjeta" required>
+                  <input type="text" id="credit-card-number" class="form-control" placeholder="Número de tarjeta" required>
                 </div>
                 <div class="row mb-3">
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="Fecha de vencimiento (MM/AA)" required>
+                    <input type="text" id="expiration-date" class="form-control" placeholder="Fecha de vencimiento (MM/AA)" required>
                   </div>
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="Código de seguridad" required>
+                    <input type="text" id="cvv" class="form-control" placeholder="Código de seguridad" required>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="Nombre" required>
+                    <input type="text" id="name" class="form-control" placeholder="Nombre" required>
                   </div>
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="Apellidos" required>
+                    <input type="text" id="last-name" class="form-control" placeholder="Apellidos" required>
                   </div>
                 </div>
                 <div class="mb-2 fw-bold">Dirección de facturación</div>
@@ -410,7 +441,7 @@
                 </div>
                 <div class="modal-footer px-0">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Atrás</button>
-                  <button type="submit" class="btn btn-primary">Agregar</button>
+                  <button id="credit-card" type="submit" class="btn btn-primary">Agregar</button>
                 </div>
               </form>
             </div>
@@ -434,16 +465,16 @@
 
               <form>
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="Nombre de Usuario (PayPal)" required>
+                  <input id="paypal-user" id="user" type="text" class="form-control" placeholder="Nombre de Usuario (PayPal)" required>
                 </div>
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="Direccion de Correo Electronico" required>
+                  <input id="paypal-email" id="email" type="text" class="form-control" placeholder="Direccion de Correo Electronico" required>
                 </div>
                 <br>
                 <br>
                 <div class="modal-footer px-0">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Atrás</button>
-                  <button type="submit" class="btn btn-primary">Agregar</button>
+                  <button id="paypal" type="submit" class="btn btn-primary">Agregar</button>
                 </div>
               </form>
             </div>

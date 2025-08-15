@@ -293,8 +293,65 @@ input.searchInput{
   padding: 40px;
   text-align: center;
   transition: box-shadow 0.2s;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .hide-modal{
   display: none;
+}
+
+/* -------------------------------------- */
+
+.payment-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 16px;
+  margin: 12px 0;
+  width: 300px;
+}
+
+.payment-card.bank {
+  border-left: 6px solid #2a6ef5;
+}
+
+.payment-card.paypal {
+  border-left: 6px solid #0070ba;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.card-info {
+  margin-top: 12px;
+}
+
+.card-number, .paypal-email {
+  font-family: monospace;
+  font-size: 1.1em;
+}
+
+.expiry {
+  color: #555;
+  font-size: 0.9em;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
