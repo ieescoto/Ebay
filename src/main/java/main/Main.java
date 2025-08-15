@@ -15,7 +15,7 @@ public class Main {
 		//String result = "{ \"categories\": "+Arrays.toString(array)+"}";
 		//String[] array = {"ieescoto",""};
 		//sql.login(array);
-		System.out.println(BCrypt.hashpw("Changeme_0", BCrypt.gensalt(12)));
+		System.out.println(BCrypt.hashpw("EbayStores10", BCrypt.gensalt(12)));
 	}
 
 }
