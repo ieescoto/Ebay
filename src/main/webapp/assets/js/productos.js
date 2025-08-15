@@ -16,6 +16,7 @@ xhr.addEventListener("load",()=>{
 	document.querySelector("div#price").innerText = `L. ${json.info.price}`;
 	document.querySelector("div#product-condition").innerText = `Estado: ${json.info.condition}`;
 	document.querySelector("div#quantity-product-number").innerText = `${json.info.quantity}`;
+	document.querySelector("div#sales-person-img").innerHTML = `<img src=${json.info.profilePic} class="object-fit-cover">`
 	
 	const secondaryImages = document.querySelector("div#other-images-product");
 	const primaryImage = document.querySelector("div#active-image-product");

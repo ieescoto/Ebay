@@ -44,6 +44,10 @@ public class Updater extends HttpServlet {
 		}else if(code == 3) {
 			String[] data = request.getParameter("data").replace("[", "").replace("]", "").replace("\"", "").split(",");
 			sql.updatePersonalInfo(data, userID);
+		}else if(code == 4) {
+			String description = request.getParameter("data");
+			String url = request.getParameter("url");
+			sql.updateUserDescription(description,url,userID);
 		}
 	}
 

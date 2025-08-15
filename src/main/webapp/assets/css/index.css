@@ -70,9 +70,8 @@ div.search-container{
 }
 
 div.categoriesText{
-
     display: flex;
-    padding-left: 15%;
+    /* padding-left: 15%; */
 }
 div.categories{
     display: flex;

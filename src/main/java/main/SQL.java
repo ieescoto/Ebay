@@ -409,14 +409,14 @@ public class SQL {
 	
 	//Metodo para obtener la informacion del producto
 	public String getProductInfo(int productID) {
-		String query = String.format("select a.nombre_producto,b.username,b.codigo_usuario,NVL(b.valoracion_total,0) as valoracion_total,a.precio,c.estado,a.cantidad_producto,a.marca,a.modelo,d.nombre_categoria from productos a left join usuarios b on a.usuario_vendedor = b.codigo_usuario left join estados_producto c on a.codigo_estado = c.codigo_estado left join categorias d on a.codigo_categoria = d.codigo_categoria where a.codigo_producto = %s"
+		String query = String.format("select b.imagen_perfil,a.nombre_producto,b.username,b.codigo_usuario,NVL(b.valoracion_total,0) as valoracion_total,a.precio,c.estado,a.cantidad_producto,a.marca,a.modelo,d.nombre_categoria from productos a left join usuarios b on a.usuario_vendedor = b.codigo_usuario left join estados_producto c on a.codigo_estado = c.codigo_estado left join categorias d on a.codigo_categoria = d.codigo_categoria where a.codigo_producto = %s"
 ,productID);
 		StringBuilder json = new StringBuilder("\"info\": {");
 		try {
 			Statement statement = con.createStatement();
 			ResultSet result = statement.executeQuery(query);
 			result.next();
-			json.append(String.format("\"title\": \"%s\", \"username\": \"%s\",\"rating\": %s,\"price\": %s,\"condition\": \"%s\",\"quantity\": %s,\"model\": \"%s\", \"brand\": \"%s\",\"category\": \"%s\", \"sellerCode\": %s",result.getString("nombre_producto"),result.getString("username"),result.getFloat("valoracion_total"), result.getFloat("precio"), result.getString("estado"),result.getInt("cantidad_producto"),result.getString("modelo"),result.getString("marca"),result.getString("nombre_categoria"),result.getInt("codigo_usuario")));
+			json.append(String.format("\"title\": \"%s\", \"username\": \"%s\",\"rating\": %s,\"price\": %s,\"condition\": \"%s\",\"quantity\": %s,\"model\": \"%s\", \"brand\": \"%s\",\"category\": \"%s\", \"sellerCode\": %s,\"profilePic\":\"%s\"",result.getString("nombre_producto"),result.getString("username"),result.getFloat("valoracion_total"), result.getFloat("precio"), result.getString("estado"),result.getInt("cantidad_producto"),result.getString("modelo"),result.getString("marca"),result.getString("nombre_categoria"),result.getInt("codigo_usuario"),result.getString("imagen_perfil")));
 			
 			json.append("},");
 		} catch (SQLException e) {
@@ -778,6 +778,33 @@ public class SQL {
 			};
 			
 			json.append("] }");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+	
+	public void updateUserDescription(String description,String url, int userID) {
+		String query = String.format("update usuarios set descripcion = '%s',imagen_perfil = '%s' where codigo_usuario = %s", description,url,userID);
+		try {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Fallo al actualizar datos personales");
+			e.printStackTrace();
+		}
+	}
+	
+	public String getUserDescription(int userID) {
+		String query = String.format("select a.imagen_perfil,a.username,a.descripcion,b.pais,to_char(a.fecha_creacion,'dd month yyyy') as fecha_creacion from usuarios a left join paises b on a.codigo_pais = b.codigo_pais where a.codigo_usuario = %s",userID);
+		StringBuilder json = new StringBuilder("{");
+		try {
+			Statement statement = con.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			result.next();
+			json.append(String.format("\"description\": \"%s\",\"creationDate\": \"%s\",\"country\":\"%s\",\"username\":\"%s\",\"profilePic\":\"%s\"",result.getString("descripcion"),result.getString("fecha_creacion"),result.getString("pais"),result.getString("username"),result.getString("imagen_perfil")));
+			
+			json.append("}");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

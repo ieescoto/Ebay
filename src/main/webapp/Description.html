@@ -51,14 +51,19 @@
         <!-- FIN-ENCABEZADO -->
 
     <div class="user-description-main-container">
-        <div id="user-description-img-container"><img src="assets/resources/descarga (1).jfif"></div>
+        <div id="user-description-img-container">
+        	<img src="assets/img/invitado.jpg" id="profile-pic">
+        	<!-- <div class="icon-btn"><i class="bi bi-pencil"></i></div> -->
+        </div>
         <div class="user-description-name-container">Nombre del Usuario</div>
         <button id="btn-user-description-edit-perfil-container">
             <i class="bi bi-pencil"></i>
-            <div id="btn-user-description-edit-perfil" type="button">Editar perfil</div>
+            <div id="btn-user-description-edit-perfil">Editar perfil</div>
         </button>
 
     </div>
+    
+    <input type="file" style="display: none;" id="filechooser" accept="image/*">
 
     <div class="user-description-other-information-container">
         <div class="user-description-about-me-container">
@@ -69,12 +74,12 @@
         </div>
         <div class="user-description-more-information-container">
             <div class="user-description-location-container" style="display: flex; gap: 5px;">
-            <div class="user-description-ubication-name">Usuario:</div>
-            <div id="user-description-ubication-information"><strong>Honduras</strong></div>
+            <div class="user-description-ubication-name">Ubicacion:</div>
+            <div id="user-description-ubication-information" class="fw-bold">Honduras</div>
         </div>
         <div class="user-description-creation-date-container" style="display: flex; gap: 5px;">
             <div class="user-description-creation-date-name">Usuario desde:</div>
-            <div id="user-description-creation-date-information"><strong>10 de Agosto del 2025</strong></div>
+            <div id="user-description-creation-date-information" class="fw-bold">10 de Agosto del 2025</div>
         </div>
         </div>
     </div>

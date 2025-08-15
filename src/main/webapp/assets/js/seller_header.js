@@ -10,8 +10,8 @@ sellerProducts.href = `seller_user.html?sellerID=${sellerID}`;
 const sellerAboutIt = document.querySelector("a#about-it")
 sellerAboutIt.href = `seller_about_it.html?sellerID=${sellerID}`
 
-const sellerComments = document.querySelector("a#comments")
-sellerComments.href = `seller_coment.html?sellerID=${sellerID}`
+/*const sellerComments = document.querySelector("a#comments")
+sellerComments.href = `seller_coment.html?sellerID=${sellerID}`;*/
 
 //Llenar los datos
 const xhr = new XMLHttpRequest();

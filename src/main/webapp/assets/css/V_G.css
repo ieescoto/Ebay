@@ -229,6 +229,7 @@ input.searchInput{
 .sidebar {
   width: 220px;
   padding: 20px 10px;
+  padding-left: 60px
 }
 
 .sidebar h3 {
@@ -333,4 +334,13 @@ input.searchInput{
 .icon-btn i {
   font-size: 16px;
   color: #0654ba;
+}
+
+#seller-container{
+	display: flex;
+	flex-direction: column
+}
+
+#seller-principal-container{
+	padding-bottom: 40px;
 }

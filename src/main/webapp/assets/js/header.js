@@ -56,3 +56,9 @@ if(localStorage.getItem("isLogin") == "true"){
 }
 
 const profilePic = document.querySelector("div#user-img")
+if(localStorage.getItem("isLogin") == "true"){
+	const img = document.createElement("img")
+	img.src = JSON.parse(localStorage.getItem("userInfo")).foto;
+	profilePic.appendChild(img)
+}
+

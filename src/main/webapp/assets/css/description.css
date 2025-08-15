@@ -220,7 +220,7 @@ input.searchInput{
 
     margin-left: 5px;
 
-    height: auto;
+    height: 70px;
     aspect-ratio: 1/1;
 
     overflow: hidden;
@@ -376,4 +376,22 @@ input.searchInput{
 
 .oculto{
     display: none;
+}
+
+.icon-btn {
+  background-color: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 0%;
+  left: 70px;
+}
+
+.icon-btn:hover {
+  background-color: #e0e0e0;
 }

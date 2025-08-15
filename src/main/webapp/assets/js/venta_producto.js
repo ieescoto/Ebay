@@ -124,7 +124,6 @@ imageBtn.addEventListener("click",()=>{
 //Mandar los datos de la imagen a la bd
 const account = new Account()
 const formData = new FormData();
-formData.append("remove",false);
 filechooser.addEventListener("change",(e)=>{
 	const file = e.target.files[0];
 	if(file != undefined){

@@ -395,6 +395,13 @@ div.similar-items-content{
     object-fit: cover;
 }
 
+#sales-person-img img{
+   	width: 100%;
+    height: 100%;
+    object-fit: cover;        
+    object-position: center;
+}
+
 #other-information-container{
     position: relative;
     display: flex;
