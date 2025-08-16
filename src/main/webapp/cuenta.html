@@ -434,9 +434,9 @@
                 <div class="mb-2 fw-bold">Dirección de facturación</div>
                 <div class="mb-3">
                   <div id="modal-user-address1">Colonia Centro América Oeste</div>
-                  <div id="modal-user-address2">Comayagüela</div>
-                  <div id="modal-user-city">Tegucigalpa</div>
-                  <div id="modal-user-state-postal-code">Francisco Morazán 11011</div>
+                  <!-- <div id="modal-user-address2">Comayagüela</div> -->
+                  <!-- <div id="modal-user-city">Tegucigalpa</div> -->
+                  <!-- <div id="modal-user-state-postal-code">Francisco Morazán 11011</div> -->
                   <div id="modal-user-country">Honduras</div>
                 </div>
                 <div class="modal-footer px-0">
@@ -500,6 +500,91 @@
 		      </div>
 		    </div>
 		  </div>
+		</div>
+		
+		<!--Modal Contraseña Fallida-->
+
+	<div class="modal fade" id="invalid-password-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered rounded" id="invalid-password-dialog">
+			<div class="modal-content px-3">
+				<div class="modal-header align-items-center justify-content-center">
+					<i class="bi bi-exclamation-triangle-fill text-danger fs-2 me-4"></i>
+					<h1 class="text-danger d-flex mt-2">Contraseña no valida</h1>
+				</div>
+				<div class="modal-body">
+					<p class="fs-5">La contraseña ingresada no es valida, verifique que lleve minimo una mayuscula, minuscula, un numero, un caracter especial y
+					una duración minima de 8 caracteres</p>
+					<button type="button" class="btn btn-primary closeBtn" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal de exito -->
+	<div class="modal fade" id="valid-credentials-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered rounded" id="valid-credentials-dialog">
+			<div class="modal-content px-3">
+				<div class="modal-header align-items-center justify-content-center">
+					<i class="bi bi-check-circle-fill text-success fs-2 me-4"></i>
+					<h1 class="text-success d-flex mt-2">Informacion aceptada!</h1>
+				</div>
+				<div class="modal-body">
+					<p class="fs-5">Se actualizaron los datos con exito!</p>
+					<button type="button" class="btn btn-primary closeBtn" data-bs-dismiss="modal" aria-label="Close" id="success-btn">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--Modal Correo Fallido-->
+
+	<div class="modal fade" id="invalid-email-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered rounded" id="invalid-email-dialog">
+			<div class="modal-content px-3">
+				<div class="modal-header align-items-center justify-content-center">
+					<i class="bi bi-exclamation-triangle-fill text-danger fs-2 me-4"></i>
+					<h1 class="text-danger d-flex mt-2">Correo no valido</h1>
+				</div>
+				<div class="modal-body">
+					<p class="fs-5">El correo ingresado no es valido, verifique la informacion</p>
+					<button type="button" class="btn btn-primary closeBtn" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Modal Numero Fallido-->
+
+	<div class="modal fade" id="invalid-phone-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered rounded" id="invalid-phone-dialog">
+			<div class="modal-content px-3">
+				<div class="modal-header align-items-center justify-content-center">
+					<i class="bi bi-exclamation-triangle-fill text-danger fs-2 me-4"></i>
+					<h1 class="text-danger d-flex mt-2">Telefono no valido</h1>
+				</div>
+				<div class="modal-body">
+					<p class="fs-5">El Telefono ingresado no es valido, verifique la informacion</p>
+					<button type="button" class="btn btn-primary closeBtn" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal de credenciales vacias -->
+		<div class="modal fade" id="empty-credentials-new-account" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered rounded" id="empty-credentials-dialog">
+			<div class="modal-content px-3">
+				<div class="modal-header align-items-center justify-content-center">
+					<i class="bi bi-exclamation-triangle-fill text-danger fs-2 me-4"></i>
+					<h1 class="text-danger d-flex mt-2">Error de Credenciales</h1>
+				</div>
+				<div class="modal-body">
+					<p class="fs-5">Uno o mas campos se encuentran vacios, porfavor verificar y volver a intentar</p>
+					<button type="button" class="btn btn-primary closeBtn" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+				</div>
+			</div>
+
+		</div>
+
 		</div>
 		
 

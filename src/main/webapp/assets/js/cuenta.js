@@ -181,3 +181,8 @@ document.querySelectorAll('.sidebar a').forEach(link => {
 	}
  })
  xhr2.send(`userID=${JSON.parse(localStorage.getItem("userInfo")).codigo}`);
+ 
+ //Relleno de info en al modal de agregar pago
+ const user = JSON.parse(localStorage.getItem("userInfo"))
+ document.querySelector("div#modal-user-address1").innerText = user.direccion
+ document.querySelector("div#modal-user-country").innerText =  user.pais

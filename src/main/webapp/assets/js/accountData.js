@@ -221,14 +221,61 @@ class Account{
 	
 	//Envia los datos que se quieren actualizar a la bd
 	updateData(data,column){
+		let valid = false;
+		const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/;
+		const phoneRegex = /^\+?[\d\s\-().]{7,15}$/;
 		const xhr = new XMLHttpRequest();
 		const user = JSON.parse(localStorage.getItem("userInfo"));
 		xhr.open("POST","Updater");
 		xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
-		xhr.send(`data=${data.value}&code=1&userID=${user.codigo}&column=${column}`);
-		user[column] = data.value;
-		localStorage.setItem("userInfo",JSON.stringify(user));
+		if(column == "correo_electronico"){
+			if(data.value.match(emailRegex)){
+				document.querySelector("div#email").innerText = data.value
+				valid = true
+			}else{
+				const invalidEmailModal  = document.querySelector("#invalid-email-login");
+				const modal = new bootstrap.Modal(invalidEmailModal);
+				modal.show();
+				valid = false;
+				
+			}
+		}else if(column == "numero_telefono"){
+			if(data.value.match(phoneRegex)){
+				document.querySelector("div#phone").innerText = data.value
+				valid = true
+			}else{
+				const invalidPhoneModal  = document.querySelector("#invalid-phone-login");
+				const modal = new bootstrap.Modal(invalidPhoneModal);
+				modal.show();
+				valid = false;
+			}
+			
+		}else if(column == "username"){
+			if(data.value != ""){
+				document.querySelector("div#username").innerText = data.value
+				valid = true
+			}else{
+				const emptyModal  = document.querySelector("#empty-credentials-new-account");
+				const modal = new bootstrap.Modal(emptyModal);
+				modal.show();
+				valid = false;
+			}
+		}
+		
+		if(valid == true){
+			xhr.send(`data=${data.value}&code=1&userID=${user.codigo}&column=${column}`);
+			const successModal = document.querySelector("#valid-credentials-login");
+			const smodal = new bootstrap.Modal(successModal);
+			smodal.show();
+			user[column] = data.value;
+			localStorage.setItem("userInfo",JSON.stringify(user));
+		}
 	}
+	
+	
+	 
+	 
+	
 	
 	//Envia los datos que se quieren actualizar a la bd
 	updatePersonalInfo(name,lastName,address,select){
@@ -240,22 +287,41 @@ class Account{
 		const xhr = new XMLHttpRequest();
 		xhr.open("POST","Updater");
 		xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
-		xhr.send(`data=${array}&code=3&userID=${user.codigo}`);
-		user.nombre = name.value
-		user.apellido = lastName.value
-		user.direccion = address.value
-		localStorage.setItem("userInfo",JSON.stringify(user));
-		this.updateCountry(select);
+		if(name.value == "" || lastName.value == "" || address.value == ""){
+			const emptyModal  = document.querySelector("#empty-credentials-new-account");
+			const modal = new bootstrap.Modal(emptyModal);
+			modal.show();
+		}else{
+			document.querySelector("div#personal-info").innerHTML = `${name.value} ${lastName.value} <br> ${address.value} <br> ${select.options[select.selectedIndex].value}`;
+			xhr.send(`data=${array}&code=3&userID=${user.codigo}`);
+			user.nombre = name.value
+			user.apellido = lastName.value
+			user.direccion = address.value
+			localStorage.setItem("userInfo",JSON.stringify(user));
+			this.updateCountry(select);
+			const successModal = document.querySelector("#valid-credentials-login");
+			const smodal = new bootstrap.Modal(successModal);
+			smodal.show();
+		}
 	}
 	
 	//Actualiza la contrasena del usuario
 	updatePassword(pass){
 		const user = JSON.parse(localStorage.getItem("userInfo"));
-		console.log(pass.value);
 		const xhr = new XMLHttpRequest();
 		xhr.open("POST","Updater");
 		xhr.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
-		xhr.send(`data=${pass.value}&code=2&userID=${user.codigo}`);
+		const passwordRegex = 	/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/
+		if(pass.value.match(passwordRegex)){
+			xhr.send(`data=${pass.value}&code=2&userID=${user.codigo}`);
+			const successModal = document.querySelector("#valid-credentials-login");
+			const smodal = new bootstrap.Modal(successModal);
+			smodal.show();
+		}else{
+			const invalidPasswordModal  = document.querySelector("#invalid-password-login");
+			const modal = new bootstrap.Modal(invalidPasswordModal);
+			modal.show();
+		}
 	}
 	
 	//Envia los datos del producto que se quiere vender

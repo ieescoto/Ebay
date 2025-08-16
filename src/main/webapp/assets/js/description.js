@@ -95,7 +95,9 @@ btnEdit.addEventListener('click', () => {
 		if(textContentTextArea == ""){
 			textContentTextArea = defaultDescription
 		}
-		
+		const profile = document.querySelector("img#profile-foto")
+		profile.src = profilePicUrl
+				
 		//Envio de la informacion al Backend
 		const xhr = new XMLHttpRequest()
 		xhr.open("POST","Updater")
