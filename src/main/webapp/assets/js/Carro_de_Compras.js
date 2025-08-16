@@ -27,7 +27,7 @@ xhr.addEventListener("load",()=>{
 		if(json.products[i].return > 0){
 			devolution = "Se aceptan devoluciones"
 		}
-		let shippingTag = `+ L. ${json.products[i].shipping}`
+		let shippingTag = `+ $. ${json.products[i].shipping}`
 		if(json.products[i].shipping == 0){
 			shippingTag = "Envio gratis"
 		}
@@ -55,7 +55,7 @@ xhr.addEventListener("load",()=>{
 		                            </div>
 		                    	</div>
 		                        <div class="price-total-by-product">
-		                        	<div class="price-product"><strong>L. ${json.products[i].price}</strong></div>
+		                        	<div class="price-product"><strong>$. ${json.products[i].price}</strong></div>
 									<div class="price-shipping"><strong id="shipping-price">${shippingTag}</strong></div>
 		                        	<div class="devolution-politics"><strong>${devolution}</strong></div>
 									<div class="delete-product">Eliminar</div>
@@ -120,9 +120,9 @@ xhr.addEventListener("load",()=>{
 					}
 				}
 				amountOfProductsTag.innerHTML = `<strong>Articulos (${amount})</strong>`
-				price.innerHTML = `<strong>L. ${totalPrice}</strong>`
-				subtotal.innerHTML = `<strong>L. ${(totalPrice + totalShipping).toFixed(2)}</strong>`
-				shipping.innerHTML = `<strong>L. ${totalShipping.toFixed(2)}</strong>`
+				price.innerHTML = `<strong>$. ${totalPrice}</strong>`
+				subtotal.innerHTML = `<strong>$. ${(totalPrice + totalShipping).toFixed(2)}</strong>`
+				shipping.innerHTML = `<strong>$. ${totalShipping.toFixed(2)}</strong>`
 			}
 		})
 		
@@ -134,10 +134,10 @@ xhr.addEventListener("load",()=>{
 		amount += parseInt(selects[i].options[selects[i].selectedIndex].value)
 	}
 	
-	price.innerHTML = `<strong>L. ${totalPrice.toFixed(2)}</strong>`
-	shipping.innerHTML = `<strong>L. ${totalShipping.toFixed(2)}</strong>`
+	price.innerHTML = `<strong>$. ${totalPrice.toFixed(2)}</strong>`
+	shipping.innerHTML = `<strong>$. ${totalShipping.toFixed(2)}</strong>`
 	amountOfProductsTag.innerHTML = `<strong>Articulos (${amount})</strong>`
-	subtotal.innerHTML = `<strong>L. ${(totalPrice + totalShipping).toFixed(2)}</strong>`
+	subtotal.innerHTML = `<strong>$. ${(totalPrice + totalShipping).toFixed(2)}</strong>`
 	
 	
 })

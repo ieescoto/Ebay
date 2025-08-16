@@ -18,3 +18,9 @@ function showPassword(inputID) {
         password.type = "password";
     }
 }
+
+//Redirigir a Login cuando se cree la cuenta
+const successBtn = document.querySelector("button#success-btn")
+successBtn.addEventListener("click",()=>{
+	window.location.href = "login.html"
+})

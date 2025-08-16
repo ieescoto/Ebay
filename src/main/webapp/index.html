@@ -5,8 +5,8 @@
         <title>Ebay</title>
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
-	    <link rel="stylesheet" href="assets/css/header.css">
 	    <link rel="stylesheet" href="assets/css/index.css">
+	    <link rel="stylesheet" href="assets/css/header.css">
     </head>
     <body>
         <div class="header">
@@ -41,37 +41,13 @@
         </div>
         
         <div class="searchbar">
-            <a class="logo" href="index.html"><img src="assets/img/EBay_logo.svg" title="eBay Home" width="200px" height="90px"></a>
-            <div class="search-container">
-                <i class="bi bi-search ms-2 me-2 align-self-center"></i>
-                <input type="text" class="searchInput h-auto" name="search "placeholder="Buscar">
-                <select id="search-categories-select" name="categories-select">
-                    <option value="category-todos">Todas las categorías</option>
-                    <option value="category-antiguedades">Antigüedades</option>
-                    <option value="category-arte">Arte</option>
-                    <option value="category-artesania">Artesanía</option>
-                    <option value="category-coleccion">Artículos de colección</option>
-                    <option value="category-deportivos">Artículos deportivos</option>
-                    <option value="category-electronicos">Artículos electrónicos</option>
-                    <option value="category-mascotas">Artículos para mascotas</option>
-                    <option value="category-bebes">Bebés</option>
-                    <option value="category-belleza-salud">Belleza y salud</option>
-                    <option value="category-bienes-raices">Bienes raíces</option>
-                    <option value="category-camaras-fotografia">Cámaras y fotografía</option>
-                    <option value="category-celulares">Celulares y accesorios</option>
-                    <option value="category-ceramica-cristal">Cerámica y cristal</option>
-                    <option value="category-computadoras">Computadoras, tablets y redes</option>
-                    <option value="category-dvd-peliculas">DVD y películas</option>
-                    <option value="category-ebay-motors">eBay Motors</option>
-                    <option value="category-entradas">Entradas, boletos</option>
-                    <option value="category-entretenimiento">Entretenimiento</option>
-                    <option value="category-equipos-industriales">Equipo y maquinaria industrial</option>
-
-                </select>
-            </div>
-
+            <a class="logo" href="index.html"><img src="assets/img/EBay_logo.svg" title="eBay Home" width="100" height="100"></a>
+            <input type="text" class="searchInput" name="search "placeholder="Buscar">
             <button class="search">Buscar</button>
         </div>
+
+          <!--   <button class="search">Buscar</button>
+        </div> -->
         <!-- <div class="container-fluid py-2 background-container-relationated" style="background-color: #f7f7f7;">
             <div class="div-container-relationated">
                 <div id="relationated-options">Opciones relacionadas</div>
@@ -102,56 +78,85 @@
             <p class="hov">Vender</p>
         </div>
 
-        <div class="carousel slide" data-bs-ride="carousel">
+        <!-- <div class="carousel slide" data-bs-ride="carousel">
 
             <img title="Banner va aqui">
-        </div>
+        </div> -->
 
         <div class="recentProducts"></div>
-        <h4 class="title">Compra por categorias</h4>
+        <h4 class="title mb-4">Compra por categorias</h4>
         <div class="categories">
-            <div class="category-container">
+        	<div class="category" data-category-id="1">
+			    <img src="assets/img/nueva-electronica.jpeg" alt="Electrónica">
+			    <p>Nueva electrónica</p>
+			</div>
+			<div class="category" data-category-id="4">
+			    <img src="assets/img/coleccionable.jpeg" alt="Coleccionables">
+			    <p>Coleccionables</p>
+			</div>
+			<div class="category" data-category-id="19">
+			    <img src="assets/img/partes-accesorios.jpeg" alt="Partes y accesorios">
+			    <p>Partes y accesorios</p>
+			</div>
+			<div class="category" data-category-id="3">
+			    <img src="assets/img/moda.jpeg" alt="Moda">
+			    <p>Moda</p>
+			</div>
+			<div class="category" data-category-id="6">
+			    <img src="assets/img/belleza-salud.jpeg" alt="Coleccionables">
+			    <p>Salud y belleza</p>
+			</div>
+			<div class="category" data-category-id="8">
+			    <img src="assets/img/hogar.jpeg" alt="Partes y accesorios">
+			    <p>Hogar y jardin</p>
+			</div>
+			<div class="category" data-category-id="15">
+			    <img src="assets/img/Reacondicionados.jpeg" alt="Moda">
+			    <p>Reacondicionados</p>
+			</div>
+  
+            <!-- <div class="category-container">
                 <div class="circule-card  cat-pdr" data-codigo-categoria="1">
                 <img title="foto" class="category-photo" src="assets/img/Electrodomesticos.webp" width="70%" height="70%">
                 </div>
-                <p class="mt-2">Nueva Electronica</p>
+                <p class="mt-2 text-center">Nueva Electronica</p>
             </div>
             <div class="category-container">
                 <div class="circule-card  cat-pdr" data-codigo-categoria="4">
                     <img title="foto" class="category-photo" src="assets/img/Coleccionables.webp" width="70%" height="70%">
                 </div>
-                <p class="mt-2">Coleccionables</p>
+                <p class="mt-2 text-center">Coleccionables</p>
             </div>
             <div class="category-container">
                 <div class="circule-card  cat-pdr" data-codigo-categoria="19">
                     <img title="foto" class="category-photo" src="assets/img/Accesorios%20Vehiculos.webp" width="70%" height="70%">
                 </div>
-                <p class="mt-2">Partes y accesorios</p>
+                <p class="mt-2 text-center">Partes y accesorios</p>
             </div>
             <div class="category-container">
                 <div class="circule-card  cat-pdr" data-codigo-categoria="3">
                     <img title="foto" class="category-photo">
                 </div>
-                <p class="mt-2">Moda</p>
+                <p class="mt-2 text-center">Moda</p>
             </div>
             <div class="category-container">
                 <div class="circule-card  cat-pdr" data-codigo-categoria="6">
                     <img title="foto" class="category-photo">
                 </div>
-                <p class="mt-2">Salud y belleza</p>
+                <p class="mt-2 text-center">Salud y belleza</p>
             </div>
             <div class="category-container">
                 <div class="circule-card  cat-pdr" data-codigo-categoria="8">
                     <img title="foto" class="category-photo">
                 </div>
-                <p class="mt-2">Hogar y jardin</p>
+                <p class="mt-2 text-center">Hogar y jardin</p>
             </div>
             <div class="category-container">
                 <div class="circule-card  cat-pdr" data-codigo-categoria="15">
                     <img title="foto" class="category-photo" src="assets/img/Apple_logo_black.svg" width="70%" height="70%">
                 </div>
-                <p class="mt-2">Reacondicionados</p>
-            </div>
+                <p class="mt-2 text-center">Reacondicionados</p>
+            </div> -->
 
         </div>
 

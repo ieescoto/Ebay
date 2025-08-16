@@ -13,7 +13,7 @@ xhr.addEventListener("load",()=>{
 	document.querySelector("div#title").innerText = `${json.info.title}`;
 	seller.innerText = `${json.info.username}`;
 	document.querySelector("div#rating").innerText = `${json.info.rating}% de Comentarios Positivos`;
-	document.querySelector("div#price").innerText = `L. ${json.info.price}`;
+	document.querySelector("div#price").innerText = `$. ${json.info.price}`;
 	document.querySelector("div#product-condition").innerText = `Estado: ${json.info.condition}`;
 	document.querySelector("div#quantity-product-number").innerText = `${json.info.quantity}`;
 	document.querySelector("div#sales-person-img").innerHTML = `<img src=${json.info.profilePic} class="object-fit-cover">`
@@ -21,14 +21,26 @@ xhr.addEventListener("load",()=>{
 	const secondaryImages = document.querySelector("div#other-images-product");
 	const primaryImage = document.querySelector("div#active-image-product");
 	
-	primaryImage.innerHTML = `<img src=${json.images[0]}>`;
+	primaryImage.innerHTML = `<img id="main-image" src=${json.images[0]}>`;
 	
 	for(let i=1;i<json.images.length;i++){
 		const images = document.createElement("div");
 		images.classList.add("images-container")
-		images.innerHTML = `<img src=${json.images[i]}>`
+		images.innerHTML = `<img class="secondary-image" src=${json.images[i]}>`
 		secondaryImages.appendChild(images);
 	}
+	
+	//replace("http://localhost:8080/Ebay/","").replace("%20"," ").replace("%C3%B1","ñ")
+	const mainImage = document.querySelector("img#main-image");
+	const imagesSecondary = document.querySelectorAll("img.secondary-image")
+	for(let i=0;i<imagesSecondary.length;i++){
+		imagesSecondary[i].addEventListener("click",()=>{
+			let temp = imagesSecondary[i].src.replace("http://localhost:8080/Ebay/","").replace("%20"," ").replace("%C3%B1","ñ")
+			imagesSecondary[i].src = mainImage.src.replace("http://localhost:8080/Ebay/","").replace("%20"," ").replace("%C3%B1","ñ")
+			mainImage.src = temp;
+		})
+	}
+	
 	
 	document.querySelector("div#id-item").innerText = productID;
 	document.querySelector("div#item-char-condition-value").innerText = `${json.info.condition}`;

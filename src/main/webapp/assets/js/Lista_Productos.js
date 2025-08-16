@@ -27,9 +27,9 @@ xhr.addEventListener("load",()=>{
 			                 </div>
 			                 <div class="container-product-more-information-product">
 			                     <div class="container-product-price-seller-positive-comentaries">
-			                         <div class="container-product-price"><h1>L. ${json.products[i].price}</h1></div>
+			                         <div class="container-product-price"><h1>$. ${json.products[i].price}</h1></div>
 			                     </div>
-			                     <div class="container-product-price-ship" id="shipping">L. ${json.products[i].shipping} por el envio</div>
+			                     <div class="container-product-price-ship" id="shipping">$. ${json.products[i].shipping} por el envio</div>
 			                 </div>
 			              </div>`;
 		container.appendChild(card);
