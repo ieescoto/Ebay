@@ -63,3 +63,8 @@ if(localStorage.getItem("isLogin") == "true"){
 	profilePic.appendChild(img)
 }
 
+//Redireccionar en Mi ebay
+document.querySelector("button#menu").addEventListener("click",()=>{
+	window.location.href = "Compras.html"
+})
+
